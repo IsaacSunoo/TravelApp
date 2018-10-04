@@ -22,7 +22,7 @@ public class RecommendationTests {
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
-		recommendation = em.find(Recommendation.class, 1);
+		recommendation = em.find(Recommendation.class, 8);
 	}
 
 	@AfterEach
@@ -33,14 +33,17 @@ public class RecommendationTests {
 
 	@Test
 	public void test_recommendation_mappings() {
+		assertEquals("Take the metro", recommendation.getContent());
 	}
 
 	@Test
 	public void test_recommendation_recType_association() {
+		assertEquals("tip", recommendation.getRecType().getName());
 	}
 
 	@Test
 	public void test_recommendation_trip_association() {
+		assertEquals("Rome", recommendation.getTrip().getDestination().getCity());
 	}
 
 }
