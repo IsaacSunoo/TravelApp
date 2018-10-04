@@ -16,11 +16,10 @@ import javax.persistence.OneToOne;
 @Entity
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	// fields
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
