@@ -234,3 +234,6 @@ java.net.UnknownHostException: spring.io: nodename nor servname provided, or not
 
 !ENTRY org.eclipse.jface.text 2 0 2018-10-04 08:28:38.802
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
+
+!ENTRY net.resheim.eclipse.launcher.core 1 0 2018-10-04 09:18:07.556
+!MESSAGE Launching new Eclipse instance with "open -n /Applications/STS.app --args -vm /Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/bin/../jre/lib/server/libjvm.dylib -os macosx -ws cocoa -arch x86_64 -showsplash -launcher /Applications/STS.app/Contents/MacOS/STS -name STS --launcher.library /Applications/STS.app/Contents/MacOS//../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200/eclipse_1705.so -startup /Applications/STS.app/Contents/MacOS//../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar --launcher.overrideVmargs -product org.springsource.sts.ide -keyring /Users/isaacsunoo/.eclipse_keyring -data /Users/isaacsunoo/SD/Java/EventTracker -vmargs -Dosgi.requiredJavaVersion=1.8 -Xms40m -Dosgi.module.lock.timeout=10 -XstartOnFirstThread -Xdock:icon=../Resources/sts.icns -Xmx1200m -Djava.class.path=/Applications/STS.app/Contents/MacOS//../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar "
