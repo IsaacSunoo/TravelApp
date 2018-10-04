@@ -1,9 +1,13 @@
 package com.skilldistillery.travelapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ProfileLocation {
@@ -17,6 +21,9 @@ public class ProfileLocation {
 	private String state;
 	
 	private String country;
+	
+	@OneToMany(mappedBy="location")
+	private List<Profile> profiles;
 	
 	public ProfileLocation() {
 
@@ -60,39 +67,32 @@ public class ProfileLocation {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
+	
+	public List<Profile> getProfiles() {
+		return profiles;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ProfileLocation other = (ProfileLocation) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
 	}
 
-	@Override
-	public String toString() {
-		return "ProfileLocation [id=" + id + ", city=" + city + ", state=" + state + ", country=" + country + "]";
+	public void addProfile(Profile profile) {
+		if (profiles == null) profiles = new ArrayList();
+		
+		if (!profiles.contains(profile)) {
+			profiles.add(profile);
+			if(profile.getLocation() != null) {
+				profile.getLocation().getProfiles().remove(profile);
+			}
+			profile.setLocation(this);
+		}
 	}
 	
-	
-	
-	
-	
-	
-	
-
+	public void removeAddresssss(Profile profile) {
+		profile.setLocation(null);
+		if (profiles != null) {
+			profiles.remove(profile);
+		}
+	}
+		
 }

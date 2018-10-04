@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -34,6 +38,14 @@ public class Posts {
 	
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="trip_id")
+	private Trip trip;
+	
+	@ManyToOne
+	@JoinColumn(name="prof_id")
+	private Profile profile;
 	
 	public Posts() {
 
@@ -95,15 +107,23 @@ public class Posts {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
 	
+	public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	public void addComment(Comment comment) {
 		if (comments == null) comments = new ArrayList();
 		
@@ -121,26 +141,6 @@ public class Posts {
 		if (comments != null) {
 			comments.remove(comment);
 		}
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Posts other = (Posts) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Posts [id=" + id + ", message=" + message + ", tripId=" + tripId + ", createDate=" + createDate
-				+ ", profId=" + profId + "]";
 	}
 	
 }

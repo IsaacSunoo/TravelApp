@@ -1,10 +1,16 @@
 package com.skilldistillery.travelapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Profile {
@@ -29,6 +35,14 @@ public class Profile {
 	private int locationId;
 	
 	private String bio;
+	
+	@OneToMany(mappedBy="profile")
+	private List<Posts> posts;
+	
+	@ManyToOne
+	@JoinColumn(name="location_id")
+	private ProfileLocation location;
+	
 	
 	public Profile() {
 
@@ -98,35 +112,41 @@ public class Profile {
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
+	
+	public List<Posts> getPosts() {
+		return posts;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Profile other = (Profile) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public void setPosts(List<Posts> posts) {
+		this.posts = posts;
 	}
 
-	@Override
-	public String toString() {
-		return "Profile [id=" + id + ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", imgLink=" + imgLink + ", locationId=" + locationId + ", bio=" + bio + "]";
+	public ProfileLocation getLocation() {
+		return location;
+	}
+
+	public void setLocation(ProfileLocation location) {
+		this.location = location;
+	}
+
+	public void addPost(Posts post) {
+		if (posts == null) posts = new ArrayList();
+		
+		if (!posts.contains(post)) {
+			posts.add(post);
+			if(post.getProfile() != null) {
+				post.getProfile().getPosts().remove(post);
+			}
+			post.setProfile(this);
+		}
 	}
 	
+	public void removePost(Posts post) {
+		post.setProfile(null);
+		if (posts != null) {
+			posts.remove(post);
+		}
+	}
 	
 	
 	

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Trip {
@@ -39,12 +41,17 @@ public class Trip {
 	@Column(name="profile_id")
 	private int profileId;
 	
+	@ManyToOne
+	@JoinColumn(name="profile_id")
+	private Profile profile;
+	
 	public Trip() {
 
 	}
 
 	public Trip(int id, String title, int rating, Double totalCost, Date dateStart, Date dateEnd, int destinationId,
-			String review, String imgLink, int profileId) {
+			String review, String imgLink, int profileId, Profile profile) {
+		super();
 		this.id = id;
 		this.title = title;
 		this.rating = rating;
@@ -55,6 +62,7 @@ public class Trip {
 		this.review = review;
 		this.imgLink = imgLink;
 		this.profileId = profileId;
+		this.profile = profile;
 	}
 
 	public int getId() {
@@ -137,11 +145,29 @@ public class Trip {
 		this.profileId = profileId;
 	}
 
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
+		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
+		result = prime * result + destinationId;
 		result = prime * result + id;
+		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
+		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + profileId;
+		result = prime * result + rating;
+		result = prime * result + ((review == null) ? 0 : review.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((totalCost == null) ? 0 : totalCost.hashCode());
 		return result;
 	}
 
@@ -154,7 +180,48 @@ public class Trip {
 		if (getClass() != obj.getClass())
 			return false;
 		Trip other = (Trip) obj;
+		if (dateEnd == null) {
+			if (other.dateEnd != null)
+				return false;
+		} else if (!dateEnd.equals(other.dateEnd))
+			return false;
+		if (dateStart == null) {
+			if (other.dateStart != null)
+				return false;
+		} else if (!dateStart.equals(other.dateStart))
+			return false;
+		if (destinationId != other.destinationId)
+			return false;
 		if (id != other.id)
+			return false;
+		if (imgLink == null) {
+			if (other.imgLink != null)
+				return false;
+		} else if (!imgLink.equals(other.imgLink))
+			return false;
+		if (profile == null) {
+			if (other.profile != null)
+				return false;
+		} else if (!profile.equals(other.profile))
+			return false;
+		if (profileId != other.profileId)
+			return false;
+		if (rating != other.rating)
+			return false;
+		if (review == null) {
+			if (other.review != null)
+				return false;
+		} else if (!review.equals(other.review))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (totalCost == null) {
+			if (other.totalCost != null)
+				return false;
+		} else if (!totalCost.equals(other.totalCost))
 			return false;
 		return true;
 	}
@@ -165,4 +232,5 @@ public class Trip {
 				+ ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", destinationId=" + destinationId + ", review="
 				+ review + ", imgLink=" + imgLink + ", profileId=" + profileId + "]";
 	}
+
 }
