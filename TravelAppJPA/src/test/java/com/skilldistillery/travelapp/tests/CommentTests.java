@@ -33,6 +33,7 @@ class CommentTests {
 	@DisplayName ("Test comment entity mapping")
 	void test_comment_entity() {
 		Comment comment = em.find(Comment.class, 1);
+		
 	}
 
 }

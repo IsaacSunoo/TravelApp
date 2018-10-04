@@ -6,6 +6,8 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class ProfileTests {
 
@@ -25,5 +27,12 @@ class ProfileTests {
 		emf.close();
 	}
 	
+	@Test
+	@DisplayName ("Test profile entity mapping")
+	void test_profile_entity() {
+		
+		
+	}
+
 
 }
