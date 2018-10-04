@@ -24,9 +24,6 @@ public class Profile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "user_id")
-	private int userId;
-
 	@Column(name = "first_name")
 	private String firstName;
 
@@ -35,9 +32,6 @@ public class Profile {
 
 	@Column(name = "img_link")
 	private String imgLink;
-
-	@Column(name = "location_id")
-	private int locationId;
 
 	private String bio;
 
@@ -66,17 +60,14 @@ public class Profile {
 
 	}
 
-	public Profile(int id, int userId, String firstName, String lastName,
-			String imgLink, int locationId, String bio, List<Posts> posts,
-			ProfileLocation location, List<Trip> trips, List<Trip> favoriteTrips,
-			User user) {
-		super();
+	// getters & setters
+
+	public Profile(int id, String firstName, String lastName, String imgLink, String bio, List<Posts> posts,
+			ProfileLocation location, List<Trip> trips, List<Trip> favoriteTrips, User user) {
 		this.id = id;
-		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.imgLink = imgLink;
-		this.locationId = locationId;
 		this.bio = bio;
 		this.posts = posts;
 		this.location = location;
@@ -85,22 +76,12 @@ public class Profile {
 		this.user = user;
 	}
 
-	// getters & setters
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getFirstName() {
@@ -133,14 +114,6 @@ public class Profile {
 
 	public void setImgLink(String imgLink) {
 		this.imgLink = imgLink;
-	}
-
-	public int getLocationId() {
-		return locationId;
-	}
-
-	public void setLocationId(int locationId) {
-		this.locationId = locationId;
 	}
 
 	public String getBio() {
@@ -247,18 +220,15 @@ public class Profile {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
-		result = prime * result
-				+ ((favoriteTrips == null) ? 0 : favoriteTrips.hashCode());
+		result = prime * result + ((favoriteTrips == null) ? 0 : favoriteTrips.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
-		result = prime * result + locationId;
 		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
 		result = prime * result + ((trips == null) ? 0 : trips.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		result = prime * result + userId;
 		return result;
 	}
 
@@ -303,8 +273,6 @@ public class Profile {
 				return false;
 		} else if (!location.equals(other.location))
 			return false;
-		if (locationId != other.locationId)
-			return false;
 		if (posts == null) {
 			if (other.posts != null)
 				return false;
@@ -320,16 +288,14 @@ public class Profile {
 				return false;
 		} else if (!user.equals(other.user))
 			return false;
-		if (userId != other.userId)
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Profile [id=" + id + ", userId=" + userId + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", imgLink=" + imgLink
-				+ ", locationId=" + locationId + ", bio=" + bio + "]";
+		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", imgLink=" + imgLink
+				+ ", bio=" + bio + ", posts=" + posts + ", location=" + location + ", trips=" + trips
+				+ ", favoriteTrips=" + favoriteTrips + ", user=" + user + "]";
 	}
 
 }

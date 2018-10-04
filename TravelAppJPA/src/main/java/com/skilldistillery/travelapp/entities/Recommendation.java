@@ -17,12 +17,6 @@ public class Recommendation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "trip_id")
-	private int tripId;
-
-	@Column(name = "rec_type_id")
-	private int recTypeId;
-
 	private String content;
 
 	@ManyToOne
@@ -38,13 +32,9 @@ public class Recommendation {
 	public Recommendation() {
 
 	}
-
-	public Recommendation(int id, int tripId, int recTypeId, String content,
-			RecType recType, Trip trip) {
-		super();
+	
+	public Recommendation(int id, String content, RecType recType, Trip trip) {
 		this.id = id;
-		this.tripId = tripId;
-		this.recTypeId = recTypeId;
 		this.content = content;
 		this.recType = recType;
 		this.trip = trip;
@@ -58,22 +48,6 @@ public class Recommendation {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getTripId() {
-		return tripId;
-	}
-
-	public void setTripId(int tripId) {
-		this.tripId = tripId;
-	}
-
-	public int getRecTypeId() {
-		return recTypeId;
-	}
-
-	public void setRecTypeId(int recTypeId) {
-		this.recTypeId = recTypeId;
 	}
 
 	public RecType getRecType() {
@@ -101,7 +75,7 @@ public class Recommendation {
 	}
 
 	// helpers
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -109,9 +83,7 @@ public class Recommendation {
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((recType == null) ? 0 : recType.hashCode());
-		result = prime * result + recTypeId;
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
-		result = prime * result + tripId;
 		return result;
 	}
 
@@ -136,22 +108,16 @@ public class Recommendation {
 				return false;
 		} else if (!recType.equals(other.recType))
 			return false;
-		if (recTypeId != other.recTypeId)
-			return false;
 		if (trip == null) {
 			if (other.trip != null)
 				return false;
 		} else if (!trip.equals(other.trip))
-			return false;
-		if (tripId != other.tripId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Recommendation [id=" + id + ", tripId=" + tripId + ", recTypeId="
-				+ recTypeId + ", content=" + content + "]";
+		return "Recommendation [id=" + id + ", content=" + content + ", recType=" + recType + ", trip=" + trip + "]";
 	}
-
 }

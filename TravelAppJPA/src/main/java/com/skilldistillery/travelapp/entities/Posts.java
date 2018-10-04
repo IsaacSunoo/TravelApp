@@ -28,15 +28,9 @@ public class Posts {
 
 	private String message;
 
-	@Column(name = "trip_id")
-	private int tripId;
-
 	@Column(name = "create_date")
 	@CreationTimestamp
 	private Date createDate;
-
-	@Column(name = "prof_id")
-	private int profId;
 
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
@@ -55,14 +49,10 @@ public class Posts {
 
 	}
 
-	public Posts(int id, String message, int tripId, Date createDate, int profId,
-			List<Comment> comments, Trip trip, Profile profile) {
-		super();
+	public Posts(int id, String message, Date createDate, List<Comment> comments, Trip trip, Profile profile) {
 		this.id = id;
 		this.message = message;
-		this.tripId = tripId;
 		this.createDate = createDate;
-		this.profId = profId;
 		this.comments = comments;
 		this.trip = trip;
 		this.profile = profile;
@@ -86,28 +76,12 @@ public class Posts {
 		this.message = message;
 	}
 
-	public int getTripId() {
-		return tripId;
-	}
-
-	public void setTripId(int tripId) {
-		this.tripId = tripId;
-	}
-
 	public Date getCreateDate() {
 		return createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	public int getProfId() {
-		return profId;
-	}
-
-	public void setProfId(int profId) {
-		this.profId = profId;
 	}
 
 	public List<Comment> getComments() {
@@ -133,6 +107,8 @@ public class Posts {
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
+	
+	// helpers
 
 	public void addComment(Comment comment) {
 		if (comments == null)
@@ -154,21 +130,16 @@ public class Posts {
 		}
 	}
 
-	// helpers
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result
-				+ ((createDate == null) ? 0 : createDate.hashCode());
+		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result + profId;
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
-		result = prime * result + tripId;
 		return result;
 	}
 
@@ -198,8 +169,6 @@ public class Posts {
 				return false;
 		} else if (!message.equals(other.message))
 			return false;
-		if (profId != other.profId)
-			return false;
 		if (profile == null) {
 			if (other.profile != null)
 				return false;
@@ -210,14 +179,16 @@ public class Posts {
 				return false;
 		} else if (!trip.equals(other.trip))
 			return false;
-		if (tripId != other.tripId)
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Posts [id=" + id + ", message=" + message + ", tripId=" + tripId
-				+ ", createDate=" + createDate + ", profId=" + profId + "]";
+		return "Posts [id=" + id + ", message=" + message + ", createDate=" + createDate + ", comments=" + comments
+				+ ", trip=" + trip + ", profile=" + profile + "]";
 	}
+
+	
+	
+
 }
