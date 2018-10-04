@@ -1,0 +1,5 @@
+package com.skilldistillery.travelapp.repositories;
+
+public class UserRepository {
+
+}

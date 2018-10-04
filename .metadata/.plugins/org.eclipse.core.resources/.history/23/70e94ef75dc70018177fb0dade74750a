@@ -1,0 +1,5 @@
+package com.skilldistillery.travelapp.entities;
+
+public class Followers {
+
+}

@@ -1,0 +1,8 @@
+package com.skilldistillery.travelapp.entities;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Trip {
+
+}
