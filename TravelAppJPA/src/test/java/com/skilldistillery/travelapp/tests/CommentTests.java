@@ -35,7 +35,13 @@ class CommentTests {
 	void test_comment_entity() {
 		Comment comment = em.find(Comment.class, 1);
 		assertEquals("Right on!", comment.getContent());
-		
+	}
+	
+	@Test
+	@DisplayName ("Test comment entity mapping")
+	void test_comment_entity2() {
+		Comment comment = em.find(Comment.class, 9);
+		assertEquals("What kind of footwear did you take?", comment.getContent());
 	}
 
 }

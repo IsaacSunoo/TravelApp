@@ -1,5 +1,7 @@
 package com.skilldistillery.travelapp.tests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -9,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.travelapp.entities.ProfileLocation;
+
 class ProfileLocationTests {
 
 	EntityManagerFactory emf;
@@ -16,7 +20,7 @@ class ProfileLocationTests {
 	
 	@BeforeEach
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("todoPU");
+		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
 	}
 	
@@ -30,6 +34,8 @@ class ProfileLocationTests {
 	@Test
 	@DisplayName ("Test profileLocation entity mapping")
 	void test_profileLocation_entity() {
+		ProfileLocation pl = em.find(ProfileLocation.class, 1);
+		assertEquals("Denver", pl.getCity());
 		
 	}
 
