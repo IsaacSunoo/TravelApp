@@ -1,5 +1,0 @@
-package com.skilldistillery.travelapp.repositories;
-
-public interface UserRepository extends JpaRepository<User, Integer> {
-
-}
