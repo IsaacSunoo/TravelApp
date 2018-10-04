@@ -19,10 +19,13 @@ class PostsTests {
 	EntityManagerFactory emf;
 	EntityManager em;
 	
+	private Posts p;
+	
 	@BeforeEach
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
+		p = em.find(Posts.class, 1);
 	}
 	
 	
@@ -35,11 +38,31 @@ class PostsTests {
 	@Test
 	@DisplayName ("Test posts entity mapping")
 	void test_posts_entity() {
-		Posts p = em.find(Posts.class, 1);
 		assertEquals("<iframe src=\"https://www.thebrokebackpacker.com/backpacking-barcelona-travel-guide/\" width=\"200\" height=\"200\">\n" + 
 				"</iframe>", p.getMessage());
 		
 	}
+	
+	@Test
+	@DisplayName ("Test posts entity mapping with Comments")
+	void test_posts_comments() {
+		assertEquals("Right on!", p.getComments().get(0).getContent());
+		
+	}
+	
+	@Test
+	@DisplayName ("Test posts entity mapping with trips")
+	void test_posts_trip() {
+		assertEquals("Fun Times in Barcelona" , p.getTrip().getTitle());
+	}
+	
+	@Test
+	@DisplayName ("Test posts entity mapping with Profile")
+	void test_posts_profile() {
+		assertEquals("I like turtles and hockey.  I love trying new foods and meeting new people.  I’ve never been to Argentina but I have been to Alaska and that was fun." , p.getProfile().getBio());
+	}
+	
+	
 
 
 }

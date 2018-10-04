@@ -11,10 +11,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.travelapp.entities.Comment;
 import com.skilldistillery.travelapp.entities.Destination;
+import com.skilldistillery.travelapp.entities.Trip;
 
 class DestinationTests {
+	
+	private Destination d;
 
 	EntityManagerFactory emf;
 	EntityManager em;
@@ -23,6 +25,7 @@ class DestinationTests {
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
+		d = em.find(Destination.class, 1);
 	}
 	
 	
@@ -35,14 +38,13 @@ class DestinationTests {
 	@Test
 	@DisplayName ("Test Destination entity mapping")
 	void test_destination_entity() {
-		Destination d = em.find(Destination.class, 1);
 		assertEquals("Barcelona", d.getCity());
 	}
 	
 	@Test
-	@DisplayName ("Test Destination entity mapping")
-	void test_destination_entity2() {
-		Destination d = em.find(Destination.class, 8);
-		assertEquals("Rome", d.getCity());
+	@DisplayName("Test Destination to if it is mapped to trips")
+	void test_destination_to_trips() {
+		assertEquals("Fun Times in Barcelona", d.getTrips().get(0).getTitle());
+		
 	}
 }

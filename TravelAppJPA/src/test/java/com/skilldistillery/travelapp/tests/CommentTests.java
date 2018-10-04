@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import com.skilldistillery.travelapp.entities.Comment;
 
 class CommentTests {
+	
+	private Comment c;
 
 	EntityManagerFactory emf;
 	EntityManager em;
@@ -21,6 +23,7 @@ class CommentTests {
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
+		c = em.find(Comment.class, 1);
 	}
 	
 	
@@ -33,15 +36,15 @@ class CommentTests {
 	@Test
 	@DisplayName ("Test comment entity mapping")
 	void test_comment_entity() {
-		Comment comment = em.find(Comment.class, 1);
-		assertEquals("Right on!", comment.getContent());
+		assertEquals("Right on!", c.getContent());
+	}
+
+	@Test
+	@DisplayName ("Test comment entity mapping with posts")
+	void test_comment_posts() {
+		assertEquals("<iframe src=\"https://www.thebrokebackpacker.com/backpacking-barcelona-travel-guide/\" width=\"200\" height=\"200\">\n" + 
+				"</iframe>", c.getPost().getMessage());
 	}
 	
-	@Test
-	@DisplayName ("Test comment entity mapping")
-	void test_comment_entity2() {
-		Comment comment = em.find(Comment.class, 9);
-		assertEquals("What kind of footwear did you take?", comment.getContent());
-	}
 
 }
