@@ -1,5 +1,5 @@
 package com.skilldistillery.travelapp.entities;
-
+// Comment
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
