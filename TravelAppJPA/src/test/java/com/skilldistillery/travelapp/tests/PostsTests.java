@@ -1,5 +1,7 @@
 package com.skilldistillery.travelapp.tests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -9,6 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.travelapp.entities.Destination;
+import com.skilldistillery.travelapp.entities.Posts;
+
 class PostsTests {
 
 	EntityManagerFactory emf;
@@ -16,7 +21,7 @@ class PostsTests {
 	
 	@BeforeEach
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("todoPU");
+		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
 	}
 	
@@ -30,6 +35,9 @@ class PostsTests {
 	@Test
 	@DisplayName ("Test posts entity mapping")
 	void test_posts_entity() {
+		Posts p = em.find(Posts.class, 1);
+		assertEquals("<iframe src=\"https://www.thebrokebackpacker.com/backpacking-barcelona-travel-guide/\" width=\"200\" height=\"200\">\n" + 
+				"</iframe>", p.getMessage());
 		
 	}
 

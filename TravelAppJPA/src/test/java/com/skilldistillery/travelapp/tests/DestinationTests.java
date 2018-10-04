@@ -1,5 +1,7 @@
 package com.skilldistillery.travelapp.tests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.travelapp.entities.Comment;
+import com.skilldistillery.travelapp.entities.Destination;
 
 class DestinationTests {
 
@@ -18,7 +21,7 @@ class DestinationTests {
 	
 	@BeforeEach
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("todoPU");
+		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
 	}
 	
@@ -32,6 +35,14 @@ class DestinationTests {
 	@Test
 	@DisplayName ("Test Destination entity mapping")
 	void test_destination_entity() {
-		
+		Destination d = em.find(Destination.class, 1);
+		assertEquals("Barcelona", d.getCity());
+	}
+	
+	@Test
+	@DisplayName ("Test Destination entity mapping")
+	void test_destination_entity2() {
+		Destination d = em.find(Destination.class, 8);
+		assertEquals("Rome", d.getCity());
 	}
 }
