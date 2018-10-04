@@ -1,4 +1,5 @@
 package com.skilldistillery.travelapp.entities;
+
 // Comment
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,26 +8,32 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	// fields
+
 	private int id;
-	
+
 	private String name;
-	
+
 	private String password;
-	
+
 	private String email;
-	
+
 	private boolean active;
-	
+
 	private String role;
-	
+
+	// constructors
+
 	public User() {
-	
+
 	}
 
-	public User(int id, String name, String password, String email, boolean active, String role) {
+	public User(int id, String name, String password, String email,
+			boolean active, String role) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
@@ -34,6 +41,8 @@ public class User {
 		this.active = active;
 		this.role = role;
 	}
+
+	// getters & setters
 
 	public int getId() {
 		return id;
@@ -107,9 +116,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", active="
-				+ active + ", role=" + role + "]";
+		return "User [id=" + id + ", name=" + name + ", password=" + password
+				+ ", email=" + email + ", active=" + active + ", role=" + role + "]";
 	}
-	
 
 }
