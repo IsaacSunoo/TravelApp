@@ -1,12 +1,15 @@
 package com.skilldistillery.travelapp.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -29,15 +32,20 @@ public class Posts {
 	@Column(name="prof_id")
 	private int profId;
 	
+	@OneToMany(mappedBy="post")
+	private List<Comment> comments;
+	
 	public Posts() {
 
 	}
-
-	public Posts(String message, int tripId, Date createDate, int profId) {
+	
+	public Posts(int id, String message, int tripId, Date createDate, int profId, List<Comment> comments) {
+		this.id = id;
 		this.message = message;
 		this.tripId = tripId;
 		this.createDate = createDate;
 		this.profId = profId;
+		this.comments = comments;
 	}
 
 	public int getId() {
@@ -79,6 +87,14 @@ public class Posts {
 	public void setProfId(int profId) {
 		this.profId = profId;
 	}
+	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 
 	@Override
 	public int hashCode() {
@@ -86,6 +102,25 @@ public class Posts {
 		int result = 1;
 		result = prime * result + id;
 		return result;
+	}
+	
+	public void addComment(Comment comment) {
+		if (comments == null) comments = new ArrayList();
+		
+		if (!comments.contains(comment)) {
+			comments.add(comment);
+			if(comment.getPost() != null) {
+				comment.getPost().getComments().remove(comment);
+			}
+			comment.setPost(this);
+		}
+	}
+	
+	public void removeComment(Comment comment) {
+		comment.setPost(null);
+		if (comments != null) {
+			comments.remove(comment);
+		}
 	}
 
 	@Override

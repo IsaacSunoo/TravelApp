@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -28,6 +30,10 @@ public class Comment {
 	@Column(name="create_date")
 	@CreationTimestamp
 	private Date createDate;
+	
+	@ManyToOne
+	@JoinColumn(name="post_id")
+	private Posts post;
 	
 	public Comment() {
 
@@ -78,6 +84,14 @@ public class Comment {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	
+	public Posts getPost() {
+		return post;
+	}
+
+	public void setPost(Posts post) {
+		this.post = post;
 	}
 
 	@Override
