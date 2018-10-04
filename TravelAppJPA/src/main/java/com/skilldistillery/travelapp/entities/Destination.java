@@ -26,7 +26,9 @@ public class Destination {
 
 	}
 
-	public Destination(String city, String state, String country, String longitude, String latitude) {
+	public Destination(int id, String city, String state, String country, String longitude, String latitude) {
+		super();
+		this.id = id;
 		this.city = city;
 		this.state = state;
 		this.country = country;
@@ -86,7 +88,12 @@ public class Destination {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
+		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		return result;
 	}
 
@@ -99,7 +106,32 @@ public class Destination {
 		if (getClass() != obj.getClass())
 			return false;
 		Destination other = (Destination) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
 		if (id != other.id)
+			return false;
+		if (latitude == null) {
+			if (other.latitude != null)
+				return false;
+		} else if (!latitude.equals(other.latitude))
+			return false;
+		if (longitude == null) {
+			if (other.longitude != null)
+				return false;
+		} else if (!longitude.equals(other.longitude))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
 			return false;
 		return true;
 	}
@@ -109,7 +141,6 @@ public class Destination {
 		return "Destination [id=" + id + ", city=" + city + ", state=" + state + ", country=" + country + ", longitude="
 				+ longitude + ", latitude=" + latitude + "]";
 	}
-	
-	
+
 
 }

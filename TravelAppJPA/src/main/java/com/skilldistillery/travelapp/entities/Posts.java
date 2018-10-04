@@ -51,13 +51,16 @@ public class Posts {
 
 	}
 	
-	public Posts(int id, String message, int tripId, Date createDate, int profId, List<Comment> comments) {
+	public Posts(int id, String message, int tripId, Date createDate, int profId, List<Comment> comments, Trip trip,
+			Profile profile) {
 		this.id = id;
 		this.message = message;
 		this.tripId = tripId;
 		this.createDate = createDate;
 		this.profId = profId;
 		this.comments = comments;
+		this.trip = trip;
+		this.profile = profile;
 	}
 
 	public int getId() {
@@ -142,5 +145,68 @@ public class Posts {
 			comments.remove(comment);
 		}
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((message == null) ? 0 : message.hashCode());
+		result = prime * result + profId;
+		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
+		result = prime * result + tripId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Posts other = (Posts) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		if (createDate == null) {
+			if (other.createDate != null)
+				return false;
+		} else if (!createDate.equals(other.createDate))
+			return false;
+		if (id != other.id)
+			return false;
+		if (message == null) {
+			if (other.message != null)
+				return false;
+		} else if (!message.equals(other.message))
+			return false;
+		if (profId != other.profId)
+			return false;
+		if (profile == null) {
+			if (other.profile != null)
+				return false;
+		} else if (!profile.equals(other.profile))
+			return false;
+		if (trip == null) {
+			if (other.trip != null)
+				return false;
+		} else if (!trip.equals(other.trip))
+			return false;
+		if (tripId != other.tripId)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Posts [id=" + id + ", message=" + message + ", tripId=" + tripId + ", createDate=" + createDate
+				+ ", profId=" + profId + ", comments=" + comments + ", trip=" + trip + ", profile=" + profile + "]";
+	}
 }

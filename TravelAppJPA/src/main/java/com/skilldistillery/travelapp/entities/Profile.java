@@ -3,6 +3,7 @@ package com.skilldistillery.travelapp.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Profile {
@@ -43,18 +45,30 @@ public class Profile {
 	@JoinColumn(name="location_id")
 	private ProfileLocation location;
 	
+	@OneToMany(mappedBy="profile")
+	private List<Trip> trips;
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	public Profile() {
 
 	}
 
-	public Profile(int userId, String firstName, String lastName, String imgLink, int locationId, String bio) {
+	public Profile(int id, int userId, String firstName, String lastName, String imgLink, int locationId, String bio,
+			List<Posts> posts, ProfileLocation location, List<Trip> trips, User user) {
+		this.id = id;
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.imgLink = imgLink;
 		this.locationId = locationId;
 		this.bio = bio;
+		this.posts = posts;
+		this.location = location;
+		this.trips = trips;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -112,6 +126,14 @@ public class Profile {
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
+
+	public ProfileLocation getLocation() {
+		return location;
+	}
+
+	public void setLocation(ProfileLocation location) {
+		this.location = location;
+	}
 	
 	public List<Posts> getPosts() {
 		return posts;
@@ -120,13 +142,21 @@ public class Profile {
 	public void setPosts(List<Posts> posts) {
 		this.posts = posts;
 	}
-
-	public ProfileLocation getLocation() {
-		return location;
+	
+	public List<Trip> getTrips() {
+		return trips;
 	}
 
-	public void setLocation(ProfileLocation location) {
-		this.location = location;
+	public void setTrips(List<Trip> trips) {
+		this.trips = trips;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void addPost(Posts post) {
@@ -148,8 +178,106 @@ public class Profile {
 		}
 	}
 	
+	public void addTrip(Trip trip) {
+		if (trips == null) trips= new ArrayList();
+		
+		if (!trips.contains(trip)) {
+			trips.add(trip);
+			if(trip.getProfile() != null) {
+				trip.getProfile().getTrips().remove(trip);
+			}
+			trip.setProfile(this);
+		}
+	}
 	
-	
+	public void removeTrip(Trip trip) {
+		trip.setProfile(null);
+		if (trips != null) {
+			trips.remove(trip);
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + locationId;
+		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
+		result = prime * result + ((trips == null) ? 0 : trips.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + userId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profile other = (Profile) obj;
+		if (bio == null) {
+			if (other.bio != null)
+				return false;
+		} else if (!bio.equals(other.bio))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (imgLink == null) {
+			if (other.imgLink != null)
+				return false;
+		} else if (!imgLink.equals(other.imgLink))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (locationId != other.locationId)
+			return false;
+		if (posts == null) {
+			if (other.posts != null)
+				return false;
+		} else if (!posts.equals(other.posts))
+			return false;
+		if (trips == null) {
+			if (other.trips != null)
+				return false;
+		} else if (!trips.equals(other.trips))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (userId != other.userId)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", imgLink=" + imgLink + ", locationId=" + locationId + ", bio=" + bio + ", posts=" + posts
+				+ ", location=" + location + ", trips=" + trips + ", user=" + user + "]";
+	}
 	
 }
-
