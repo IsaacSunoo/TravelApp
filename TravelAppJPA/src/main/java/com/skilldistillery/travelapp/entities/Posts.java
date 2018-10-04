@@ -19,40 +19,45 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Posts {
-	
+
+	// fields
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String message;
-	
-	@Column(name="trip_id")
+
+	@Column(name = "trip_id")
 	private int tripId;
-	
-	@Column(name="create_date")
+
+	@Column(name = "create_date")
 	@CreationTimestamp
 	private Date createDate;
-	
-	@Column(name="prof_id")
+
+	@Column(name = "prof_id")
 	private int profId;
-	
-	@OneToMany(mappedBy="post")
+
+	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
-	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="trip_id")
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "trip_id")
 	private Trip trip;
-	
+
 	@ManyToOne
-	@JoinColumn(name="prof_id")
+	@JoinColumn(name = "prof_id")
 	private Profile profile;
-	
+
+	// constructors
+
 	public Posts() {
 
 	}
-	
-	public Posts(int id, String message, int tripId, Date createDate, int profId, List<Comment> comments, Trip trip,
-			Profile profile) {
+
+	public Posts(int id, String message, int tripId, Date createDate, int profId,
+			List<Comment> comments, Trip trip, Profile profile) {
+		super();
 		this.id = id;
 		this.message = message;
 		this.tripId = tripId;
@@ -62,6 +67,8 @@ public class Posts {
 		this.trip = trip;
 		this.profile = profile;
 	}
+
+	// getters & setters
 
 	public int getId() {
 		return id;
@@ -102,7 +109,7 @@ public class Posts {
 	public void setProfId(int profId) {
 		this.profId = profId;
 	}
-	
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -110,7 +117,7 @@ public class Posts {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
+
 	public Trip getTrip() {
 		return trip;
 	}
@@ -128,17 +135,18 @@ public class Posts {
 	}
 
 	public void addComment(Comment comment) {
-		if (comments == null) comments = new ArrayList();
-		
+		if (comments == null)
+			comments = new ArrayList();
+
 		if (!comments.contains(comment)) {
 			comments.add(comment);
-			if(comment.getPost() != null) {
+			if (comment.getPost() != null) {
 				comment.getPost().getComments().remove(comment);
 			}
 			comment.setPost(this);
 		}
 	}
-	
+
 	public void removeComment(Comment comment) {
 		comment.setPost(null);
 		if (comments != null) {
@@ -146,12 +154,15 @@ public class Posts {
 		}
 	}
 
+	// helpers
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
+		result = prime * result
+				+ ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + profId;
@@ -206,7 +217,7 @@ public class Posts {
 
 	@Override
 	public String toString() {
-		return "Posts [id=" + id + ", message=" + message + ", tripId=" + tripId + ", createDate=" + createDate
-				+ ", profId=" + profId + ", comments=" + comments + ", trip=" + trip + ", profile=" + profile + "]";
+		return "Posts [id=" + id + ", message=" + message + ", tripId=" + tripId
+				+ ", createDate=" + createDate + ", profId=" + profId + "]";
 	}
 }

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -17,47 +18,57 @@ import javax.persistence.OneToOne;
 @Entity
 public class Profile {
 
+	// fields
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="user_id")
+
+	@Column(name = "user_id")
 	private int userId;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
-	
-	@Column(name="img_link")
+
+	@Column(name = "img_link")
 	private String imgLink;
-	
-	@Column(name="location_id")
+
+	@Column(name = "location_id")
 	private int locationId;
-	
+
 	private String bio;
-	
-	@OneToMany(mappedBy="profile")
+
+	@OneToMany(mappedBy = "profile")
 	private List<Posts> posts;
-	
+
 	@ManyToOne
-	@JoinColumn(name="location_id")
+	@JoinColumn(name = "location_id")
 	private ProfileLocation location;
-	
-	@OneToMany(mappedBy="profile")
+
+	// Trips this user has created
+	@OneToMany(mappedBy = "profile")
 	private List<Trip> trips;
-	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="user_id")
+
+	// Trips this user has favorited
+	@ManyToMany(mappedBy = "profiles")
+	private List<Trip> favoriteTrips;
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "user_id")
 	private User user;
-	
+
+	// constructors
+
 	public Profile() {
 
 	}
 
-	public Profile(int id, int userId, String firstName, String lastName, String imgLink, int locationId, String bio,
-			List<Posts> posts, ProfileLocation location, List<Trip> trips, User user) {
+	public Profile(int id, int userId, String firstName, String lastName,
+			String imgLink, int locationId, String bio, List<Posts> posts,
+			ProfileLocation location, List<Trip> trips, User user) {
 		this.id = id;
 		this.userId = userId;
 		this.firstName = firstName;
@@ -70,6 +81,8 @@ public class Profile {
 		this.trips = trips;
 		this.user = user;
 	}
+
+	// getters & setters
 
 	public int getId() {
 		return id;
@@ -134,7 +147,7 @@ public class Profile {
 	public void setLocation(ProfileLocation location) {
 		this.location = location;
 	}
-	
+
 	public List<Posts> getPosts() {
 		return posts;
 	}
@@ -142,7 +155,7 @@ public class Profile {
 	public void setPosts(List<Posts> posts) {
 		this.posts = posts;
 	}
-	
+
 	public List<Trip> getTrips() {
 		return trips;
 	}
@@ -150,7 +163,7 @@ public class Profile {
 	public void setTrips(List<Trip> trips) {
 		this.trips = trips;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -159,37 +172,58 @@ public class Profile {
 		this.user = user;
 	}
 
+	// helpers
+
+	public void addFavoriteTrip(Trip favoriteTrip) {
+		if (favoriteTrips == null) {
+			favoriteTrips = new ArrayList<>();
+		}
+		if (!favoriteTrips.contains(favoriteTrip)) {
+			favoriteTrips.add(favoriteTrip);
+			favoriteTrip.addProfile(this);
+		}
+	}
+
+	public void removeFavoriteTrip(Trip favoriteTrip) {
+		if (favoriteTrips != null && favoriteTrips.contains(favoriteTrip)) {
+			favoriteTrips.remove(favoriteTrip);
+			favoriteTrip.removeProfile(this);
+		}
+	}
+
 	public void addPost(Posts post) {
-		if (posts == null) posts = new ArrayList();
-		
+		if (posts == null)
+			posts = new ArrayList();
+
 		if (!posts.contains(post)) {
 			posts.add(post);
-			if(post.getProfile() != null) {
+			if (post.getProfile() != null) {
 				post.getProfile().getPosts().remove(post);
 			}
 			post.setProfile(this);
 		}
 	}
-	
+
 	public void removePost(Posts post) {
 		post.setProfile(null);
 		if (posts != null) {
 			posts.remove(post);
 		}
 	}
-	
+
 	public void addTrip(Trip trip) {
-		if (trips == null) trips= new ArrayList();
-		
+		if (trips == null)
+			trips = new ArrayList();
+
 		if (!trips.contains(trip)) {
 			trips.add(trip);
-			if(trip.getProfile() != null) {
+			if (trip.getProfile() != null) {
 				trip.getProfile().getTrips().remove(trip);
 			}
 			trip.setProfile(this);
 		}
 	}
-	
+
 	public void removeTrip(Trip trip) {
 		trip.setProfile(null);
 		if (trips != null) {
@@ -275,9 +309,11 @@ public class Profile {
 
 	@Override
 	public String toString() {
-		return "Profile [id=" + id + ", userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", imgLink=" + imgLink + ", locationId=" + locationId + ", bio=" + bio + ", posts=" + posts
-				+ ", location=" + location + ", trips=" + trips + ", user=" + user + "]";
+		return "Profile [id=" + id + ", userId=" + userId + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", imgLink=" + imgLink
+				+ ", locationId=" + locationId + ", bio=" + bio + ", posts=" + posts
+				+ ", location=" + location + ", trips=" + trips + ", user=" + user
+				+ "]";
 	}
-	
+
 }

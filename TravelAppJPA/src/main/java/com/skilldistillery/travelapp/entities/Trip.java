@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Trip {
@@ -52,9 +54,24 @@ public class Trip {
 	private Profile profile;
 
 	@ManyToMany
+	@JoinTable(name = "favorites", joinColumns = @JoinColumn(name = "profile_id"),
+			inverseJoinColumns = @JoinColumn(name = "trip_id"))
+	private List<Profile> profiles;
+
+	@ManyToMany
 	@JoinTable(name = "trip_tag", joinColumns = @JoinColumn(name = "trip_id"),
 			inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	private List<Tag> tags;
+
+	@OneToMany(mappedBy = "trip")
+	private List<Recommendation> recommendations;
+
+	@OneToOne(mappedBy = "trip")
+	private Posts posts;
+
+	@ManyToOne
+	@JoinColumn(name = "destination_id")
+	private Destination destination;
 
 	// constructors
 
@@ -106,6 +123,14 @@ public class Trip {
 		this.title = title;
 	}
 
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+
 	public int getRating() {
 		return rating;
 	}
@@ -120,6 +145,14 @@ public class Trip {
 
 	public void setTotalCost(Double totalCost) {
 		this.totalCost = totalCost;
+	}
+
+	public List<Recommendation> getRecommendations() {
+		return recommendations;
+	}
+
+	public void setRecommendations(List<Recommendation> recommendations) {
+		this.recommendations = recommendations;
 	}
 
 	public Date getDateStart() {
@@ -162,6 +195,22 @@ public class Trip {
 		this.imgLink = imgLink;
 	}
 
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
+	}
+
+	public Posts getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Posts posts) {
+		this.posts = posts;
+	}
+
 	public int getProfileId() {
 		return profileId;
 	}
@@ -180,6 +229,25 @@ public class Trip {
 
 	// helpers
 
+	// This is for the many to many relationship between trip and profile, the
+	// trips a user has favorited (from people they follow)
+	public void addProfile(Profile profile) {
+		if (profiles == null) {
+			profiles = new ArrayList<>();
+		}
+		if (!profiles.contains(profile)) {
+			profiles.add(profile);
+			profile.addFavoriteTrip(this);
+		}
+	}
+
+	public void removeProfile(Profile profile) {
+		if (profiles != null && profiles.contains(profile)) {
+			profiles.remove(profile);
+			profile.removeFavoriteTrip(this);
+		}
+	}
+
 	public void addTag(Tag tag) {
 		if (tags == null) {
 			tags = new ArrayList<>();
@@ -195,6 +263,25 @@ public class Trip {
 		if (tags != null && tags.contains(tag)) {
 			tags.remove(tag);
 			tag.removeTrip(this);
+		}
+	}
+
+	public void addRecommendation(Recommendation recommendation) {
+		if (recommendations == null)
+			recommendations = new ArrayList<>();
+		if (!recommendations.contains(recommendation)) {
+			recommendations.add(recommendation);
+			if (recommendation.getTrip() != null) {
+				recommendation.getTrip().getRecommendations().remove(recommendation);
+			}
+			recommendation.setTrip(this);
+		}
+	}
+
+	public void removeRecommendation(Recommendation recommendation) {
+		recommendation.setTrip(null);
+		if (recommendations != null) {
+			recommendations.remove(recommendation);
 		}
 	}
 

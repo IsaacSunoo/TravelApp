@@ -1,32 +1,45 @@
 package com.skilldistillery.travelapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Destination {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	// fields
+
 	private int id;
-	
+
 	private String city;
-	
+
 	private String state;
-	
+
 	private String country;
-	
+
 	private String longitude;
-	
+
 	private String latitude;
-	
+
+	@OneToMany(mappedBy = "destination")
+	private List<Trip> trips;
+
+	// constructors
+
 	public Destination() {
 
 	}
 
-	public Destination(int id, String city, String state, String country, String longitude, String latitude) {
+	public Destination(int id, String city, String state, String country,
+			String longitude, String latitude, List<Trip> trips) {
 		super();
 		this.id = id;
 		this.city = city;
@@ -34,6 +47,17 @@ public class Destination {
 		this.country = country;
 		this.longitude = longitude;
 		this.latitude = latitude;
+		this.trips = trips;
+	}
+
+	// getters & setters
+
+	public List<Trip> getTrips() {
+		return trips;
+	}
+
+	public void setTrips(List<Trip> trips) {
+		this.trips = trips;
 	}
 
 	public int getId() {
@@ -84,6 +108,29 @@ public class Destination {
 		this.latitude = latitude;
 	}
 
+	// helpers
+
+	public void addTrip(Trip trip) {
+		if (trips == null)
+			trips = new ArrayList<>();
+		if (!trips.contains(trip)) {
+			trips.add(trip);
+			if (trip.getDestination() != null) {
+				trip.getDestination().getTrips().remove(trip);
+
+			}
+			trip.setDestination(this);
+
+		}
+	}
+
+	public void removeTrip(Trip trip) {
+		trip.setDestination(null);
+		if (trips != null) {
+			trips.remove(trip);
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,6 +141,7 @@ public class Destination {
 		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
 		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + ((trips == null) ? 0 : trips.hashCode());
 		return result;
 	}
 
@@ -133,14 +181,19 @@ public class Destination {
 				return false;
 		} else if (!state.equals(other.state))
 			return false;
+		if (trips == null) {
+			if (other.trips != null)
+				return false;
+		} else if (!trips.equals(other.trips))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Destination [id=" + id + ", city=" + city + ", state=" + state + ", country=" + country + ", longitude="
-				+ longitude + ", latitude=" + latitude + "]";
+		return "Destination [id=" + id + ", city=" + city + ", state=" + state
+				+ ", country=" + country + ", longitude=" + longitude + ", latitude="
+				+ latitude + "]";
 	}
-
 
 }
