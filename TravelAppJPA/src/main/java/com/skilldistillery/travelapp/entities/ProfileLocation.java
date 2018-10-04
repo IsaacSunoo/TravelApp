@@ -91,7 +91,7 @@ public class ProfileLocation {
 		}
 	}
 	
-	public void removeAddresssss(Profile profile) {
+	public void removeProfile(Profile profile) {
 		profile.setLocation(null);
 		if (profiles != null) {
 			profiles.remove(profile);
