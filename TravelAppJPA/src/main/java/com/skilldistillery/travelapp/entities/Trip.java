@@ -1,6 +1,8 @@
 package com.skilldistillery.travelapp.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,49 +10,61 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Trip {
-	
+
+	// fields
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
-	
+
 	private int rating;
-	
-	@Column(name="total_cost")
+
+	@Column(name = "total_cost")
 	private Double totalCost;
-	
-	@Column(name="date_start")
+
+	@Column(name = "date_start")
 	private Date dateStart;
-	
-	@Column(name="date_end")
+
+	@Column(name = "date_end")
 	private Date dateEnd;
-	
-	@Column(name="destination_id")
+
+	@Column(name = "destination_id")
 	private int destinationId;
-	
+
 	private String review;
-	
-	@Column(name="img_link")
+
+	@Column(name = "img_link")
 	private String imgLink;
-	
-	@Column(name="profile_id")
+
+	@Column(name = "profile_id")
 	private int profileId;
-	
+
 	@ManyToOne
-	@JoinColumn(name="profile_id")
+	@JoinColumn(name = "profile_id")
 	private Profile profile;
-	
+
+	@ManyToMany
+	@JoinTable(name = "trip_tag", joinColumns = @JoinColumn(name = "trip_id"),
+			inverseJoinColumns = @JoinColumn(name = "tag_id"))
+	private List<Tag> tags;
+
+	// constructors
+
 	public Trip() {
 
 	}
 
-	public Trip(int id, String title, int rating, Double totalCost, Date dateStart, Date dateEnd, int destinationId,
-			String review, String imgLink, int profileId, Profile profile) {
+	public Trip(int id, String title, int rating, Double totalCost,
+			Date dateStart, Date dateEnd, int destinationId, String review,
+			String imgLink, int profileId, Profile profile, List<Tag> tags) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -63,7 +77,10 @@ public class Trip {
 		this.imgLink = imgLink;
 		this.profileId = profileId;
 		this.profile = profile;
+		this.tags = tags;
 	}
+
+	// getters & setters
 
 	public int getId() {
 		return id;
@@ -71,6 +88,14 @@ public class Trip {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	public String getTitle() {
@@ -153,6 +178,26 @@ public class Trip {
 		this.profile = profile;
 	}
 
+	// helpers
+
+	public void addTag(Tag tag) {
+		if (tags == null) {
+			tags = new ArrayList<>();
+		}
+		if (!tags.contains(tag)) {
+			tags.add(tag);
+			tag.addTrip(this);
+		}
+
+	}
+
+	public void removeTag(Tag tag) {
+		if (tags != null && tags.contains(tag)) {
+			tags.remove(tag);
+			tag.removeTrip(this);
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -166,6 +211,7 @@ public class Trip {
 		result = prime * result + profileId;
 		result = prime * result + rating;
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
+		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((totalCost == null) ? 0 : totalCost.hashCode());
 		return result;
@@ -213,6 +259,11 @@ public class Trip {
 				return false;
 		} else if (!review.equals(other.review))
 			return false;
+		if (tags == null) {
+			if (other.tags != null)
+				return false;
+		} else if (!tags.equals(other.tags))
+			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
@@ -228,9 +279,10 @@ public class Trip {
 
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", title=" + title + ", rating=" + rating + ", totalCost=" + totalCost
-				+ ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", destinationId=" + destinationId + ", review="
-				+ review + ", imgLink=" + imgLink + ", profileId=" + profileId + "]";
+		return "Trip [id=" + id + ", title=" + title + ", rating=" + rating
+				+ ", totalCost=" + totalCost + ", dateStart=" + dateStart + ", dateEnd="
+				+ dateEnd + ", destinationId=" + destinationId + ", review=" + review
+				+ ", imgLink=" + imgLink + ", profileId=" + profileId + "]";
 	}
 
 }
