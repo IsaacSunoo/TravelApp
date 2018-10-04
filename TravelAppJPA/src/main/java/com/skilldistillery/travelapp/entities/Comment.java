@@ -21,9 +21,6 @@ public class Comment {
 	
 	private String content;
 	
-	@Column(name="post_id")
-	private int postId;
-	
 	@Column(name="prof_id")
 	private int profId;
 	
@@ -39,11 +36,9 @@ public class Comment {
 
 	}
 
-
-	public Comment(int id, String content, int postId, int profId, Date createDate, Posts post) {
+	public Comment(int id, String content, int profId, Date createDate, Posts post) {
 		this.id = id;
 		this.content = content;
-		this.postId = postId;
 		this.profId = profId;
 		this.createDate = createDate;
 		this.post = post;
@@ -64,14 +59,6 @@ public class Comment {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public int getPostId() {
-		return postId;
-	}
-
-	public void setPostId(int postId) {
-		this.postId = postId;
 	}
 
 	public int getProfId() {
@@ -98,7 +85,6 @@ public class Comment {
 		this.post = post;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,7 +93,6 @@ public class Comment {
 		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((post == null) ? 0 : post.hashCode());
-		result = prime * result + postId;
 		result = prime * result + profId;
 		return result;
 	}
@@ -138,8 +123,6 @@ public class Comment {
 				return false;
 		} else if (!post.equals(other.post))
 			return false;
-		if (postId != other.postId)
-			return false;
 		if (profId != other.profId)
 			return false;
 		return true;
@@ -147,8 +130,9 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", content=" + content + ", postId=" + postId + ", profId=" + profId
-				+ ", createDate=" + createDate + ", post=" + post + "]";
+		return "Comment [id=" + id + ", content=" + content + ", profId=" + profId + ", createDate=" + createDate
+				+ ", post=" + post + "]";
 	}
+
 
 }

@@ -38,16 +38,10 @@ public class Trip {
 	@Column(name = "date_end")
 	private Date dateEnd;
 
-	@Column(name = "destination_id")
-	private int destinationId;
-
 	private String review;
 
 	@Column(name = "img_link")
 	private String imgLink;
-
-	@Column(name = "profile_id")
-	private int profileId;
 
 	@ManyToOne
 	@JoinColumn(name = "profile_id")
@@ -79,22 +73,17 @@ public class Trip {
 
 	}
 
-	public Trip(int id, String title, int rating, Double totalCost,
-			Date dateStart, Date dateEnd, int destinationId, String review,
-			String imgLink, int profileId, Profile profile, List<Profile> profiles,
-			List<Tag> tags, List<Recommendation> recommendations, Posts posts,
-			Destination destination) {
-		super();
+	public Trip(int id, String title, int rating, Double totalCost, Date dateStart, Date dateEnd, String review,
+			String imgLink, Profile profile, List<Profile> profiles, List<Tag> tags,
+			List<Recommendation> recommendations, Posts posts, Destination destination) {
 		this.id = id;
 		this.title = title;
 		this.rating = rating;
 		this.totalCost = totalCost;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
-		this.destinationId = destinationId;
 		this.review = review;
 		this.imgLink = imgLink;
-		this.profileId = profileId;
 		this.profile = profile;
 		this.profiles = profiles;
 		this.tags = tags;
@@ -102,6 +91,7 @@ public class Trip {
 		this.posts = posts;
 		this.destination = destination;
 	}
+
 
 	// getters & setters
 
@@ -177,14 +167,6 @@ public class Trip {
 		this.dateEnd = dateEnd;
 	}
 
-	public int getDestinationId() {
-		return destinationId;
-	}
-
-	public void setDestinationId(int destinationId) {
-		this.destinationId = destinationId;
-	}
-
 	public String getReview() {
 		return review;
 	}
@@ -215,14 +197,6 @@ public class Trip {
 
 	public void setPosts(Posts posts) {
 		this.posts = posts;
-	}
-
-	public int getProfileId() {
-		return profileId;
-	}
-
-	public void setProfileId(int profileId) {
-		this.profileId = profileId;
 	}
 
 	public Profile getProfile() {
@@ -297,18 +271,14 @@ public class Trip {
 		int result = 1;
 		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
 		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
-		result = prime * result
-				+ ((destination == null) ? 0 : destination.hashCode());
-		result = prime * result + destinationId;
+		result = prime * result + ((destination == null) ? 0 : destination.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
 		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
-		result = prime * result + profileId;
 		result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
 		result = prime * result + rating;
-		result = prime * result
-				+ ((recommendations == null) ? 0 : recommendations.hashCode());
+		result = prime * result + ((recommendations == null) ? 0 : recommendations.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -340,8 +310,6 @@ public class Trip {
 				return false;
 		} else if (!destination.equals(other.destination))
 			return false;
-		if (destinationId != other.destinationId)
-			return false;
 		if (id != other.id)
 			return false;
 		if (imgLink == null) {
@@ -358,8 +326,6 @@ public class Trip {
 			if (other.profile != null)
 				return false;
 		} else if (!profile.equals(other.profile))
-			return false;
-		if (profileId != other.profileId)
 			return false;
 		if (profiles == null) {
 			if (other.profiles != null)
@@ -398,10 +364,10 @@ public class Trip {
 
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", title=" + title + ", rating=" + rating
-				+ ", totalCost=" + totalCost + ", dateStart=" + dateStart + ", dateEnd="
-				+ dateEnd + ", destinationId=" + destinationId + ", review=" + review
-				+ ", imgLink=" + imgLink + ", profileId=" + profileId + "]";
+		return "Trip [id=" + id + ", title=" + title + ", rating=" + rating + ", totalCost=" + totalCost
+				+ ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", review=" + review + ", imgLink=" + imgLink
+				+ ", profile=" + profile + ", profiles=" + profiles + ", tags=" + tags + ", recommendations="
+				+ recommendations + ", posts=" + posts + ", destination=" + destination + "]";
 	}
 
 }

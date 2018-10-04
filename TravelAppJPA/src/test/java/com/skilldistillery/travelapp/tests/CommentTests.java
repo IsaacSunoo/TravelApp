@@ -3,6 +3,7 @@ package com.skilldistillery.travelapp.tests;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ class CommentTests {
 	
 	@BeforeEach
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("todoPU");
+		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
 	}
 	
@@ -33,6 +34,7 @@ class CommentTests {
 	@DisplayName ("Test comment entity mapping")
 	void test_comment_entity() {
 		Comment comment = em.find(Comment.class, 1);
+		assertEquals("Right on!", comment.getContent());
 		
 	}
 
