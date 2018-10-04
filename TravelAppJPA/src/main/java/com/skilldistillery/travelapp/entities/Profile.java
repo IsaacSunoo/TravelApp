@@ -68,7 +68,9 @@ public class Profile {
 
 	public Profile(int id, int userId, String firstName, String lastName,
 			String imgLink, int locationId, String bio, List<Posts> posts,
-			ProfileLocation location, List<Trip> trips, User user) {
+			ProfileLocation location, List<Trip> trips, List<Trip> favoriteTrips,
+			User user) {
+		super();
 		this.id = id;
 		this.userId = userId;
 		this.firstName = firstName;
@@ -79,6 +81,7 @@ public class Profile {
 		this.posts = posts;
 		this.location = location;
 		this.trips = trips;
+		this.favoriteTrips = favoriteTrips;
 		this.user = user;
 	}
 
@@ -114,6 +117,14 @@ public class Profile {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public List<Trip> getFavoriteTrips() {
+		return favoriteTrips;
+	}
+
+	public void setFavoriteTrips(List<Trip> favoriteTrips) {
+		this.favoriteTrips = favoriteTrips;
 	}
 
 	public String getImgLink() {
@@ -236,6 +247,8 @@ public class Profile {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
+		result = prime * result
+				+ ((favoriteTrips == null) ? 0 : favoriteTrips.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
@@ -262,6 +275,11 @@ public class Profile {
 			if (other.bio != null)
 				return false;
 		} else if (!bio.equals(other.bio))
+			return false;
+		if (favoriteTrips == null) {
+			if (other.favoriteTrips != null)
+				return false;
+		} else if (!favoriteTrips.equals(other.favoriteTrips))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
@@ -311,9 +329,7 @@ public class Profile {
 	public String toString() {
 		return "Profile [id=" + id + ", userId=" + userId + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", imgLink=" + imgLink
-				+ ", locationId=" + locationId + ", bio=" + bio + ", posts=" + posts
-				+ ", location=" + location + ", trips=" + trips + ", user=" + user
-				+ "]";
+				+ ", locationId=" + locationId + ", bio=" + bio + "]";
 	}
 
 }

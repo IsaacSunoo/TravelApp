@@ -81,7 +81,9 @@ public class Trip {
 
 	public Trip(int id, String title, int rating, Double totalCost,
 			Date dateStart, Date dateEnd, int destinationId, String review,
-			String imgLink, int profileId, Profile profile, List<Tag> tags) {
+			String imgLink, int profileId, Profile profile, List<Profile> profiles,
+			List<Tag> tags, List<Recommendation> recommendations, Posts posts,
+			Destination destination) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -94,7 +96,11 @@ public class Trip {
 		this.imgLink = imgLink;
 		this.profileId = profileId;
 		this.profile = profile;
+		this.profiles = profiles;
 		this.tags = tags;
+		this.recommendations = recommendations;
+		this.posts = posts;
+		this.destination = destination;
 	}
 
 	// getters & setters
@@ -291,12 +297,18 @@ public class Trip {
 		int result = 1;
 		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
 		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
+		result = prime * result
+				+ ((destination == null) ? 0 : destination.hashCode());
 		result = prime * result + destinationId;
 		result = prime * result + id;
 		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
+		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		result = prime * result + profileId;
+		result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
 		result = prime * result + rating;
+		result = prime * result
+				+ ((recommendations == null) ? 0 : recommendations.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -323,6 +335,11 @@ public class Trip {
 				return false;
 		} else if (!dateStart.equals(other.dateStart))
 			return false;
+		if (destination == null) {
+			if (other.destination != null)
+				return false;
+		} else if (!destination.equals(other.destination))
+			return false;
 		if (destinationId != other.destinationId)
 			return false;
 		if (id != other.id)
@@ -332,6 +349,11 @@ public class Trip {
 				return false;
 		} else if (!imgLink.equals(other.imgLink))
 			return false;
+		if (posts == null) {
+			if (other.posts != null)
+				return false;
+		} else if (!posts.equals(other.posts))
+			return false;
 		if (profile == null) {
 			if (other.profile != null)
 				return false;
@@ -339,7 +361,17 @@ public class Trip {
 			return false;
 		if (profileId != other.profileId)
 			return false;
+		if (profiles == null) {
+			if (other.profiles != null)
+				return false;
+		} else if (!profiles.equals(other.profiles))
+			return false;
 		if (rating != other.rating)
+			return false;
+		if (recommendations == null) {
+			if (other.recommendations != null)
+				return false;
+		} else if (!recommendations.equals(other.recommendations))
 			return false;
 		if (review == null) {
 			if (other.review != null)
