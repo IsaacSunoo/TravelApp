@@ -16,13 +16,13 @@ public class RecTypeTests {
 
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	private RecType recType;
+	private RecType rt;
 
 	@BeforeEach
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("travelapp");
 		em = emf.createEntityManager();
-		recType = em.find(RecType.class, 1);
+		rt = em.find(RecType.class, 1);
 	}
 
 	@AfterEach
@@ -33,10 +33,12 @@ public class RecTypeTests {
 
 	@Test
 	public void test_recType_mappings() {
+		assertEquals("warning", rt.getName());
 	}
 	
 	@Test
 	public void test_recType_recommendation_association() {
+		assertEquals("https://www.gov.uk/foreign-travel-advice/spain", rt.getRecommendations().get(0).getContent());
 	}
 
 }
