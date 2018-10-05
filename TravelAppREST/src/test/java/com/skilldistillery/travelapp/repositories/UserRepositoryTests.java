@@ -27,13 +27,13 @@ public class UserRepositoryTests {
 
 		System.out.println(userRepo.count());
 
-		String json = "{\"name\": \"Test\", \"password\": \"TestPassword\","
+		String json = "{\"name\": \"Test1\", \"password\": \"TestPassword\","
 				+ " \"email\": \"Test@Test.com\","
-				+ " \"active\": \"true\", \"role\": \"standard\"}";
+				+ " \"firstName\": \"Testy\", \"lastName\": \"McTesto\"}";
 
 		User newUser = userService.register(json);
 
-		assertEquals("Test", newUser.getName());
+		assertEquals("Test1", newUser.getName());
 
 	}
 
