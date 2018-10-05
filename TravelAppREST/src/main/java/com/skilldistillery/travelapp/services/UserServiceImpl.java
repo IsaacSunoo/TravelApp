@@ -79,7 +79,6 @@ public class UserServiceImpl implements UserService {
 	public User updateSettings(Integer id, SettingsDTO settingsDTO) {
 
 		User managedUser = userRepo.queryForUserByProfileId(id);
-		System.out.println("*******************************" + managedUser);
 
 		if (managedUser != null) {
 
@@ -98,7 +97,7 @@ public class UserServiceImpl implements UserService {
 					&& settingsDTO.getPassword() != managedUser.getPassword()) {
 				managedUser.setPassword(settingsDTO.getPassword());
 			}
-			
+
 			userRepo.saveAndFlush(managedUser);
 
 			return managedUser;

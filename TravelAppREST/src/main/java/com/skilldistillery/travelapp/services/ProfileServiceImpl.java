@@ -16,6 +16,23 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileRepository profileRepo;
 
+	// CREATE
+
+	// READ
+
+	public Profile show(Integer id) {
+
+		Optional<Profile> opProfile = profileRepo.findById(id);
+
+		if (opProfile.isPresent()) {
+			return opProfile.get();
+		}
+
+		return null;
+	}
+
+	// UPDATE
+
 	// This method will update from the settings form for a profile and location
 	// (but not user -- that's in the UserServiceImpl)
 	@Override
@@ -92,5 +109,7 @@ public class ProfileServiceImpl implements ProfileService {
 
 		return null;
 	}
+
+	// DELETE
 
 }
