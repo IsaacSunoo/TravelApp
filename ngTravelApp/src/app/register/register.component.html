@@ -1,9 +1,18 @@
+
+
+
 <form #userForm="ngForm">
+
   <input type="text" name="email" placeholder="email" [(ngModel)]="user.email">
-  <input type="text" name="username" placeholder="username" [(ngModel)]="user.name">
-  <input type="text" name="password" placeholder="password" [(ngModel)]="user.password">
+  <br>
+  <input type="text" name="name" placeholder="username" [(ngModel)]="user.name">
+  <br>
+  <input type="password" name="password" placeholder="password" [(ngModel)]="user.password">
+  <br>
   <input type="hidden" name="role" placeholder="role" [(ngModel)]="user.role" value="standard">
+  <br>
   <input type="hidden" name="active" placeholder="enabled" [(ngModel)]="user.active" value="true">
+  <br>
   <button type="submit" value="Submit" (click)="registerUser(userForm)">Register</button>
   </form>
 
