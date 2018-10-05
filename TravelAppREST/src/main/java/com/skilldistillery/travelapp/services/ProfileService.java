@@ -7,6 +7,6 @@ public interface ProfileService {
 
 	public Profile updateSettings(Integer id, SettingsDTO settingsDTO);
 
-	public Profile show(int pid);
+	public Profile show(Integer id);
 
 }

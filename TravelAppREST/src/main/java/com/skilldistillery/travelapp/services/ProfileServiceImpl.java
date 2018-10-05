@@ -20,6 +20,7 @@ public class ProfileServiceImpl implements ProfileService {
 
 	// READ
 
+	@Override
 	public Profile show(Integer id) {
 
 		Optional<Profile> opProfile = profileRepo.findById(id);
