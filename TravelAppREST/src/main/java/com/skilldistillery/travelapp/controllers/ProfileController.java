@@ -38,6 +38,11 @@ public class ProfileController {
 //		}
 //		return updated;	
 //	}
+	
+	@RequestMapping(path="profiles/{pid}", method=RequestMethod.GET)
+	public Profile getOneById(@PathVariable(name="pid") int pid) {
+		return userService.getOneById(pid);
+	}
 
 	@RequestMapping(path = "profiles/{pid}", method = RequestMethod.PATCH)
 	public Profile patch(HttpServletRequest req, HttpServletResponse res,
