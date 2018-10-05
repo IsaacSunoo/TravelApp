@@ -1,3 +1,9 @@
-<p>
-  register works!
-</p>
+<form #userForm="ngForm">
+  <input type="text" name="email" placeholder="email" [(ngModel)]="user.email">
+  <input type="text" name="username" placeholder="username" [(ngModel)]="user.username">
+  <input type="text" name="password" placeholder="password" [(ngModel)]="user.password">
+  <input type="text" name="password" placeholder="role" [(ngModel)]="user.role" value="standard">
+  <input type="text" name="password" placeholder="enabled" [(ngModel)]="user.enabled" value="true">
+  <button type="submit" value="Submit" (click)="registerUser(userForm)">Register</button>
+  </form>
+
