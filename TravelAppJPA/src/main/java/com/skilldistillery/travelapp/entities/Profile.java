@@ -38,7 +38,7 @@ public class Profile {
 	@OneToMany(mappedBy = "profile")
 	private List<Posts> posts;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "location_id")
 	private ProfileLocation location;
 
@@ -62,8 +62,9 @@ public class Profile {
 
 	// getters & setters
 
-	public Profile(int id, String firstName, String lastName, String imgLink, String bio, List<Posts> posts,
-			ProfileLocation location, List<Trip> trips, List<Trip> favoriteTrips, User user) {
+	public Profile(int id, String firstName, String lastName, String imgLink,
+			String bio, List<Posts> posts, ProfileLocation location, List<Trip> trips,
+			List<Trip> favoriteTrips, User user) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -220,7 +221,8 @@ public class Profile {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
-		result = prime * result + ((favoriteTrips == null) ? 0 : favoriteTrips.hashCode());
+		result = prime * result
+				+ ((favoriteTrips == null) ? 0 : favoriteTrips.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
@@ -293,8 +295,9 @@ public class Profile {
 
 	@Override
 	public String toString() {
-		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", imgLink=" + imgLink
-				+ ", bio=" + bio + ", posts=" + posts + ", location=" + location + ", trips=" + trips
+		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", imgLink=" + imgLink + ", bio=" + bio + ", posts="
+				+ posts + ", location=" + location + ", trips=" + trips
 				+ ", favoriteTrips=" + favoriteTrips + ", user=" + user + "]";
 	}
 

@@ -1,12 +1,16 @@
 package com.skilldistillery.travelapp.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skilldistillery.travelapp.entities.Profile;
+import com.skilldistillery.travelapp.entities.SettingsDTO;
 import com.skilldistillery.travelapp.entities.User;
 import com.skilldistillery.travelapp.entities.UserProfileDTO;
+import com.skilldistillery.travelapp.repositories.ProfileRepository;
 import com.skilldistillery.travelapp.repositories.UserRepository;
 
 @Service
@@ -14,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
+
+	@Autowired
+	private ProfileRepository profileRepo;
 
 	// CREATE
 
@@ -63,6 +70,25 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return user;
+	}
+
+	// This method takes care of updating User values from the settings form -
+	// Here, we are getting the profile id coming in as an argument, not the user
+	// id
+	@Override
+	public User updateSettings(Integer id, SettingsDTO settingsDTO) {
+
+		Optional<Profile> opProfile = profileRepo.findById(id);
+
+		if (opProfile.isPresent()) {
+			Profile managedProfile = opProfile.get();
+
+			// Since we had the profile id as an argument, we use the profile to find
+			// the associated user
+			User managedUser = managedProfile.getUser();
+		}
+
+		return null;
 	}
 
 }
