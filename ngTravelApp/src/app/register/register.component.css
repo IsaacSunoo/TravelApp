@@ -1,0 +1,16 @@
+.registrationForm {
+    position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color:black;
+  font-weight: bold;
+  font-family: comic;
+  background-color: white;
+}
