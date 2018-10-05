@@ -1,6 +1,6 @@
+import { UpdateProfile } from './../models/update-profile';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Registration } from '../models/registration';
 
 @Component({
   selector: 'app-setting',
@@ -10,13 +10,29 @@ import { Registration } from '../models/registration';
 
 export class SettingComponent implements OnInit {
 
-  selected: Registration = null;
-  editProfile: Registration = new Registration();
+  selected: UpdateProfile = null;
+  editProfile: UpdateProfile = new UpdateProfile();
 
-  setEditProfile = function () {
-    this.edit = Object.assign({}, this.selected);
+  updateprofile = function (profile: UpdateProfile) {
+    this.todoService.update(profile).subscribe(
+      data => {
+        this.selected = data;
+        this.editProfile = null;
+        this.reload();
+      });
+  };
 
-};
+
+
+
+
+
+
+
+
+
+
+
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
