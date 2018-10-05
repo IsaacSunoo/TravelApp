@@ -50,7 +50,7 @@ public class Profile {
 	@ManyToMany(mappedBy = "profiles")
 	private List<Trip> favoriteTrips;
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 

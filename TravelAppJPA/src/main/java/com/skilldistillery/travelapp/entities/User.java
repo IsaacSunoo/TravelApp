@@ -3,6 +3,7 @@ package com.skilldistillery.travelapp.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 // Comment
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class User {
 
 	private String role;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private Profile profile;
 
 	// Self-join table
