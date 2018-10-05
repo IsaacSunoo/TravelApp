@@ -50,7 +50,6 @@ public class User {
 
 	public User(int id, String name, String password, String email,
 			boolean active, String role, Profile profile, List<User> followers) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
@@ -63,7 +62,6 @@ public class User {
 
 	public User(int id, String name, String password, String email,
 			boolean active, String role, Profile profile) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
