@@ -13,6 +13,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
 
+	// CREATE
+	
 	@Override
 	public User register(String json) {
 
@@ -22,6 +24,7 @@ public class UserServiceImpl implements UserService {
 		try {
 
 			user = om.readValue(json, User.class);
+			System.out.println(user);
 
 			// Come back to security later
 //			String encodedPW = encoder.encode(user.getPassword());

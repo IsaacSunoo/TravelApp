@@ -13,20 +13,19 @@ import com.skilldistillery.travelapp.entities.User;
 import com.skilldistillery.travelapp.services.UserService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost:4201"})
+@CrossOrigin({ "*", "http://localhost:4201" })
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
-	@RequestMapping(path="/register", method = RequestMethod.POST)
+
+	@RequestMapping(path = "/register", method = RequestMethod.POST)
 	public User register(@RequestBody String json, HttpServletResponse res) {
 		User u = userService.register(json);
-		if(u == null) {
+		if (u == null) {
 			res.setStatus(400);
 		}
 		return u;
 	}
-	
 
 }
