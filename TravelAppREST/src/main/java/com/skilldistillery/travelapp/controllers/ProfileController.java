@@ -41,7 +41,7 @@ public class ProfileController {
 	
 	@RequestMapping(path="profiles/{pid}", method=RequestMethod.GET)
 	public Profile getOneById(@PathVariable(name="pid") int pid) {
-		return userService.getOneById(pid);
+		return profileService.getOneById(pid);
 	}
 
 	@RequestMapping(path = "profiles/{pid}", method = RequestMethod.PATCH)

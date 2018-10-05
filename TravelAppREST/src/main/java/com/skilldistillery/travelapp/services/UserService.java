@@ -10,6 +10,4 @@ public interface UserService {
 
 	User updateSettings(Integer id, SettingsDTO settingsDTO);
 
-	public Profile getOneById(int pid);
-
 }

@@ -7,4 +7,6 @@ public interface ProfileService {
 
 	public Profile updateSettings(Integer id, SettingsDTO settingsDTO);
 
+	public Profile getOneById(int pid);
+
 }
