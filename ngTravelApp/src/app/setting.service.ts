@@ -24,9 +24,7 @@ export class SettingService {
   }
 
   public show(id: string): Observable<UpdateProfile> {
-    console.log('url: ' + this.url + '/' + id);
-
-    return this.http.get<UpdateProfile>(this.url + '/' + id)
+    return this.http.get<UpdateProfile>('${this.url/:id}')
       .pipe(
       catchError((err: any) => {
         console.log(err);
