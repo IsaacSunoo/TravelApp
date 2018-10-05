@@ -32,7 +32,6 @@ public class RecType {
 	}
 
 	public RecType(int id, String name, List<Recommendation> recommendations) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.recommendations = recommendations;

@@ -53,7 +53,7 @@ export class UserService {
         }),
         catchError((err: any) => {
           console.log(err);
-          return throwError('KABOOM');
+          return throwError('Error registering User');
         })
       );
   }
