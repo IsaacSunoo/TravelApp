@@ -1,4 +1,31 @@
+<!-- NavBar with login in Feature Form on the right -->
 
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand mx-auto" [routerLink]="['/home']">TrappaBlog</a>
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+      <form class="navbar-collapse collapse w-100 order-3 dual-collapse2" #loginForm="ngForm">
+        <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="username">
+        <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="password">
+        <button class="btn btn-light" type="submit" value="Submit">Login</button>
+      </form>
+    </ul>
+  </div>
+</nav>
+
+<!-- Register Forms -->
+<div class="container-fluid">
+
+<form #profileForm="ngForm">
+
+  <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="profile.firstName">
+  <br>
+  <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="profile.lastName">
+
+</form>
 
 
 <form #userForm="ngForm">
@@ -14,5 +41,7 @@
   <input type="hidden" name="active" placeholder="enabled" [(ngModel)]="user.active" value="true">
   <br>
   <button type="submit" value="Submit" (click)="registerUser(userForm)">Register</button>
+
   </form>
 
+</div>
