@@ -13,7 +13,7 @@ export class SettingComponent implements OnInit {
   selected: UpdateProfile = null;
   editProfile: UpdateProfile = new UpdateProfile();
 
-  updateprofile = function (profile: UpdateProfile) {
+  updateProfile = function (profile: UpdateProfile) {
     this.todoService.update(profile).subscribe(
       data => {
         this.selected = data;
