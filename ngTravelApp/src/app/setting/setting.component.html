@@ -32,7 +32,7 @@
 <!-- Update Profile Form -->
 
 <div class="container">
-  <form>
+  <form #updateForm="ngForm">
     Name
     <input type="text" name="name" [(ngModel)]="editProfile.name"> <!-- Add placeholders with el lang to display current information-->
     <br>
@@ -54,7 +54,7 @@
     Profile Bio
     <input type="text" name="bio" [(ngModel)]="editProfile.bio">
     <br>
-    <button class="btn btn-dark" (click)="updateProfile()">Update Profile</button>
+    <button class="btn btn-dark" (click)="updateProfile(updateForm)">Update Profile</button>
   </form>
 
 </div>

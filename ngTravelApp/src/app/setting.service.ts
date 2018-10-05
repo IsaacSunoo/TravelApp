@@ -23,8 +23,8 @@ export class SettingService {
       );
   }
 
-  public show(id: string): Observable<UpdateProfile> {
-    return this.http.get<UpdateProfile>('${this.url/:id}')
+  public show(id: number): Observable<UpdateProfile> {
+    return this.http.get<UpdateProfile>(this.url + '/' + id)
       .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -35,16 +35,17 @@ export class SettingService {
       );
   }
 
-  public update(updateProf: UpdateProfile, id: number) {
+  public update(updateProf: UpdateProfile, id: string) {
     return this.http.patch(this.url + '/' + id, updateProf).
       pipe(
-        catchError((err: any) => {
+      catchError((err: any) => {
+
           console.log(err);
           return throwError('Error saving updated Profile: Status: ' + err.status);
         }));
   }
 
-  public deactivate(user: User, id: number) {
+  public deactivate(user: User, id: string) {
     if (id) {
       user.active = false;
     }
