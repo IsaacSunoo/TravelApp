@@ -9,8 +9,8 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = environment.baseUrl;
-  fullUrl = (this.baseUrl + '/authenticate');
+  private baseUrl = environment.baseUrl;
+  private fullUrl = (this.baseUrl + '/authenticate');
 
   login(username, password) {
 

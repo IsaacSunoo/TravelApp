@@ -9,13 +9,17 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DatePipe } from '@angular/common';
 import { SettingComponent } from './setting/setting.component';
+import { PostsComponent } from './posts/posts.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    SettingComponent
+    SettingComponent,
+    PostsComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
