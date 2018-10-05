@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `first_name` VARCHAR(500) NOT NULL,
   `last_name` VARCHAR(500) NOT NULL,
   `img_link` VARCHAR(500) NULL,
-  `location_id` INT NOT NULL,
+  `location_id` INT NULL,
   `bio` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_location_profile_loc_idx` (`location_id` ASC),
