@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skilldistillery.travelapp.entities.Profile;
+import com.skilldistillery.travelapp.entities.SettingsDTO;
 import com.skilldistillery.travelapp.services.ProfileService;
 
 @SpringBootTest
@@ -24,9 +27,22 @@ public class ProfileRepositoryTests {
 
 		System.out.println(profileRepo.count());
 
-		String settingsDTO = "{\"name\": \"Test1\", \"password\": \"Test\", \"email\": \"Test@Test.com\", \"firstName\": \"John\", \"lastName\": \"Smith\", \"imgLink\": \"Test\", \"bio\": \"TestBio\", \"city\": \"ChicagoTest\", \"state\": \"IllinoisTest\", \"country\": \"USA\"}";
-		
-		
+		String settingsDTOJSON = "{\"name\": \"Test1\", \"password\": \"Test\","
+				+ " \"email\": \"Test@Test.com\", \"firstName\": \"Johnny\","
+				+ " \"lastName\": \"Smith\", \"imgLink\": \"Test\","
+				+ " \"bio\": \"TestBio\", \"city\": \"ChicagoTest\","
+				+ " \"state\": \"IllinoisTest\", \"country\": \"USA\"}";
+
+		ObjectMapper om = new ObjectMapper();
+		SettingsDTO settingsDTO = null;
+
+		try {
+			settingsDTO = om.readValue(settingsDTOJSON, SettingsDTO.class);
+			System.out.println(settingsDTO);
+		} catch (Exception e) {
+		}
+
+		Profile updatedProfile = profileService.updateSettings(11, settingsDTO);
 
 	}
 

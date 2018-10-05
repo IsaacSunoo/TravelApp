@@ -4,7 +4,7 @@
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/profiles']">Profile</a>
+        <a class="nav-link" [routerLink]="['/profiles/:id']">Profile</a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link" href="profile.do">Profile</a>
@@ -32,29 +32,29 @@
 <!-- Update Profile Form -->
 
 <div class="container">
-  <form #settingsForm="ngForm">
+  <form>
     Name
-    <input type="text" name="name" ngModel> <!-- Add placeholders with el lang to display current information-->
+    <input type="text" name="name" [(ngModel)]="editProfile.name"> <!-- Add placeholders with el lang to display current information-->
     <br>
     Password
-    <input type="password" name="password" ngModel>
+    <input type="password" name="password" [(ngModel)]="editProfile.password">
     <br>
     First Name
-    <input type="text" name="firstName" ngModel>
+    <input type="text" name="firstName" [(ngModel)]="editProfile.firstName">
     <br>
     Last Name
-    <input type="text" name="lastName" ngModel>
+    <input type="text" name="lastName" [(ngModel)]="editProfile.lastName">
     <br>
     Email
-    <input type="text" name="email" ngModel>
+    <input type="text" name="email" [(ngModel)]="editProfile.email">
     <br>
     Profile Picture
-    <input type="text" name="imgLink" ngModel>
+    <input type="text" name="imgLink" [(ngModel)]="editProfile.imgLink">
     <br>
     Profile Bio
-    <input type="text" name="bio" ngModel>
+    <input type="text" name="bio" [(ngModel)]="editProfile.bio">
     <br>
-    <button class="btn btn-dark" (click)="updateProfile(settingsForm)">Update Profile</button>
+    <button class="btn btn-dark" (click)="updateProfile()">Update Profile</button>
   </form>
 
 </div>
