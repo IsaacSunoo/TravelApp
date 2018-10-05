@@ -1,8 +1,8 @@
+import { Registration } from './../models/registration';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { User } from '../models/user';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +10,13 @@ import { User } from '../models/user';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  user: User = new User();
-  registerUser = function(form: NgForm) {
-    const user = form.value;
-    console.log(user);
+  register: Registration = new Registration();
 
-    this.userService.register(user).subscribe(
+  registerUser = function(form: NgForm) {
+    const register = form.value;
+    console.log(register);
+
+    this.userService.register(register).subscribe(
       data => {
         console.log('returned data: ');
         console.log(data);

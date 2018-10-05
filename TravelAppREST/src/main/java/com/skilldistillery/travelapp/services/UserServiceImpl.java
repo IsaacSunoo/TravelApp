@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.User;
+import com.skilldistillery.travelapp.entities.UserProfileDTO;
 import com.skilldistillery.travelapp.repositories.UserRepository;
 
 @Service
@@ -14,26 +16,40 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	// CREATE
-	
+
 	@Override
 	public User register(String json) {
 
 		ObjectMapper om = new ObjectMapper();
-		User user = null;
+		UserProfileDTO userProfileDTO = null;
+		User user = new User();
 
 		try {
 
-			user = om.readValue(json, User.class);
-			System.out.println(user);
+			userProfileDTO = om.readValue(json, UserProfileDTO.class);
+			if (userProfileDTO == null) {
+				return null;
+			}
 
 			// Come back to security later
 //			String encodedPW = encoder.encode(user.getPassword());
 //			user.setPassword(encodedPW);
 
 			// This will have to change to the above technique when we add security
-			user.setPassword(user.getPassword());
+			user.setPassword(userProfileDTO.getPassword());
+			user.setName(userProfileDTO.getName());
+			user.setEmail(userProfileDTO.getEmail());
 			user.setActive(true);
 			user.setRole("standard");
+
+			Profile profile = new Profile();
+			profile.setFirstName(userProfileDTO.getFirstName());
+			profile.setLastName(userProfileDTO.getLastName());
+
+			user.setProfile(profile);
+
+			// Cascade PERSIST exists on the User class, so it should persist the
+			// Profile and User together here
 			userRepo.saveAndFlush(user);
 
 		} catch (Exception e) {
