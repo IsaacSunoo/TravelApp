@@ -46,6 +46,10 @@ public class UserServiceImpl implements UserService {
 			profile.setFirstName(userProfileDTO.getFirstName());
 			profile.setLastName(userProfileDTO.getLastName());
 
+			// Normally should cascade from the entity which has the foreign key (i.e.
+			// profile has the foreign key for user_id), but this works too
+			profile.setUser(user);
+
 			user.setProfile(profile);
 
 			// Cascade PERSIST exists on the User class, so it should persist the
