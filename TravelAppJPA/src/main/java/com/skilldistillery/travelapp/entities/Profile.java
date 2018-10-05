@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Profile {
 
@@ -38,14 +40,19 @@ public class Profile {
 	@OneToMany(mappedBy = "profile")
 	private List<Posts> posts;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	// Have to do this because can't update a nested object without getting the
+	// managed version of it
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "location_id")
 	private ProfileLocation location;
 
+	@JsonIgnore
 	// Trips this user has created
 	@OneToMany(mappedBy = "profile")
 	private List<Trip> trips;
 
+	@JsonIgnore
 	// Trips this user has favorited
 	@ManyToMany(mappedBy = "profiles")
 	private List<Trip> favoriteTrips;

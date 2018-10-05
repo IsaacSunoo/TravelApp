@@ -78,14 +78,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateSettings(Integer id, SettingsDTO settingsDTO) {
 
-		Optional<Profile> opProfile = profileRepo.findById(id);
+		User managedUser = userRepo.queryForUserByProfileId(id);
+		System.out.println("*******************************" + managedUser);
 
-		if (opProfile.isPresent()) {
-			Profile managedProfile = opProfile.get();
-
-			// Since we had the profile id as an argument, we use the profile to find
-			// the associated user
-			User managedUser = managedProfile.getUser();
+		if (managedUser != null) {
 
 			if (settingsDTO.getName() != null && !settingsDTO.getName().equals("")
 					&& settingsDTO.getName() != managedUser.getName()) {
@@ -102,6 +98,8 @@ public class UserServiceImpl implements UserService {
 					&& settingsDTO.getPassword() != managedUser.getPassword()) {
 				managedUser.setPassword(settingsDTO.getPassword());
 			}
+			
+			userRepo.saveAndFlush(managedUser);
 
 			return managedUser;
 		}

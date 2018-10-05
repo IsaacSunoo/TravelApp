@@ -215,4 +215,12 @@ public class SettingsDTO {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "SettingsDTO [name=" + name + ", password=" + password + ", email="
+				+ email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", imgLink=" + imgLink + ", bio=" + bio + ", city=" + city
+				+ ", state=" + state + ", country=" + country + "]";
+	}
+
 }

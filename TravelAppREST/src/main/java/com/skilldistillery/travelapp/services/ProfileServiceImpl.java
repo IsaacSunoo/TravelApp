@@ -54,22 +54,22 @@ public class ProfileServiceImpl implements ProfileService {
 			// persist the new location to the database as well
 			if (managedProfile.getLocation() != null) {
 
-				ProfileLocation associatedLocation = managedProfile.getLocation();
-
 				if (settingsDTO.getCity() != null && !settingsDTO.getCity().equals("")
-						&& settingsDTO.getCity() != associatedLocation.getCity()) {
-					associatedLocation.setCity(settingsDTO.getCity());
+						&& !settingsDTO.getCity()
+								.equals(managedProfile.getLocation().getCity())) {
+					managedProfile.getLocation().setCity(settingsDTO.getCity());
 				}
 
 				if (settingsDTO.getState() != null && !settingsDTO.getState().equals("")
-						&& settingsDTO.getState() != associatedLocation.getState()) {
-					associatedLocation.setState(settingsDTO.getState());
+						&& !settingsDTO.getState()
+								.equals(managedProfile.getLocation().getState())) {
+					managedProfile.getLocation().setState(settingsDTO.getState());
 				}
 
 				if (settingsDTO.getCountry() != null
-						&& !settingsDTO.getCountry().equals("")
-						&& settingsDTO.getCountry() != associatedLocation.getCountry()) {
-					associatedLocation.setCountry(settingsDTO.getCountry());
+						&& !settingsDTO.getCountry().equals("") && !settingsDTO.getCountry()
+								.equals(managedProfile.getLocation().getCountry())) {
+					managedProfile.getLocation().setCountry(settingsDTO.getCountry());
 				}
 
 				// In the case the location does not already exist in DB
