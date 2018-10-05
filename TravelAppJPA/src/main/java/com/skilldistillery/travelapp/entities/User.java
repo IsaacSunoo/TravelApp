@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -32,7 +34,8 @@ public class User {
 	private boolean active;
 
 	private String role;
-
+	
+	@JsonIgnore
 	@OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private Profile profile;
 
