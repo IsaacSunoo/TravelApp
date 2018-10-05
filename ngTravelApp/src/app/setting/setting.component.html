@@ -1,28 +1,60 @@
+<!-- NavBar -->
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/profile']">Profile</a>
+        <a class="nav-link" [routerLink]="['/profiles']">Profile</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="profile.do">Profile</a>
-      </li>
+      </li> -->
     </ul>
   </div>
   <div class="mx-auto order-0">
-    <a class="navbar-brand mx-auto" href="#">Trail Mixer</a>
+    <a class="navbar-brand mx-auto" href="#">TrappaBlog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
       <span class="navbar-toggler-icon"></span>
     </button>
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="login.do">Login</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="logout.do">Logout</a>
       </li>
     </ul>
   </div>
 </nav>
+
+<!-- Update Profile Form -->
+
+<div class="container">
+  <form #settingsForm="ngForm">
+    Name
+    <input type="text" name="name" ngModel> <!-- Add placeholders with el lang to display current information-->
+    <br>
+    Password
+    <input type="password" name="password" ngModel>
+    <br>
+    First Name
+    <input type="text" name="firstName" ngModel>
+    <br>
+    Last Name
+    <input type="text" name="lastName" ngModel>
+    <br>
+    Email
+    <input type="text" name="email" ngModel>
+    <br>
+    Profile Picture
+    <input type="text" name="imgLink" ngModel>
+    <br>
+    Profile Bio
+    <input type="text" name="bio" ngModel>
+    <br>
+    <button class="btn btn-dark" (click)="updateProfile(settingsForm)">Update Profile</button>
+  </form>
+
+</div>
