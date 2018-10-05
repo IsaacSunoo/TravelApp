@@ -10,7 +10,7 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class UserService {
   baseUrl = environment.baseUrl;
-  fullUrl = (this.baseUrl + 'authenticate');
+  fullUrl = (this.baseUrl + '/authenticate');
 
   login(username, password) {
 
@@ -46,7 +46,7 @@ export class UserService {
 
   register(user) {
     // create request to register a new account
-    return this.http.post(this.fullUrl + '/register', user)
+    return this.http.post(this.baseUrl + 'register', user)
       .pipe(
         tap((res) => {  // create a user and then upon success, log them in
           this.login(user.username, user.password);
