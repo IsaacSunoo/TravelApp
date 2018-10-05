@@ -86,6 +86,24 @@ public class UserServiceImpl implements UserService {
 			// Since we had the profile id as an argument, we use the profile to find
 			// the associated user
 			User managedUser = managedProfile.getUser();
+
+			if (settingsDTO.getName() != null && !settingsDTO.getName().equals("")
+					&& settingsDTO.getName() != managedUser.getName()) {
+				managedUser.setName(settingsDTO.getName());
+			}
+
+			if (settingsDTO.getEmail() != null && !settingsDTO.getEmail().equals("")
+					&& settingsDTO.getEmail() != managedUser.getEmail()) {
+				managedUser.setEmail(settingsDTO.getEmail());
+			}
+
+			if (settingsDTO.getPassword() != null
+					&& !settingsDTO.getPassword().equals("")
+					&& settingsDTO.getPassword() != managedUser.getPassword()) {
+				managedUser.setPassword(settingsDTO.getPassword());
+			}
+
+			return managedUser;
 		}
 
 		return null;
