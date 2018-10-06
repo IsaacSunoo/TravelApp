@@ -27,7 +27,6 @@ export class SettingComponent implements OnInit {
       });
   };
 
-
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private setService: SettingService) {}
 
   ngOnInit() {
