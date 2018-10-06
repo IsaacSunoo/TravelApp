@@ -11,6 +11,8 @@ import { DatePipe } from '@angular/common';
 import { SettingComponent } from './setting/setting.component';
 import { PostsComponent } from './posts/posts.component';
 import { FeedComponent } from './feed/feed.component';
+import { TripComponent } from './trip/trip.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FeedComponent } from './feed/feed.component';
     LoginComponent,
     SettingComponent,
     PostsComponent,
-    FeedComponent
+    FeedComponent,
+    TripComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
