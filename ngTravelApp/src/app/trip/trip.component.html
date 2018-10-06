@@ -1,0 +1,19 @@
+<div class="container">
+<form #tripForm="ngForm">
+  Title
+  <input type="text" name="title" [(ngModel)]="newTrip.title">
+  Rating
+  <input type="text" name="rating" [(ngModel)]="newTrip.rating">
+  Total Cost
+  <input type="text" name="rating" [(ngModel)]="newTrip.totalCost">
+  Date Start
+  <input type="text" name="dateStart" [(ngModel)]="newTrip.dateStart">
+  Date End
+  <input type="text" name="dateEnd" [(ngModel)]="newTrip.dateEnd">
+  Review
+  <input type="text" name="imgLink" [(ngModel)]="newTrip.imgLink">
+  imgLink
+<button type="submit" value="Save" (click)="createTrip(tripForm)"></button>
+</form>
+
+</div>
