@@ -6,6 +6,9 @@ export class UpdateProfile {
   name: string;
   password: string;
   email: string;
+  city: string;
+  state: string;
+  country: string;
 
   constructor(
     firstName?: string,
@@ -14,7 +17,10 @@ export class UpdateProfile {
     bio?: string,
     name?: string,
     password?: string,
-    email?: string
+    email?: string,
+    city?: string,
+    state?: string,
+    country?: string
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -23,5 +29,8 @@ export class UpdateProfile {
     this.name = name;
     this.password = password;
     this.email = email;
+    this.city = city;
+    this.state = state;
+    this.country = country;
   }
        }

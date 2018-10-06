@@ -36,6 +36,8 @@ export class SettingService {
   }
 
   public update(updateProf: UpdateProfile, id: string) {
+    console.log(this.url + '/' + id);
+
     return this.http.patch(this.url + '/' + id, updateProf).
       pipe(
       catchError((err: any) => {

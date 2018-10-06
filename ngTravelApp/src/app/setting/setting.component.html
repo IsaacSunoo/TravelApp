@@ -34,25 +34,34 @@
 <div class="container">
   <form #updateForm="ngForm">
     Name
-    <input type="text" name="name" [(ngModel)]="editProfile.name"> <!-- Add placeholders with el lang to display current information-->
+    <input type="text" name="name" ngModel>
     <br>
     Password
-    <input type="password" name="password" [(ngModel)]="editProfile.password">
+    <input type="password" name="password" ngModel>
     <br>
     First Name
-    <input type="text" name="firstName" [(ngModel)]="editProfile.firstName">
+    <input type="text" name="firstName" ngModel>
     <br>
     Last Name
-    <input type="text" name="lastName" [(ngModel)]="editProfile.lastName">
+    <input type="text" name="lastName" ngModel>
     <br>
     Email
-    <input type="text" name="email" [(ngModel)]="editProfile.email">
+    <input type="text" name="email" ngModel>
     <br>
     Profile Picture
-    <input type="text" name="imgLink" [(ngModel)]="editProfile.imgLink">
+    <input type="text" name="imgLink" ngModel>
     <br>
     Profile Bio
-    <input type="text" name="bio" [(ngModel)]="editProfile.bio">
+    <input type="text" name="bio" ngModel>
+    <br>
+    City
+    <input type="text" name="city" ngModel>
+    <br>
+    State
+    <input type="text" name="state" ngModel>
+    <br>
+    Country
+    <input type="text" name="country" ngModel>
     <br>
     <button class="btn btn-dark" (click)="updateProfile(updateForm)">Update Profile</button>
   </form>
