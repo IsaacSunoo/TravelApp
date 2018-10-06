@@ -1,3 +1,47 @@
-<p>
-  profile works!
-</p>
+<!-- NavBar -->
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/feed/:id']">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/discover']">Discover</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="profile.do">Profile</a>
+      </li> -->
+    </ul>
+  </div>
+  <div class="mx-auto order-0">
+    <a class="navbar-brand mx-auto" href="#">TrappaBlog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/settings/:id']">Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout.do">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- Search bar for -->
+<div class="container">
+  <form>
+    <div class="col-xs-4">
+        <input class="text" id="searchBar" type="text">
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <img src="https://pbs.twimg.com/profile_images/741703039355064320/ClVbjlG-_400x400.jpg" class="rounded" alt="Profile Picture">
+</div>
