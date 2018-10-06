@@ -13,7 +13,26 @@ export class TripComponent implements OnInit {
   trips: Trip[] = [];
   newTrip: Trip = new Trip();
   id;
+  selected = null;
 
+  displayTrip = function(trip) {
+    this.selected = trip;
+  };
+
+  reload = function () {
+    if (this.trips) {
+      this.tripService.index().subscribe(
+        data => {
+          this.trips = data;
+        },
+        err => {
+          console.log('Observer got an error: ' + err);
+        },
+        complete => {
+          console.log('complete');
+        });
+    }
+  };
   createTrip(form: NgForm) {
     const trip = form.value;
     console.log(trip);
@@ -26,6 +45,15 @@ export class TripComponent implements OnInit {
     );
   }
 
+  deleteTrip = function (id: number) {
+    this.tripService.destroy(id).subscribe(
+      data => {
+        console.log('data deleted');
+        this.reload();
+
+      }
+    );
+  };
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private tripService: TripService) { }
 
   ngOnInit() {
