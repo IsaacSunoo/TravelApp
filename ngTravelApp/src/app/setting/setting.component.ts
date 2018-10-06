@@ -55,9 +55,6 @@ export class SettingComponent implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.loadProfile(this.id);
-    // this.editProfile = new UpdateProfile();
-    // this.editProfile.firstName = 'swiper';
-    // this.loadProfile(id);
       console.log(this.id);
   }
 }
