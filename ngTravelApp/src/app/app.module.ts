@@ -13,6 +13,7 @@ import { PostsComponent } from './posts/posts.component';
 import { FeedComponent } from './feed/feed.component';
 import { TripComponent } from './trip/trip.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProfileComponent } from './profile/profile.component';
     PostsComponent,
     FeedComponent,
     TripComponent,
-    ProfileComponent
+    ProfileComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
