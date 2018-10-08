@@ -9,14 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.css']
 })
-
 export class SettingComponent implements OnInit {
-
   changeProfile: UpdateProfile = new UpdateProfile();
   editProfile: UpdateProfile = null;
-  id;
+  id = localStorage.getItem('profileId');
 
-  updateProfile = function (updateForm: NgForm) {
+  updateProfile = function(updateForm: NgForm) {
     this.editProfile.name = updateForm.value.name;
     this.editProfile.password = updateForm.value.password;
     this.editProfile.firstName = updateForm.value.firstName;
@@ -34,27 +32,28 @@ export class SettingComponent implements OnInit {
         console.log(this.editProfile);
 
         this.editProfile = data;
-
       },
       err => {
         console.log('Observer recieved an Error: ' + err);
-
-      });
-    };
-
-    loadProfile = function (id: string) {
-      this.setService.show(id).subscribe(
-        data => {
-          this.editProfile = data;
-          console.log(this.editProfile);
-      });
+      }
+    );
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private setService: SettingService) {}
+  loadProfile = function(id: string) {
+    this.setService.show(id).subscribe(data => {
+      this.editProfile = data;
+      console.log(this.editProfile);
+    });
+  };
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private setService: SettingService
+  ) {}
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.loadProfile(this.id);
-      console.log(this.id);
-  }
+   }
+
 }
