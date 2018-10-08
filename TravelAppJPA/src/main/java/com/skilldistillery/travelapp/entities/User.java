@@ -40,6 +40,7 @@ public class User {
 	private Profile profile;
 
 	// Self-join table
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "followers",
 			joinColumns = @JoinColumn(name = "follower_id"),

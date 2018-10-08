@@ -6,12 +6,20 @@
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
+      <app-login></app-login>
+
+      <!-- This has been moved to login.component.html for now,
+         we may remove the following code after everything works -->
+
+      <!-- <ul class="navbar-nav ml-auto">
       <li class="nav-item">
       <form class="navbar-collapse collapse w-100 order-3 dual-collapse2" #loginForm="ngForm">
         <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="username">
         <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="password">
         <button class="btn btn-light" type="submit" value="Submit">Login</button>
       </form>
+    </ul> -->
+
     </ul>
   </div>
 </nav>
@@ -20,21 +28,21 @@
 <div class="registrationForm">
 
   <form #registerForm="ngForm">
-  <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="register.firstName">
-  <br>
-  <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="register.lastName">
-  <br>
-  <input type="text" name="email" placeholder="email" [(ngModel)]="register.email">
-  <br>
-  <input type="text" name="name" placeholder="username" [(ngModel)]="register.name">
-  <br>
-  <input type="password" name="password" placeholder="password" [(ngModel)]="register.password">
-  <br>
-  <!-- <input type="hidden" name="role" placeholder="role" [(ngModel)]="register.role" value="standard">
+    <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="register.firstName">
+    <br>
+    <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="register.lastName">
+    <br>
+    <input type="text" name="email" placeholder="email" [(ngModel)]="register.email">
+    <br>
+    <input type="text" name="name" placeholder="username" [(ngModel)]="register.name">
+    <br>
+    <input type="password" name="password" placeholder="password" [(ngModel)]="register.password">
+    <br>
+    <!-- <input type="hidden" name="role" placeholder="role" [(ngModel)]="register.role" value="standard">
   <br>
   <input type="hidden" name="active" placeholder="enabled" [(ngModel)]="register.active" value="true">
   <br> -->
-  <button type="submit" value="Submit" (click)="registerUser(registerForm)">Register</button>
+    <button type="submit" value="Submit" (click)="registerUser(registerForm)">Register</button>
 
   </form>
 
@@ -46,16 +54,20 @@
 <div id="TravelDestinations" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="https://www.lokopoko.travel/wp-content/uploads/2015/09/gardens-by-the-bay_wonderwardrobes.jpg" alt="Singapore">
+      <img class="d-block w-100" src="https://www.lokopoko.travel/wp-content/uploads/2015/09/gardens-by-the-bay_wonderwardrobes.jpg"
+        alt="Singapore">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://www.thetimes.co.uk/imageserver/image/methode%2Fsundaytimes%2Fprod%2Fweb%2Fbin%2F37d4f22a-c56e-11e7-99c5-32c02fc6ba3c.jpg?crop=2250%2C1266%2C0%2C0&resize=685" alt="Prague">
+      <img class="d-block w-100" src="https://www.thetimes.co.uk/imageserver/image/methode%2Fsundaytimes%2Fprod%2Fweb%2Fbin%2F37d4f22a-c56e-11e7-99c5-32c02fc6ba3c.jpg?crop=2250%2C1266%2C0%2C0&resize=685"
+        alt="Prague">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://www.telegraph.co.uk/content/dam/Travel/Cruise/cinque-terre-manarola-italy.jpg" alt="Italy">
+      <img class="d-block w-100" src="https://www.telegraph.co.uk/content/dam/Travel/Cruise/cinque-terre-manarola-italy.jpg"
+        alt="Italy">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg" alt="Mount Everest">
+      <img class="d-block w-100" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg"
+        alt="Mount Everest">
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="https://super-travels.com/wp-content/uploads/2017/09/ICELAND.jpg" alt="Iceland">

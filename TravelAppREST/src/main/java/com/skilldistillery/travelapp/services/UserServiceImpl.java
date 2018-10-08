@@ -106,4 +106,16 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public User getOneUser(String username) {
+
+		User managedUser = userRepo.findOneUserByName(username);
+
+		if (managedUser != null) {
+			return managedUser;
+		}
+
+		return null;
+	}
+
 }

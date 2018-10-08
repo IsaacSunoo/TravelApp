@@ -37,6 +37,7 @@ public class Profile {
 
 	private String bio;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "profile")
 	private List<Posts> posts;
 
