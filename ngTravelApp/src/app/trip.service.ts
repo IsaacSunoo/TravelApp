@@ -9,7 +9,7 @@ import { Trip } from './models/trip';
 })
 export class TripService {
   private baseUrl = 'http://localhost:8080/';
-  private url = this.baseUrl + 'api/profiles';
+  private url = this.baseUrl + 'api/trips';
 
   public index(): Observable<Trip[]> {
     return this.http.get<Trip[]>(this.url)
@@ -26,6 +26,15 @@ export class TripService {
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving data ');
+      })
+    );
+  }
+
+  public destroy (id: number) {
+    return this.http.delete(this.url + '/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving data ' + err.status);
       })
     );
   }
