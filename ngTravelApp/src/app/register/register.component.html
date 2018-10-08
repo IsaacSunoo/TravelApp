@@ -24,25 +24,32 @@
   </div>
 </nav>
 
+
+
 <!-- Register Forms -->
 <div class="registrationForm">
 
+  <h3>Create a New Account</h3>
+  It's free and always will be.
+<br>
+<br>
   <form #registerForm="ngForm">
     <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="register.firstName">
-    <br>
+         &nbsp;
     <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="register.lastName">
     <br>
-    <input type="text" name="email" placeholder="email" [(ngModel)]="register.email">
+    <input type="text" name="email" placeholder="Email" class="formInput" [(ngModel)]="register.email">
     <br>
-    <input type="text" name="name" placeholder="username" [(ngModel)]="register.name">
+    <input type="text" name="name" placeholder="Username" class="formInput" [(ngModel)]="register.name">
     <br>
-    <input type="password" name="password" placeholder="password" [(ngModel)]="register.password">
+    <input type="password" name="password" placeholder="New Password" class="formInput" [(ngModel)]="register.password">
     <br>
     <!-- <input type="hidden" name="role" placeholder="role" [(ngModel)]="register.role" value="standard">
   <br>
   <input type="hidden" name="active" placeholder="enabled" [(ngModel)]="register.active" value="true">
   <br> -->
-    <button type="submit" value="Submit" (click)="registerUser(registerForm)">Register</button>
+    <br>
+      <button type="submit" class="btn btn-dark" value="Submit" (click)="registerUser(registerForm)">Register</button>
 
   </form>
 

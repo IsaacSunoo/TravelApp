@@ -1,0 +1,17 @@
+#TravelDestinations {
+  position: absolute;
+  left: 1px;
+  width:70%;
+  height: 140px;
+}
+
+.registrationForm {
+position: absolute;
+top: 90px;
+right: 70px;
+}
+
+.formInput{
+  width: 358px;
+}
+
