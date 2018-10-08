@@ -11,9 +11,8 @@ import { Profile } from '../models/profile';
   styleUrls: ['./setting.component.css']
 })
 export class SettingComponent implements OnInit {
-  changeProfile: UpdateProfile = new UpdateProfile();
   userProfile = null;
-  editProfile: UpdateProfile = null;
+  editProfile: UpdateProfile = new UpdateProfile();
   id = localStorage.getItem('profileId');
 
   updateProfile = function(updateForm: NgForm) {
