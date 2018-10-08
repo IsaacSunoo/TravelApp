@@ -1,3 +1,4 @@
+import { PostsComponent } from './posts/posts.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { RegisterComponent } from './register/register.component';
@@ -9,7 +10,9 @@ const routes: Routes = [
   { path: 'home', component: RegisterComponent },
   { path: 'settings/:id', component: SettingComponent },
   { path: 'profile/:id', component: ProfileComponent},
-  { path: 'trips/:id', component: TripComponent}
+  { path: 'trips/:id', component: TripComponent },
+  { path: 'posts/:id', component: PostsComponent }
+
 ];
 
 @NgModule({

@@ -12,6 +12,16 @@ export class PostsService {
   private baseUrl = 'http://localhost:8080/';
   private url = this.baseUrl + 'api/posts';
 
+  public index(): Observable<Posts[]> {
+    return this.http.get<Posts[]>(this.url)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error retireving list of posts... Status: ' + err.status);
+        })
+      );
+  }
+
   public show(id: number): Observable<Posts> {
     return this.http.get<Posts>('${this.url/:id')
       .pipe(
