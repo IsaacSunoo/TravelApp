@@ -1,5 +1,6 @@
 package com.skilldistillery.travelapp.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.ProfileLocation;
 import com.skilldistillery.travelapp.entities.SettingsDTO;
+import com.skilldistillery.travelapp.repositories.ProfileLocationRepository;
 import com.skilldistillery.travelapp.repositories.ProfileRepository;
 
 @Service
@@ -15,6 +17,9 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Autowired
 	private ProfileRepository profileRepo;
+
+	@Autowired
+	private ProfileLocationRepository profileLocationRepo;
 
 	// CREATE
 
@@ -68,30 +73,18 @@ public class ProfileServiceImpl implements ProfileService {
 			}
 
 			// *** Updating Location Values For a Profile ***
-			// Check whether *managedProfile* already has a location set - if not,
-			// persist the new location to the database as well
-			if (managedProfile.getLocation() != null) {
 
-				if (settingsDTO.getCity() != null && !settingsDTO.getCity().equals("")
-						&& !settingsDTO.getCity()
-								.equals(managedProfile.getLocation().getCity())) {
-					managedProfile.getLocation().setCity(settingsDTO.getCity());
-				}
+			// Does the location input from form already exist in the DB?
+			List<ProfileLocation> existingLocation = profileLocationRepo
+					.findByCityAndStateAndCountry(settingsDTO.getCity(),
+							settingsDTO.getState(), settingsDTO.getCountry());
 
-				if (settingsDTO.getState() != null && !settingsDTO.getState().equals("")
-						&& !settingsDTO.getState()
-								.equals(managedProfile.getLocation().getState())) {
-					managedProfile.getLocation().setState(settingsDTO.getState());
-				}
-
-				if (settingsDTO.getCountry() != null
-						&& !settingsDTO.getCountry().equals("") && !settingsDTO.getCountry()
-								.equals(managedProfile.getLocation().getCountry())) {
-					managedProfile.getLocation().setCountry(settingsDTO.getCountry());
-				}
-
-				// In the case the location does not already exist in DB
+			// Check database to see if location already exists - if so, just set
+			// the profile to that location
+			if (existingLocation.size() > 0) {
+				managedProfile.setLocation(existingLocation.get(0));
 			} else {
+				// Location was not found in DB, so create a new one
 
 				ProfileLocation newLocation = new ProfileLocation();
 
@@ -100,8 +93,8 @@ public class ProfileServiceImpl implements ProfileService {
 				newLocation.setCountry(settingsDTO.getCountry());
 
 				managedProfile.setLocation(newLocation);
-
 			}
+			// *** End Location Update Logic ***
 
 			profileRepo.saveAndFlush(managedProfile);
 
@@ -111,6 +104,6 @@ public class ProfileServiceImpl implements ProfileService {
 		return null;
 	}
 
-	// DELETE
+// DELETE
 
 }
