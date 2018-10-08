@@ -16,3 +16,9 @@
 #profileCarousel img{
   height: 340px;
 }
+
+#followBtn {
+  position: absolute;
+  left: 50px;
+  top: 100px;
+}
