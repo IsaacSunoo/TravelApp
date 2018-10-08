@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { User } from './models/user';
 import { tap, catchError } from 'rxjs/operators';
+import { Profile } from './models/profile';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,15 @@ export class UserService {
     return this.http.get(this.fullUrl, { headers }).pipe(
       tap(res => {
         localStorage.setItem('token', token);
+        // this.loginTemp(username).subscribe(
+        //   data => {
+        //     console.log(data);
+        //     localStorage.setItem('profileId', data.id);
+        //   },
+        //   err => {
+        //     console.error('Observer got an error: ' + err);
+        //   }
+        // );
         return res;
       }),
       catchError((err: any) => {
@@ -34,6 +44,7 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('profileId');
   }
 
   checkLogin() {
@@ -48,7 +59,18 @@ export class UserService {
     return this.http.post(this.baseUrl + 'register', user).pipe(
       tap(res => {
         // create a user and then upon success, log them in
-        this.login(user.username, user.password);
+        // this.login(user.username, user.password);
+
+        // TEMPORARY LOGIN BELOW
+        this.loginTemp(user).subscribe(
+          data => {
+            localStorage.setItem('profileId', data.id);
+          },
+          err => {
+            console.error('Observer got an error: ' + err);
+          }
+        );
+        // END TEMP LOGIN CODE
       }),
       catchError((err: any) => {
         console.log(err);

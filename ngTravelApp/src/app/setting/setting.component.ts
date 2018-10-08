@@ -4,6 +4,7 @@ import { UpdateProfile } from './../models/update-profile';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../models/profile';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-setting',
@@ -47,10 +48,15 @@ export class SettingComponent implements OnInit {
     });
   };
 
+  logout = function() {
+    this.userService.logout();
+  };
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private setService: SettingService
+    private setService: SettingService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
