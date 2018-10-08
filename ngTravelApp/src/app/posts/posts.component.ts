@@ -12,6 +12,8 @@ export class PostsComponent implements OnInit {
   selected: Posts = null;
   newPost: Posts = new Posts();
   posts: Posts[] = [];
+  id = localStorage.getItem('profileId');
+
 
   displayTable = function() {
     this.selected = null;
@@ -33,11 +35,14 @@ export class PostsComponent implements OnInit {
     this.selected = post;
   };
 
-  addPost = function () {
+  addPost = function (id: string) {
     console.log(this.newPost);
 
     this.postServ.create(this.newPost).subscribe(data => {
       this.newPost = new Posts();
+      this.newPost.tripId = 1;
+      this.newPost.profileId = this.id;
+
       this.reload();
     });
   };
@@ -46,6 +51,16 @@ export class PostsComponent implements OnInit {
     this.postServ.index().subscribe(data => {
       this.posts = data;
     });
+  };
+
+
+  loadUserInfo = function (id: string) {
+    this.postServ.show(id).subscribe(
+      data => {
+        this.showProfile = data;
+        console.log(this.showProfile);
+
+      });
   };
 
   constructor(
