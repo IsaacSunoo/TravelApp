@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="profile_loc")
 public class ProfileLocation {
@@ -24,6 +26,7 @@ public class ProfileLocation {
 	
 	private String country;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="location")
 	private List<Profile> profiles;
 	

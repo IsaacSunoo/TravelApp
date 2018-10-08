@@ -43,7 +43,6 @@ public class Profile {
 
 	// Have to do this because can't update a nested object without getting the
 	// managed version of it
-	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "location_id")
 	private ProfileLocation location;
