@@ -1,6 +1,7 @@
 import { PostsService } from './../posts.service';
 import { Posts } from './../models/posts';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -8,51 +9,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-
   selected: Posts = null;
   newPost: Posts = new Posts();
   posts: Posts[] = [];
 
-  displayTable = function () {
+  displayTable = function() {
     this.selected = null;
   };
 
-  editPost = function (post: Posts) {
-    this.PostsService.update(post).subscribe(
-      data => {
-        this.selected = data;
-      });
+  editPost = function(post: Posts) {
+    this.postServ.update(post).subscribe(data => {
+      this.selected = data;
+    });
   };
 
-  deletePost = function (id: number) {
-    this.PostsService.destroy(id).subscribe(
-      data => {
-        this.reload();
-      });
+  deletePost = function(id: number) {
+    this.postServ.destroy(id).subscribe(data => {
+      this.reload();
+    });
   };
 
-  displayPost = function (post: Posts) {
+  displayPost = function(post: Posts) {
     this.selected = post;
   };
 
   addPost = function () {
-    this.PostsService.create(this.newPost).subscribe(
-      data => {
-        this.newPost = new Posts();
-        this.reload();
-      });
+    console.log(this.newPost);
+
+    this.postServ.create(this.newPost).subscribe(data => {
+      this.newPost = new Posts();
+      this.reload();
+    });
   };
 
-  reload = function () {
-    this.PostsService.index()
-      .subscribe(
-        data => { this.posts = data; }
-      );
+  reload = function() {
+    this.postServ.index().subscribe(data => {
+      this.posts = data;
+    });
   };
 
-  constructor() { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private postServ: PostsService
+  ) {}
 
   ngOnInit() {
-  }
 
+  }
 }

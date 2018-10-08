@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class FollowersService {
   private baseUrl = 'http://localhost:8080/';
-  private url = this.baseUrl + 'api/todos';
+  private url = this.baseUrl + 'api/profiles';
 
   public index(): Observable<Profile[]> {
     return this.http.get<Profile[]>(this.url).pipe(
@@ -18,6 +18,16 @@ export class FollowersService {
         return throwError('Error retrieving Followers List: ' + ' Status: ' + err.status);
       })
     );
+  }
+
+  public show(id: number): Observable<Profile> {
+    return this.http.get<Profile>('${this.url/:id}')
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error retrieving To do List: ' + ' Status: ' + err.status);
+        })
+      );
   }
 
   constructor(private http: HttpClient) {}
