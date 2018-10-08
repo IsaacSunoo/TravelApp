@@ -1,4 +1,4 @@
-
+<!-- All trips view -->
 <div class="container">
 <div *ngIf="!selected">
   <table class="table table-striped table-hover" >
@@ -16,7 +16,8 @@
   </tbody>
   </table>
 </div>
-
+<!-- New Trip Form -->
+<div>
 <form #tripForm="ngForm">
   Title
   <input type="text" name="title" [(ngModel)]="newTrip.title">
@@ -35,4 +36,27 @@
   <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="createTrip(tripForm)">Add Trip</button>
 </form>
 </div>
+
+<!-- Update Trip Form -->
+<div>
+<form #updateForm="ngForm">
+  Title
+  <input type="text" name="title" [(ngModel)]="editTrip.title">
+  Rating
+  <input type="text" name="rating" [(ngModel)]="editTrip.rating">
+  Total Cost
+  <input type="text" name="rating" [(ngModel)]="editTrip.totalCost">
+  Date Start
+  <input type="text" name="dateStart" [(ngModel)]="editTrip.dateStart">
+  Date End
+  <input type="text" name="dateEnd" [(ngModel)]="editTrip.dateEnd">
+  Review
+  <input type="text" name="imgLink" [(ngModel)]="editTrip.review">
+  imgLink
+  <input type="text" name="imgLink" [(ngModel)]="editTrip.imgLink">
+  <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="updateTrip(updateForm)">Add Trip</button>
+</form>
+</div>
+
+
 

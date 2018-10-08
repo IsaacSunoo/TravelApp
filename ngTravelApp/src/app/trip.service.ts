@@ -39,6 +39,17 @@ export class TripService {
     );
   }
 
+  public update(updateTrip: Trip, id: string) {
+    console.log(this.url + '/' + id);
+    return this.http.patch(this.url + '/' + id, updateTrip).
+    pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error saving updated Trip: ' + err.status);
+      }));
+  }
+
+
   constructor(private http: HttpClient) { }
 }
 

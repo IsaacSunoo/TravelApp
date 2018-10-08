@@ -14,6 +14,7 @@ export class TripComponent implements OnInit {
   newTrip: Trip = new Trip();
   id;
   selected = null;
+  editTrip: Trip = null;
 
   displayTrip = function(trip) {
     this.selected = trip;
@@ -54,6 +55,26 @@ export class TripComponent implements OnInit {
       }
     );
   };
+
+  updateTrip = function (updateForm: NgForm) {
+    this.editTrip.title = updateForm.value.title;
+    this.editTrip.rating = updateForm.value.rating;
+    this.totalCost = updateForm.value.totalCost;
+    this.dateStart = updateForm.value.dateStart;
+    this.dateEnd = updateForm.value.dateEnd;
+    this.review = updateForm.value.review;
+    this.imgLink = updateForm.value.imgLink;
+    console.log(this.editTrip);
+    this.tripService.update(this.editTrip, this.id).subscribe(
+      data => {
+        console.log(this.editTrip);
+        this.editTrip = data;
+      },
+      err => {
+        console.log('Observer recieved an Error: ' + err);
+      });
+  };
+
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private tripService: TripService) { }
 
   ngOnInit() {
