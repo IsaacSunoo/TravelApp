@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.User;
 import com.skilldistillery.travelapp.services.UserService;
 
@@ -26,6 +27,22 @@ public class UserController {
 			res.setStatus(400);
 		}
 		return u;
+	}
+
+	// Temporary login method, find the user by their username, return the profile
+	// object, store profile ID in local storage via angular side
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	public Profile retrieveProfile(@RequestBody User user, HttpServletResponse res) {
+
+		String username = user.getName();
+		User managedUser = userService.getOneUser(username);
+
+		if (managedUser != null) {
+			Profile profile = managedUser.getProfile();
+			return profile;
+		}
+
+		return null;
 	}
 
 }

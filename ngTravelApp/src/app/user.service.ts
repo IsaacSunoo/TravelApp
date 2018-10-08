@@ -10,10 +10,9 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class UserService {
   private baseUrl = environment.baseUrl;
-  private fullUrl = (this.baseUrl + '/authenticate');
+  private fullUrl = this.baseUrl + '/authenticate';
 
   login(username, password) {
-
     // Make token
     const token = this.generateBasicAuthToken(username, password);
     // Send token as Authorization header (this is spring security convention for basic auth)
@@ -46,16 +45,16 @@ export class UserService {
 
   register(user) {
     // create request to register a new account
-    return this.http.post(this.baseUrl + 'register', user)
-      .pipe(
-        tap((res) => {  // create a user and then upon success, log them in
-          this.login(user.username, user.password);
-        }),
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error registering User');
-        })
-      );
+    return this.http.post(this.baseUrl + 'register', user).pipe(
+      tap(res => {
+        // create a user and then upon success, log them in
+        this.login(user.username, user.password);
+      }),
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error registering User');
+      })
+    );
   }
 
   generateBasicAuthToken(username, password) {
@@ -74,6 +73,18 @@ export class UserService {
     user.active = false;
   }
 
-  constructor(private http: HttpClient) { }
+  // TEMP TESTING FOR LOGIN
+  loginTemp(username) {
+    return this.http.post(this.baseUrl + 'login', username).pipe(
+      tap(res => {
+        return res;
+      }),
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error with temporary login');
+      })
+    );
+  }
 
+  constructor(private http: HttpClient) {}
 }
