@@ -19,6 +19,14 @@
 
 #followBtn {
   position: absolute;
-  left: 120px;
-  top: 580px;
+  left: 115px;
+  top: 550px;
+}
+
+.profileName {
+position: absolute;
+top: 500px;
+left: 80px;
+color: navy;
+font-weight: bold;
 }

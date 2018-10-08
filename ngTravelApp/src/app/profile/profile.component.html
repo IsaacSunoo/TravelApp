@@ -48,13 +48,11 @@
 <div *ngIf="showProfile">
 
 
-
 <!-- Profile picture -->
 
 <div class="profilePicture">
   <img [src]="showProfile.imgLink" class="profilePic" alt="Profile Picture">
 </div>
-
 
 <!-- Carousel -->
 
@@ -80,18 +78,19 @@
   </a>
 </div>
 
-
-
+<!-- Profile First and Last Name -->
+<div class="profileName">
+  <h3>
+    <p>{{showProfile.firstName}} {{showProfile.lastName}}</p>
+  </h3>
+</div>
 
 
 <!-- Follow Button -->
 <div id="followBtn">
-  <button class ="btn btn-outline-dark btn-lg" type="submit" value="Follow">Follow</button>
+  <button class ="btn btn-outline-dark" type="submit" value="Follow">Follow</button>
 </div>
 
 
-
-
-
-
 </div>
+
