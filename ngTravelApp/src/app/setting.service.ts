@@ -23,7 +23,7 @@ export class SettingService {
       );
   }
 
-  public show(id: number): Observable<UpdateProfile> {
+  public show(id: string): Observable<UpdateProfile> {
     return this.http.get<UpdateProfile>(this.url + '/' + id)
       .pipe(
       catchError((err: any) => {
