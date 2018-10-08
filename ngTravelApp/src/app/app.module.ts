@@ -14,6 +14,8 @@ import { FeedComponent } from './feed/feed.component';
 import { TripComponent } from './trip/trip.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
+import { FollowersComponent } from './followers/followers.component';
+import { FollowingComponent } from './following/following.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { LogoutComponent } from './logout/logout.component';
     FeedComponent,
     TripComponent,
     ProfileComponent,
-    LogoutComponent
+    LogoutComponent,
+    FollowersComponent,
+    FollowingComponent
   ],
   imports: [
     BrowserModule,
