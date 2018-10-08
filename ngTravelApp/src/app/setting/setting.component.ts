@@ -3,6 +3,7 @@ import { SettingService } from './../setting.service';
 import { UpdateProfile } from './../models/update-profile';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Profile } from '../models/profile';
 
 @Component({
   selector: 'app-setting',
@@ -11,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SettingComponent implements OnInit {
   changeProfile: UpdateProfile = new UpdateProfile();
+  userProfile = null;
   editProfile: UpdateProfile = null;
   id = localStorage.getItem('profileId');
 
@@ -41,8 +43,8 @@ export class SettingComponent implements OnInit {
 
   loadProfile = function(id: string) {
     this.setService.show(id).subscribe(data => {
-      this.editProfile = data;
-      console.log(this.editProfile);
+      this.userProfile = data;
+      console.log(this.userProfile);
     });
   };
 
@@ -54,6 +56,5 @@ export class SettingComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfile(this.id);
-   }
-
+  }
 }

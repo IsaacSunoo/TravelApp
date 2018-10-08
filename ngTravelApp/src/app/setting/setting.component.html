@@ -33,60 +33,56 @@
 
 <!-- Update Profile Form -->
 
-<div class="updateProfForm">
+<div class="updateProfForm" *ngIf="userProfile">
   <form #updateForm="ngForm">
-  <table>
-    <tbody>
-      <tr>
-        <td>Name</td>
-        <td><input type="text" name="name" ngModel></td>
-      </tr>
-      <tr>
-        <td>Password</td>
-        <td><input type="password" name="password" ngModel></td>
-      </tr>
-      <tr>
-        <td>First Name</td>
-        <td><input type="text" name="firstName" ngModel></td>
-      </tr>
-      <tr>
-        <td>Last Name</td>
-        <td><input type="text" name="lastName" ngModel></td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td><input type="text" name="email" ngModel></td>
-      </tr>
-      <tr>
-        <td>Profile Picture</td>
-        <td><input type="text" name="imgLink" ngModel></td>
-      </tr>
-      <tr>
-        <td>Profile Bio</td>
-        <td><input type="text" name="bio" ngModel></td>
-      </tr>
-      <tr>
-        <td>City</td>
-        <td><input type="text" name="city" ngModel></td>
-      </tr>
-      <tr>
-        <td>State</td>
-        <td><input type="text" name="state" ngModel></td>
-      </tr>
-      <tr>
-        <td>Country</td>
-        <td><input type="text" name="country" ngModel></td>
-      </tr>
-      <tr>
-        <td>City</td>
-        <td><input type="text" name="city" ngModel></td>
-      </tr>
-    </tbody>
-    <br>
-    <div class="updateBtn">
-      <button class="btn btn-dark" (click)="updateProfile(updateForm)">Update Profile</button>
-    </div>
-  </table>
+    <table>
+      <tbody>
+
+        <tr>
+          <td>Username</td>
+          <td><input type="text" name="name" [ngModel]="userProfile.user.name"></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="password" name="password" [ngModel]="userProfile.user.password"></td>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td><input type="text" name="firstName" [ngModel]="userProfile.firstName"></td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td><input type="text" name="lastName" [ngModel]="userProfile.lastName"></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" name="email" [ngModel]="userProfile.user.email"></td>
+        </tr>
+        <tr>
+          <td>Profile Picture</td>
+          <td><input type="text" name="imgLink" [ngModel]="userProfile.imgLink"></td>
+        </tr>
+        <tr>
+          <td>Profile Bio</td>
+          <td><input type="text" name="bio" [ngModel]="userProfile.bio"></td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td><input type="text" name="city" [[ngModel]]="userProfile.location.city"></td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td><input type="text" name="state" [ngModel]="userProfile.location.state"></td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td><input type="text" name="country" [ngModel]="userProfile.location.country"></td>
+        </tr>
+      </tbody>
+      <br>
+      <div class="updateBtn">
+        <button class="btn btn-dark" (click)="updateProfile(updateForm)">Update Profile</button>
+      </div>
+    </table>
   </form>
 </div>
-
