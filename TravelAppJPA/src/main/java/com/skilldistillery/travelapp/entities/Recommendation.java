@@ -1,12 +1,13 @@
 package com.skilldistillery.travelapp.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Recommendation {
@@ -23,6 +24,7 @@ public class Recommendation {
 	@JoinColumn(name = "rec_type_id")
 	private RecType recType;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;

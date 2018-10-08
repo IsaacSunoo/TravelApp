@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="rec_type")
 public class RecType {
@@ -22,6 +24,7 @@ public class RecType {
 
 	private String name;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "recType")
 	private List<Recommendation> recommendations;
 
