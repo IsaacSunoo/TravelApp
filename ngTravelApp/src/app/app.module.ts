@@ -24,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import { TripDetailsComponent } from './trip-details/trip-details.component';
 
 
 
@@ -42,6 +43,7 @@ import { MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatInputModule
     FollowingComponent,
     StepperComponent,
     DatePickerComponent,
+    TripDetailsComponent,
   ],
   imports: [
     BrowserModule,
