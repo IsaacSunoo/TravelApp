@@ -37,8 +37,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     LogoutComponent,
     FollowersComponent,
     FollowingComponent,
-    StepperComponent,
-    MatDatepickerModule
+    StepperComponent
   ],
   imports: [
     BrowserModule,
