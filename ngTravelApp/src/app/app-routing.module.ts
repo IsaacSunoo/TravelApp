@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent }
 
 
+
 ];
 
 @NgModule({

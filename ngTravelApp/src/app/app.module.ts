@@ -22,6 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StepperComponent } from './stepper/stepper.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DatePickerComponent } from './date-picker/date-picker.component';
+import { MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+
 
 
 @NgModule({
@@ -37,7 +40,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     LogoutComponent,
     FollowersComponent,
     FollowingComponent,
-    StepperComponent
+    StepperComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatStepperModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   providers: [DatePipe, TripService],
   bootstrap: [AppComponent]

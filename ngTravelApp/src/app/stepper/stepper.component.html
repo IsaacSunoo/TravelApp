@@ -1,36 +1,45 @@
-
-<mat-horizontal-stepper>
+<form>
+<mat-horizontal-stepper id="tripStepper">
   <mat-step label="Title">
-    <input type="text" name="title" placeholder="Title"><br>
-    <button mat-button matStepperPrevious type="button">Back</button>
-    <button mat-button matStepperNext type="button">Next</button>
+    <input type="text" name="title" placeholder="Title"><br><br>
+    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
+    <button mat-button matStepperNext class="btn btn-outline-dark" type="button">Next</button>
   </mat-step>
   <mat-step label="Post">
-    <input type="text" name="message" placeholder="Message"><br>
-    <button mat-button matStepperPrevious type="button">Back</button>
-    <button mat-button matStepperNext type="button">Next</button>
+    <textarea rows="4" cols="50" name="post" placeholder="Post"></textarea><br><br>
+    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
+    <button mat-button matStepperNext class="btn btn-outline-dark" type="button">Next</button>
+  </mat-step>
+  <mat-step label="Review">
+  <textarea rows="4" cols="50" name="review" placeholder="Review"></textarea><br><br>
+    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
+    <button mat-button matStepperNext class="btn btn-outline-dark" type="button">Next</button>
   </mat-step>
   <mat-step label="Trip Dates">
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    <button mat-button matStepperPrevious type="button">Back</button>
-    <button mat-button matStepperNext type="button">Next</button>
+
+    <app-date-picker></app-date-picker><br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="End Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> <br>
+
+    <!-- <input type="text" name="dateStart" placeholder="Start Date (DD/MM/YYYY)">&nbsp;&nbsp;
+    <input type="text" name="dateEnd" placeholder="End Date (DD/MM/YYYY)"><br><br> -->
+    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
+    <button mat-button matStepperNext class="btn btn-outline-dark" type="button">Next</button>
   </mat-step>
-  <mat-step label="Step 3">
-    <input type="text" name="message" placeholder="Message"><br>
-    <button mat-button matStepperPrevious type="button">Back</button>
-    <button mat-button matStepperNext type="button">Next</button>
+  <mat-step label="Trip Cost">
+    <input type="text" name="message" placeholder="Message"><br><br>
+    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
+    <button mat-button matStepperNext class="btn btn-outline-dark" type="button" >Next</button>
   </mat-step>
-  <mat-step label="Step 3">
-    <input type="text" name="message" placeholder="Message"><br>
-    <button mat-button matStepperPrevious type="button">Back</button>
-    <button mat-button matStepperNext type="button">Next</button>
-  </mat-step>
-  <mat-step label="Step 3">
-    <input type="text" name="message" placeholder="Message"><br>
-    <button mat-button matStepperPrevious type="button">Back</button>
-    <button mat-button matStepperNext type="button">Next</button>
+  <mat-step label="Image">
+    <input type="text" name="imgLink" placeholder="Image Link"><br><br>
+    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="submit" class="btn btn-dark" value="Submit">Share Trip</button>
   </mat-step>
 </mat-horizontal-stepper>
-
+</form>
