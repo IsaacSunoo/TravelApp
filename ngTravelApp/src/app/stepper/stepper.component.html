@@ -1,6 +1,6 @@
 <form #tripForm="ngForm">
 <mat-horizontal-stepper id="tripStepper" [linear]="false" #stepper>
-  <mat-step label="Title" [completed]="false">
+  <mat-step label="Post" [completed]="false">
     <input type="text" name="title" placeholder="Title" [(ngModel)]="newPost.title"><br><br>
     <textarea rows="4" cols="50" name="message" placeholder="Post" [(ngModel)]="newPost.message"></textarea><br><br>
     <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
@@ -8,11 +8,10 @@
   </mat-step>
 
   <mat-step label="Review" [completed]="false">
-  <textarea rows="4" cols="50" name="review" placeholder="Review" [(ngModel)]="newPost.review"></textarea><br><br>
+  <textarea rows="12" cols="70" name="review" placeholder="Review" [(ngModel)]="newPost.review"></textarea><br><br>
     <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
     <button mat-button matStepperNext class="btn btn-outline-dark" type="button">Next</button>
   </mat-step>
-  <mat-step label="Trip Dates" [completed]="false">
 
 <!-- Commented out angular calendars until further information -->
 
@@ -22,28 +21,22 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field> <br> -->
-    Start Date <br>
-    <input type="date" name="dateStart" [(ngModel)]="newPost.dateStart">&nbsp;&nbsp;
-    <br><br>
-    End Date <br>
-    <input type="date" name="dateEnd" [(ngModel)]="newPost.dateEnd"><br><br>
-    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
-    <button mat-button matStepperNext class="btn btn-outline-dark" type="button">Next</button>
-  </mat-step>
-  <mat-step label="Trip Cost" [completed]="false">
-    <input type="text" name="totalCost" placeholder="Trip Cost" [(ngModel)]="newPost.totalCost"><br><br>
-    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
-    <button mat-button matStepperNext class="btn btn-outline-dark" type="button" >Next</button>
-  </mat-step>
-  <mat-step label="Rating" id="ratingBox" [completed]="false">
-    <input type="number" name="rating" placeholder="1 - 10" [(ngModel)]="newPost.rating"><br><br>
-    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
-    <button mat-button matStepperNext class="btn btn-outline-dark" type="button" >Next</button>
-  </mat-step>
-  <mat-step label="Location" [completed]="false">
-    <input type="text" name="city" placeholder="City" [(ngModel)]="newPost.city"><br><br>
-    <input type="text" name="state" placeholder="State (Optional)" [(ngModel)]="newPost.state"><br><br>
+  <mat-step label="Trip Info" [completed]="false">
+    <input type="text" name="city" placeholder="City" [(ngModel)]="newPost.city">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" name="state" placeholder="State (Optional)" [(ngModel)]="newPost.state">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="text" name="country" placeholder="Country" [(ngModel)]="newPost.country"><br><br>
+    <input type="text" name="totalCost" placeholder="Trip Cost" [(ngModel)]="newPost.totalCost">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="number" name="rating" placeholder="Overall Rating (1 - 10)" [(ngModel)]="newPost.rating"><br><br>
+    Start Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date <br>
+      <input type="date" name="dateStart" [(ngModel)]="newPost.dateStart">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <input type="date" name="dateEnd" [(ngModel)]="newPost.dateEnd"><br><br>
     <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
     <button mat-button matStepperNext class="btn btn-outline-dark" type="button" >Next</button>
   </mat-step>
