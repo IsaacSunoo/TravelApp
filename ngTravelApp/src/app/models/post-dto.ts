@@ -1,4 +1,4 @@
-export class NewTrip {
+export class PostDTO {
   id: number;
   title: string;
   rating: number;
@@ -48,5 +48,5 @@ export class NewTrip {
     this.message = message;
     this.createDate = createDate;
   }
-
 }
+
