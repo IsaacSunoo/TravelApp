@@ -1,23 +1,23 @@
-/* .profilePic {
+ /* .profilePic {
   position: absolute;
   border-radius: 50%;
   width: 300px;
   height:300px;
   left: 30px;
-}
+} */
 
-#profileCarousel {
+/* #profileCarousel {
   position: absolute;
   right: 1px;
   width:80%;
   height: 200px;
-}
+} */
 
 #profileCarousel img{
   height: 340px;
 }
 
-#followBtn {
+/* #followBtn {
   position: absolute;
   left: 115px;
   top: 550px;

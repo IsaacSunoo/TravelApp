@@ -62,14 +62,14 @@ export class UserService {
         // this.login(user.username, user.password);
 
         // TEMPORARY LOGIN BELOW
-        this.loginTemp(user).subscribe(
-          data => {
-            localStorage.setItem('profileId', data.id);
-          },
-          err => {
-            console.error('Observer got an error: ' + err);
-          }
-        );
+        // this.loginTemp(user).subscribe(
+        //   data => {
+        //     localStorage.setItem('profileId', data.id);
+        //   },
+        //   err => {
+        //     console.error('Observer got an error: ' + err);
+        //   }
+        // );
         // END TEMP LOGIN CODE
       }),
       catchError((err: any) => {

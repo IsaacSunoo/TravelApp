@@ -53,13 +53,20 @@
   <!-- TEST DIV -->
   <div class="row">
 
-    <div class="col profilePicture">
+    <div class="col-2 profilePicture">
       <img [src]="showProfile.imgLink" class="img-fluid img-thumbnail profilePic" alt="Profile Picture">
+
+      <div class="col-2 profileName">
+          <h3>
+            <p>{{showProfile.firstName}} {{showProfile.lastName}}</p>
+          </h3>
+        </div>
+
     </div>
 
     <!-- Carousel -->
 
-    <div id="profileCarousel" class="col-md-auto carousel slide carousel-fade" data-ride="carousel">
+    <div id="profileCarousel" class="col-10 carousel slide carousel-fade" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img class="d-block w-100" src="https://www.rei.com/adventures/assets/adventures/images/trip/core/latinamerica/pam_hero"
@@ -91,14 +98,18 @@
   <!-- TEST DIV -->
   <div class="row">
 
-    <div class="col profileName">
+    <div class="col-2 profileName">
       <h3>
         <p>{{showProfile.firstName}} {{showProfile.lastName}}</p>
       </h3>
     </div>
 
-    <div class="col">
+    <div class="col-5">
       <h1>Test</h1>
+    </div>
+
+    <div class="col-5">
+      <h1>Test 2</h1>
     </div>
 
   </div>
