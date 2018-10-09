@@ -2,16 +2,19 @@ package com.skilldistillery.travelapp.services;
 
 import java.util.List;
 
+import com.skilldistillery.travelapp.entities.NewTripPostDTO;
 import com.skilldistillery.travelapp.entities.Posts;
 
 public interface PostService {
 
-	List<Posts> index();
+	public List<Posts> index();
 
-	Posts show(Integer id);
+	public Posts show(Integer id);
 
-	Posts create(Posts post);
+	public Posts create(Posts post);
 
-	Boolean delete(Integer id);
+	public Boolean delete(Integer id);
+
+	public Posts createTripPost(Integer id, NewTripPostDTO newTripPostDTO);
 
 }

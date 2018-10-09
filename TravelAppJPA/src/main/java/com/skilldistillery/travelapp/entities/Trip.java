@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -66,7 +67,7 @@ public class Trip {
 	@OneToOne(mappedBy = "trip")
 	private Posts posts;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "destination_id")
 	private Destination destination;
 
@@ -76,9 +77,11 @@ public class Trip {
 
 	}
 
-	public Trip(int id, String title, int rating, Double totalCost, Date dateStart, Date dateEnd, String review,
-			String imgLink, Profile profile, List<Profile> profiles, List<Tag> tags,
-			List<Recommendation> recommendations, Posts posts, Destination destination) {
+	public Trip(int id, String title, int rating, Double totalCost,
+			Date dateStart, Date dateEnd, String review, String imgLink,
+			Profile profile, List<Profile> profiles, List<Tag> tags,
+			List<Recommendation> recommendations, Posts posts,
+			Destination destination) {
 		this.id = id;
 		this.title = title;
 		this.rating = rating;
@@ -94,7 +97,6 @@ public class Trip {
 		this.posts = posts;
 		this.destination = destination;
 	}
-
 
 	// getters & setters
 
@@ -274,14 +276,16 @@ public class Trip {
 		int result = 1;
 		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
 		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
-		result = prime * result + ((destination == null) ? 0 : destination.hashCode());
+		result = prime * result
+				+ ((destination == null) ? 0 : destination.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((imgLink == null) ? 0 : imgLink.hashCode());
 		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		result = prime * result + ((profiles == null) ? 0 : profiles.hashCode());
 		result = prime * result + rating;
-		result = prime * result + ((recommendations == null) ? 0 : recommendations.hashCode());
+		result = prime * result
+				+ ((recommendations == null) ? 0 : recommendations.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -367,10 +371,12 @@ public class Trip {
 
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", title=" + title + ", rating=" + rating + ", totalCost=" + totalCost
-				+ ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", review=" + review + ", imgLink=" + imgLink
-				+ ", profile=" + profile + ", profiles=" + profiles + ", tags=" + tags + ", recommendations="
-				+ recommendations + ", posts=" + posts + ", destination=" + destination + "]";
+		return "Trip [id=" + id + ", title=" + title + ", rating=" + rating
+				+ ", totalCost=" + totalCost + ", dateStart=" + dateStart + ", dateEnd="
+				+ dateEnd + ", review=" + review + ", imgLink=" + imgLink + ", profile="
+				+ profile + ", profiles=" + profiles + ", tags=" + tags
+				+ ", recommendations=" + recommendations + ", posts=" + posts
+				+ ", destination=" + destination + "]";
 	}
 
 }
