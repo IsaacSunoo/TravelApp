@@ -6,3 +6,49 @@
     <button class="btn btn-outline-dark" (click)="addPost(newPost)">Post</button>
   </form>
 </div>
+<div>
+    <form #tripForm="ngForm">
+      Title
+      <input type="text" name="title" [(ngModel)]="newPost.title">
+      <br>
+      Rating
+      <input type="text" name="rating" [(ngModel)]="newPost.rating">
+      <br>
+      Total Cost
+      <input type="text" name="rating" [(ngModel)]="newPost.totalCost">
+      <br>
+      Date Start
+      <input type="date" name="dateStart" [(ngModel)]="newPost.dateStart">
+      <br>
+      Date End
+      <input type="date" name="dateEnd" [(ngModel)]="newPost.dateEnd">
+      <br>
+      Review
+      <input type="text" name="review" [(ngModel)]="newPost.review">
+      <br>
+      imgLink
+      <input type="text" name="imgLink" [(ngModel)]="newPost.imgLink">
+      <br>
+      city
+      <input type="text" name="city" [(ngModel)]="newPost.city">
+      <br>
+      state
+      <input type="text" name="state" [(ngModel)]="newPost.state">
+      <br>
+      country
+      <input type="text" name="country" [(ngModel)]="newPost.country">
+      <br>
+      latitude
+      <input type="text" name="latitude" placeholder="optional" [(ngModel)]="newPost.latitude">
+      <br>
+      longitude
+      <input type="text" name="longitude" placeholder="optional" [(ngModel)]="newPost.longitude">
+      <br>
+      message
+      <input type="text" name="message" [(ngModel)]="newPost.message">
+      <br>
+      <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="addPost(newPost)">Add Trip</button>
+    </form>
+    <br>
+    </div>
+

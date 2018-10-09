@@ -2,6 +2,7 @@ import { PostsService } from './../posts.service';
 import { Posts } from './../models/posts';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PostDTO } from '../models/post-dto';
 
 @Component({
   selector: 'app-posts',
@@ -9,11 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+// might need a field for a plain vanilla post later
+
   selected: Posts = null;
-  newPost: Posts = new Posts();
+  newPost: PostDTO = new PostDTO();
   posts: Posts[] = [];
   id = localStorage.getItem('profileId');
 
+  newTripPost: Posts = new Posts();
 
   displayTable = function() {
     this.selected = null;
@@ -43,6 +47,15 @@ export class PostsComponent implements OnInit {
       this.newPost.tripId = 1;
       this.newPost.profileId = this.id;
 
+      this.reload();
+    });
+  };
+
+  addTripPost = function (newPost) {
+    const id = localStorage.getItem('profileId');
+
+    this.postServ.createNewTrip(this.newPost, id).subscribe(data => {
+      this.newPost = data;
       this.reload();
     });
   };

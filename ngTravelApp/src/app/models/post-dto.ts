@@ -13,7 +13,6 @@ export class PostDTO {
   latitude: string;
   longitude: string;
   message: string;
-  createDate: string;
 
   constructor(
     id?: number,
@@ -30,7 +29,6 @@ export class PostDTO {
     latitude?: string,
     longitude?: string,
     message?: string,
-    createDate?: string,
   ) {
     this.id = id;
     this.title = title;
@@ -46,7 +44,6 @@ export class PostDTO {
     this.latitude = latitude;
     this.longitude = longitude;
     this.message = message;
-    this.createDate = createDate;
   }
 }
 

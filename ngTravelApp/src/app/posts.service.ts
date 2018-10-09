@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { Posts } from './models/posts';
+import { PostDTO } from './models/post-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,23 @@ export class PostsService {
 
         }));
   }
+
+  public createNewTrip(postDTO: PostDTO, profileId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    return this.http.post(this.baseUrl + 'profile' + '/' + profileId + '/' + 'posts', postDTO, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error saving post... Status: ' + err.status);
+
+        }));
+  }
+
 
   public update(post: Posts) {
     return this.http.put(this.url + '/' + post.id, post)
