@@ -22,6 +22,15 @@ export class PostsService {
         })
       );
   }
+  // public indexDTO(id): Observable<PostDTO[]> {
+  //   return this.http.get<PostDTO[]>(this.url)
+  //     .pipe(
+  //       catchError((err: any) => {
+  //         console.log(err);
+  //         return throwError('Error retrieving Trip: ' + ' Status: ' + err.status);
+  //       })
+  //     );
+  // }
 
   public show(id: number): Observable<Posts> {
     return this.http.get<Posts>('${this.url/:id')
@@ -54,8 +63,9 @@ export class PostsService {
         'Content-Type': 'application/json',
       })
     };
+console.log(postDTO);
 
-    return this.http.post(this.baseUrl + 'profile' + '/' + profileId + '/' + 'posts', postDTO, httpOptions)
+    return this.http.post(this.baseUrl + 'api/profile' + '/' + profileId + '/' + 'posts', postDTO, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

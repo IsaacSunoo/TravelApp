@@ -1,3 +1,4 @@
+import { LogoutComponent } from './../logout/logout.component';
 import { PostsService } from './../posts.service';
 import { Posts } from './../models/posts';
 import { Component, OnInit } from '@angular/core';
@@ -15,9 +16,13 @@ export class PostsComponent implements OnInit {
   selected: Posts = null;
   newPost: PostDTO = new PostDTO();
   posts: Posts[] = [];
-  id = localStorage.getItem('profileId');
 
-  newTripPost: Posts = new Posts();
+   id = localStorage.getItem('profileId');
+  returnedPost: Posts = new Posts();
+  // returnedPost = null;
+  trips: PostDTO[] = [];
+
+  haveReturnedPost: Boolean = false;
 
   displayTable = function() {
     this.selected = null;
@@ -51,11 +56,11 @@ export class PostsComponent implements OnInit {
     });
   };
 
-  addTripPost = function (newPost) {
-    const id = localStorage.getItem('profileId');
-
-    this.postServ.createNewTrip(this.newPost, id).subscribe(data => {
-      this.newPost = data;
+  addTripPost = function () {
+    this.postServ.createNewTrip(this.newPost, this.id).subscribe(data => {
+      this.returnedPost = data;
+      console.log(this.returnedPost);
+      this.haveReturnedPost = true;
       this.reload();
     });
   };
@@ -76,6 +81,15 @@ export class PostsComponent implements OnInit {
       });
   };
 
+  // loadTrips = function(id) {
+  //   this.postService.indexDTO(id).subscribe(
+  //     data => {
+  //     this.trips = data;
+  //     console.log(this.trips);
+
+  //   });
+  // };
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -83,6 +97,8 @@ export class PostsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // const id = localStorage.getItem('profileId');
+      // this.reload();
 
   }
 }

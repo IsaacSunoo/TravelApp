@@ -1,5 +1,4 @@
 export class PostDTO {
-  id: number;
   title: string;
   rating: number;
   totalCost: number;
@@ -15,7 +14,6 @@ export class PostDTO {
   message: string;
 
   constructor(
-    id?: number,
     title?: string,
     rating?: number,
     totalCost?: number,
@@ -30,7 +28,6 @@ export class PostDTO {
     longitude?: string,
     message?: string,
   ) {
-    this.id = id;
     this.title = title;
     this.rating = rating;
     this.totalCost = totalCost;
