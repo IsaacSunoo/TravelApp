@@ -10,6 +10,8 @@ import { PostsService } from '../posts.service';
 })
 export class StepperComponent implements OnInit {
   newPost: PostDTO = new PostDTO();
+  haveReturnedPost: Boolean = false;
+  id = localStorage.getItem('profileId');
 
   addTripPost = function() {
     this.postServ.createNewTrip(this.newPost, this.id).subscribe(data => {
