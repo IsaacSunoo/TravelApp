@@ -57,7 +57,7 @@ import { FeedDisplayComponent } from './feed-display/feed-display.component';
     MatButtonModule,
     MatCheckboxModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [DatePipe, TripService],
   bootstrap: [AppComponent]

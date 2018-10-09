@@ -1,7 +1,7 @@
-<form>
+<form #tripForm="ngForm">
 <mat-horizontal-stepper id="tripStepper">
   <mat-step label="Title">
-    <input type="text" name="title" placeholder="Title"><br><br>
+    <input type="text" name="title" placeholder="Title" [(ngModel)]="newPost.title"><br><br>
     <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
     <button mat-button matStepperNext class="btn btn-outline-dark" type="button">Next</button>
   </mat-step>
@@ -31,6 +31,11 @@
   </mat-step>
   <mat-step label="Trip Cost">
     <input type="text" name="message" placeholder="Message"><br><br>
+    <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
+    <button mat-button matStepperNext class="btn btn-outline-dark" type="button" >Next</button>
+  </mat-step>
+  <mat-step label="Rating" id="ratingBox">
+    <input type="number" name="rating" placeholder="1 - 10" width="130px"><br><br>
     <button mat-button matStepperPrevious class="btn btn-outline-dark" type="button">Back</button>&nbsp;
     <button mat-button matStepperNext class="btn btn-outline-dark" type="button" >Next</button>
   </mat-step>
