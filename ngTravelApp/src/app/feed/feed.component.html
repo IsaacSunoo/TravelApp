@@ -1,3 +1,49 @@
-<p>
-  feed works!
-</p>
+<!-- NavBar -->
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/profile']">Profile</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/discover']">Discover</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="profile.do">Profile</a>
+      </li> -->
+    </ul>
+  </div>
+  <div class="mx-auto order-0">
+    <a class="navbar-brand mx-auto" href="#">TrappaBlog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="logout.do">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+
+
+<!-- Search Bar -->
+
+<div class="container">
+  <form>
+    <div>
+      <input class="form-control mr-sm-2" id="searchBar" type="text" placeholder="Search">
+      <button class="btn btn-dark" type="submit" value="Search">Search</button>
+    </div>
+  </form>
+</div>
+<br>
+
+<div class="container">
+<app-stepper></app-stepper>
+
+</div>

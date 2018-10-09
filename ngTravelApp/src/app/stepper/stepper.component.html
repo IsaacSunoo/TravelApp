@@ -1,0 +1,36 @@
+
+<mat-horizontal-stepper>
+  <mat-step label="Title">
+    <input type="text" name="title" placeholder="Title"><br>
+    <button mat-button matStepperPrevious type="button">Back</button>
+    <button mat-button matStepperNext type="button">Next</button>
+  </mat-step>
+  <mat-step label="Post">
+    <input type="text" name="message" placeholder="Message"><br>
+    <button mat-button matStepperPrevious type="button">Back</button>
+    <button mat-button matStepperNext type="button">Next</button>
+  </mat-step>
+  <mat-step label="Trip Dates">
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <button mat-button matStepperPrevious type="button">Back</button>
+    <button mat-button matStepperNext type="button">Next</button>
+  </mat-step>
+  <mat-step label="Step 3">
+    <input type="text" name="message" placeholder="Message"><br>
+    <button mat-button matStepperPrevious type="button">Back</button>
+    <button mat-button matStepperNext type="button">Next</button>
+  </mat-step>
+  <mat-step label="Step 3">
+    <input type="text" name="message" placeholder="Message"><br>
+    <button mat-button matStepperPrevious type="button">Back</button>
+    <button mat-button matStepperNext type="button">Next</button>
+  </mat-step>
+  <mat-step label="Step 3">
+    <input type="text" name="message" placeholder="Message"><br>
+    <button mat-button matStepperPrevious type="button">Back</button>
+    <button mat-button matStepperNext type="button">Next</button>
+  </mat-step>
+</mat-horizontal-stepper>
+

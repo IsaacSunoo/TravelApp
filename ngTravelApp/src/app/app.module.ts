@@ -17,6 +17,12 @@ import { LogoutComponent } from './logout/logout.component';
 import { FollowersComponent } from './followers/followers.component';
 import { FollowingComponent } from './following/following.component';
 import { TripService } from './trip.service';
+import { MatStepperModule } from '@angular/material/stepper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StepperComponent } from './stepper/stepper.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -30,15 +36,20 @@ import { TripService } from './trip.service';
     ProfileComponent,
     LogoutComponent,
     FollowersComponent,
-    FollowingComponent
+    FollowingComponent,
+    StepperComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatStepperModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule
   ],
   providers: [DatePipe, TripService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
