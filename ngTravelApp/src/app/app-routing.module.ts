@@ -1,3 +1,4 @@
+import { FeedComponent } from './feed/feed.component';
 import { FollowersComponent } from './followers/followers.component';
 import { PostsComponent } from './posts/posts.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'trips', component: TripComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'followers', component: FollowersComponent },
-  { path: 'following', component: FollowingComponent }
+  { path: 'following', component: FollowingComponent },
+  { path: 'feed', component: FeedComponent }
 
 
 ];

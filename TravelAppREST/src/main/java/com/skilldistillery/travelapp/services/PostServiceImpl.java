@@ -11,6 +11,7 @@ import com.skilldistillery.travelapp.entities.NewTripPostDTO;
 import com.skilldistillery.travelapp.entities.Posts;
 import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.Trip;
+import com.skilldistillery.travelapp.repositories.DestinationRepository;
 import com.skilldistillery.travelapp.repositories.PostsRepository;
 import com.skilldistillery.travelapp.repositories.ProfileRepository;
 
@@ -19,6 +20,9 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private PostsRepository postRepo;
+
+	@Autowired
+	private DestinationRepository destinationRepo;
 
 	@Autowired
 	private ProfileRepository profileRepo;
@@ -71,16 +75,29 @@ public class PostServiceImpl implements PostService {
 		trip.setReview(newTripPostDTO.getReview());
 		trip.setImgLink(newTripPostDTO.getImgLink());
 
-		destination.setCity(newTripPostDTO.getCity());
-		destination.setState(newTripPostDTO.getState());
-		destination.setCountry(newTripPostDTO.getCountry());
-		destination.setLongitude(newTripPostDTO.getLongitude());
-		destination.setLatitude(newTripPostDTO.getLatitude());
+		// Does the location input from form already exist in the DB?
+		List<Destination> existingDestination = destinationRepo
+				.findByCityAndStateAndCountry(newTripPostDTO.getCity(),
+						newTripPostDTO.getState(), newTripPostDTO.getCountry());
+
+		if (existingDestination.size() > 0) {
+
+			trip.setDestination(existingDestination.get(0));
+
+		} else {
+			// The location was not found, so create it in the DB
+			destination.setCity(newTripPostDTO.getCity());
+			destination.setState(newTripPostDTO.getState());
+			destination.setCountry(newTripPostDTO.getCountry());
+			destination.setLongitude(newTripPostDTO.getLongitude());
+			destination.setLatitude(newTripPostDTO.getLatitude());
+			trip.setDestination(destination);
+
+		}
 
 		post.setProfile(managedProfile);
 		trip.setProfile(managedProfile);
 
-		trip.setDestination(destination);
 		post.setTrip(trip);
 		postRepo.saveAndFlush(post);
 
