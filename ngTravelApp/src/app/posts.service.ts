@@ -9,18 +9,18 @@ import { PostDTO } from './models/post-dto';
   providedIn: 'root'
 })
 export class PostsService {
-
   private baseUrl = 'http://localhost:8080/';
   private url = this.baseUrl + 'api/posts';
 
   public index(): Observable<Posts[]> {
-    return this.http.get<Posts[]>(this.url)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error retireving list of posts... Status: ' + err.status);
-        })
-      );
+    return this.http.get<Posts[]>(this.url).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          'Error retireving list of posts... Status: ' + err.status
+        );
+      })
+    );
   }
   // public indexDTO(id): Observable<PostDTO[]> {
   //   return this.http.get<PostDTO[]>(this.url)
@@ -32,66 +32,71 @@ export class PostsService {
   //     );
   // }
 
+  // Richard: Coming back to this tonight -- going to make a route for show 1 profile for use in my test case in posts.component.ts
   public show(id): Observable<Posts> {
-    return this.http.get<Posts>('${this.url/:id')
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error retrieving post by Id... Status: ' + err.status);
-        }));
+    return this.http.get<Posts>('${this.url/:id').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          'Error retrieving post by Id... Status: ' + err.status
+        );
+      })
+    );
   }
 
   public create(post: Posts) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       })
     };
 
-    return this.http.post(this.url, post, httpOptions)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error saving post... Status: ' + err.status);
-
-        }));
+    return this.http.post(this.url, post, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error saving post... Status: ' + err.status);
+      })
+    );
   }
 
   public createNewTrip(postDTO: PostDTO, profileId) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       })
     };
-console.log(postDTO);
+    console.log(postDTO);
 
-    return this.http.post(this.baseUrl + 'api/profile' + '/' + profileId + '/' + 'posts', postDTO, httpOptions)
+    return this.http
+      .post(
+        this.baseUrl + 'api/profile' + '/' + profileId + '/' + 'posts',
+        postDTO,
+        httpOptions
+      )
       .pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError('Error saving post... Status: ' + err.status);
-
-        }));
+        })
+      );
   }
 
-
   public update(post: Posts) {
-    return this.http.put(this.url + '/' + post.id, post)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error updating Post... Status: ' + err.status);
-
-        }));
+    return this.http.put(this.url + '/' + post.id, post).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error updating Post... Status: ' + err.status);
+      })
+    );
   }
 
   public destroy(id: number) {
-    return this.http.delete(this.url + '/' + id)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error deleting Post... Status: ' + err.status);
-        }));
+    return this.http.delete(this.url + '/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error deleting Post... Status: ' + err.status);
+      })
+    );
   }
 
   constructor(private http: HttpClient) {}

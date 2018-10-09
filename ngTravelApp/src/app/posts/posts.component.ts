@@ -109,6 +109,8 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     // const id = localStorage.getItem('profileId');
     // this.reload();
-    this.loadTestUserInfo();
+
+    // Test case
+    // this.loadTestUserInfo();
   }
 }
