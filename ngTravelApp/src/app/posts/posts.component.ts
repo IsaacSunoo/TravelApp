@@ -4,6 +4,7 @@ import { Posts } from './../models/posts';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostDTO } from '../models/post-dto';
+import { Profile } from '../models/profile';
 
 @Component({
   selector: 'app-posts',
@@ -11,18 +12,21 @@ import { PostDTO } from '../models/post-dto';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-// might need a field for a plain vanilla post later
+  // might need a field for a plain vanilla post later
 
   selected: Posts = null;
   newPost: PostDTO = new PostDTO();
   posts: Posts[] = [];
+  testDate: Date;
 
-   id = localStorage.getItem('profileId');
+  id = localStorage.getItem('profileId');
   returnedPost: Posts = new Posts();
   // returnedPost = null;
   trips: PostDTO[] = [];
 
   haveReturnedPost: Boolean = false;
+
+  testProfile = null;
 
   displayTable = function() {
     this.selected = null;
@@ -44,7 +48,7 @@ export class PostsComponent implements OnInit {
     this.selected = post;
   };
 
-  addPost = function (id: string) {
+  addPost = function(id: string) {
     console.log(this.newPost);
 
     this.postServ.create(this.newPost).subscribe(data => {
@@ -56,12 +60,12 @@ export class PostsComponent implements OnInit {
     });
   };
 
-  addTripPost = function () {
+  addTripPost = function() {
     this.postServ.createNewTrip(this.newPost, this.id).subscribe(data => {
       this.returnedPost = data;
+      this.testDate = new Date(this.returnedPost.createDate);
       console.log(this.returnedPost);
       this.haveReturnedPost = true;
-      this.reload();
     });
   };
 
@@ -71,15 +75,21 @@ export class PostsComponent implements OnInit {
     });
   };
 
-
-  loadUserInfo = function (id: string) {
-    this.postServ.show(id).subscribe(
-      data => {
-        this.showProfile = data;
-        console.log(this.showProfile);
-
-      });
+  loadUserInfo = function(id: string) {
+    this.postServ.show(id).subscribe(data => {
+      this.showProfile = data;
+      console.log(this.showProfile);
+    });
   };
+
+  // //////////// TEST METHOD
+  loadTestUserInfo = function() {
+    this.postServ.show(this.id).subscribe(data => {
+      this.testProfile = data;
+      console.log(this.testProfile);
+    });
+  };
+  // \\\\\\\\\\\\ TEST METHOD
 
   // loadTrips = function(id) {
   //   this.postService.indexDTO(id).subscribe(
@@ -98,7 +108,7 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     // const id = localStorage.getItem('profileId');
-      // this.reload();
-
+    // this.reload();
+    this.loadTestUserInfo();
   }
 }

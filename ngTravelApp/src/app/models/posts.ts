@@ -10,15 +10,23 @@ export class Posts {
   profileId: number;
   trip: Trip;
   profile: Profile;
+  createDate: Date;
 
-
-  constructor(id?: number, message?: string, tripId?: number, profileId?: number, trip?: Trip, profile?: Profile) {
+  constructor(
+    id?: number,
+    message?: string,
+    tripId?: number,
+    profileId?: number,
+    trip?: Trip,
+    profile?: Profile,
+    createDate?: Date
+  ) {
     this.id = id;
     this.message = message;
     this.tripId = tripId;
     this.profileId = profileId;
     this.trip = trip;
     this.profile = profile;
+    this.createDate = createDate;
   }
-
 }

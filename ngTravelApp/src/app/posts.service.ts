@@ -32,7 +32,7 @@ export class PostsService {
   //     );
   // }
 
-  public show(id: number): Observable<Posts> {
+  public show(id): Observable<Posts> {
     return this.http.get<Posts>('${this.url/:id')
       .pipe(
         catchError((err: any) => {
