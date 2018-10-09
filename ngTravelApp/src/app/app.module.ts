@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FollowersComponent } from './followers/followers.component';
 import { FollowingComponent } from './following/following.component';
+import { TripService } from './trip.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { FollowingComponent } from './following/following.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

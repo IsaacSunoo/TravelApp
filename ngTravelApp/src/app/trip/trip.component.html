@@ -1,17 +1,23 @@
 <!-- All trips view -->
 <div class="container">
-<div *ngIf="!selected">
+<div>
   <table class="table table-striped table-hover" >
-  <thead class="thead-dark"><tr><th>Title</th><th>Rating</th><th>Total Cost</th><th>Date Start</th><th>Date End</th><th>Review</th><th>imgLink</th></tr></thead>
+  <thead class="thead-dark"><tr><th>Title</th><th>Rating</th><th>Total Cost</th><th>Date Start</th><th>Date End</th><th>imgLink</th><th>Action</th><th></th></tr></thead>
   <tbody>
   <tr *ngFor="let trip of trips">
       <td (click)="displayTrip(trip)">{{trip.title}}</td>
       <td>{{trip.rating}}</td>
+      <td>{{trip.totalCost}}</td>
       <td>{{trip.dateStart}}</td>
       <td>{{trip.dateEnd}}</td>
-      <td>{{trip.review}}</td>
-      <td>{{trip.imgLink}}</td>
-      <td><button class="btn-danger"type="submit" value="destroy" (click)="deleteTrip(trip.id)">Destroy</button>
+      <!-- <td>{{trip.review}}</td> -->
+      <td><img src={{trip.imgLink}} height="75"></td>
+      <td><button class="btn-danger"type="submit" value="destroy" (click)="deleteTrip(trip.id)">Delete Trip</button></td>
+      <td><button>Edit Trip Details</button></td>
+      <!-- <td><button class="btn-danger"type="submit" value="destroy" (click)="updateTrip(trip.id)">Edit</button></td> -->
+    </tr>
+    <tr *ngFor="let trip of trips">
+        <td colspan="8">{{trip.review}}</td>
     </tr>
   </tbody>
   </table>
@@ -21,20 +27,28 @@
 <form #tripForm="ngForm">
   Title
   <input type="text" name="title" [(ngModel)]="newTrip.title">
+  <br>
   Rating
   <input type="text" name="rating" [(ngModel)]="newTrip.rating">
+  <br>
   Total Cost
   <input type="text" name="rating" [(ngModel)]="newTrip.totalCost">
+  <br>
   Date Start
-  <input type="text" name="dateStart" [(ngModel)]="newTrip.dateStart">
+  <input type="date" name="dateStart" [(ngModel)]="newTrip.dateStart">
+  <br>
   Date End
-  <input type="text" name="dateEnd" [(ngModel)]="newTrip.dateEnd">
+  <input type="date" name="dateEnd" [(ngModel)]="newTrip.dateEnd">
+  <br>
   Review
-  <input type="text" name="imgLink" [(ngModel)]="newTrip.review">
+  <input type="text" name="review" [(ngModel)]="newTrip.review">
+  <br>
   imgLink
   <input type="text" name="imgLink" [(ngModel)]="newTrip.imgLink">
+  <br>
   <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="createTrip(tripForm)">Add Trip</button>
 </form>
+<br>
 </div>
 
 <!-- Update Trip Form -->
@@ -42,19 +56,26 @@
 <form #updateForm="ngForm">
   Title
   <input type="text" name="title" [(ngModel)]="editTrip.title">
+  <br>
   Rating
   <input type="text" name="rating" [(ngModel)]="editTrip.rating">
+  <br>
   Total Cost
   <input type="text" name="rating" [(ngModel)]="editTrip.totalCost">
+  <br>
   Date Start
-  <input type="text" name="dateStart" [(ngModel)]="editTrip.dateStart">
+  <input type="date" name="dateStart" [(ngModel)]="editTrip.dateStart">
+  <br>
   Date End
-  <input type="text" name="dateEnd" [(ngModel)]="editTrip.dateEnd">
+  <input type="date" name="dateEnd" [(ngModel)]="editTrip.dateEnd">
+  <br>
   Review
-  <input type="text" name="imgLink" [(ngModel)]="editTrip.review">
+  <input type="text" name="review" [(ngModel)]="editTrip.review">
+  <br>
   imgLink
   <input type="text" name="imgLink" [(ngModel)]="editTrip.imgLink">
-  <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="updateTrip(updateForm)">Add Trip</button>
+  <br>
+  <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="updateTrip(updateForm)">Update Trip</button>
 </form>
 </div>
 

@@ -6,8 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skilldistillery.travelapp.entities.Destination;
+import com.skilldistillery.travelapp.entities.NewTripDTO;
 import com.skilldistillery.travelapp.entities.Trip;
 import com.skilldistillery.travelapp.repositories.TripRepository;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Service
 public class TripServiceImpl implements TripService {
@@ -20,6 +25,42 @@ public class TripServiceImpl implements TripService {
 	@Override
 	public Trip create(Trip trip) {
 		return tripRepo.saveAndFlush(trip);
+	}
+
+	@Override
+	public Trip newTrip(String json) {
+		ObjectMapper om = new ObjectMapper();
+		NewTripDTO newTripDTO = null;
+		Trip trip = new Trip();
+
+		try {
+			newTripDTO = om.readValue(json, NewTripDTO.class);
+			if (newTripDTO == null) {
+				return null;
+			}
+			trip.setTitle(newTripDTO.getTitle());
+			trip.setRating(newTripDTO.getRating());
+			trip.setTotalCost(newTripDTO.getTotalCost());
+			trip.setDateStart(newTripDTO.getDateStart());
+			trip.setDateEnd(newTripDTO.getDateEnd());
+			trip.setReview(newTripDTO.getReview());
+			trip.setImgLink(newTripDTO.getImgLink());
+
+			Destination dest = new Destination();
+			dest.setCity(newTripDTO.getCity());
+			dest.setState(newTripDTO.getState());
+			dest.setCountry(newTripDTO.getCountry());
+			dest.setLatitude(newTripDTO.getLatitude());
+			dest.setLongitude(newTripDTO.getLongitude());
+
+			trip.setDestination(dest);
+
+			tripRepo.saveAndFlush(trip);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return trip;
 	}
 
 	// READ *****************************************************************

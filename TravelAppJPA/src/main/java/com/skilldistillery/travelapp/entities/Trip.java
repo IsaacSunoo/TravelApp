@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Trip {
 
@@ -60,6 +62,7 @@ public class Trip {
 	@OneToMany(mappedBy = "trip")
 	private List<Recommendation> recommendations;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "trip")
 	private Posts posts;
 

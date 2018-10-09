@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Trip } from '../models/trip';
 import { NgForm } from '@angular/forms';
-import { TripService } from '../trip.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TripService } from 'src/app/trip.service';
 
 @Component({
   selector: 'app-trip',
@@ -13,27 +13,41 @@ export class TripComponent implements OnInit {
   trips: Trip[] = [];
   newTrip: Trip = new Trip();
   id;
-  selected = null;
-  editTrip: Trip = null;
+   selected = null;
+  editTrip: Trip = new Trip ();
 
   displayTrip = function(trip) {
     this.selected = trip;
   };
 
-  reload = function () {
-    if (this.trips) {
-      this.tripService.index().subscribe(
-        data => {
-          this.trips = data;
-        },
-        err => {
-          console.log('Observer got an error: ' + err);
-        },
-        complete => {
-          console.log('complete');
-        });
-    }
+
+  // load = function () {
+
+  //   if (this.trips) {
+  //     this.tripService.index().subscribe(
+  //       data => {
+  //         this.trips = data;
+  //       },
+  //       err => {
+  //         console.log('Observer got an error: ' + err);
+  //       },
+  //       complete => {
+  //         console.log('complete');
+  //       });
+  //   }
+  // };
+
+  loadTrips = function(id: string) {
+    console.log(id);
+
+    this.tripService.index(id).subscribe(
+      data => {
+      this.trips = data;
+      console.log(this.trips);
+
+    });
   };
+
   createTrip(form: NgForm) {
     const trip = form.value;
     console.log(trip);
@@ -78,8 +92,8 @@ export class TripComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private tripService: TripService) { }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    // this.loadTrip(this.id);
+    const id = localStorage.getItem('profileId');
+     this.loadTrips(id);
     //   console.log(this.id);
   }
 

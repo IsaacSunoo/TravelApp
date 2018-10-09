@@ -16,4 +16,6 @@ public interface TripService {
 
 	public Boolean delete(Integer id);
 
+	Trip newTrip(String json);
+
 }

@@ -11,12 +11,12 @@ export class TripService {
   private baseUrl = 'http://localhost:8080/';
   private url = this.baseUrl + 'api/trips';
 
-  public index(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(this.url)
+  public index(id): Observable<Trip[]> {
+    return this.http.get<Trip[]>(this.url + '/' + id)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Error retrieving Profile: ' + ' Status: ' + err.status);
+          return throwError('Error retrieving Trip: ' + ' Status: ' + err.status);
         })
       );
   }
@@ -39,7 +39,7 @@ export class TripService {
     );
   }
 
-  public update(updateTrip: Trip, id: string) {
+  public update(updateTrip: Trip, id: number) {
     console.log(this.url + '/' + id);
     return this.http.patch(this.url + '/' + id, updateTrip).
     pipe(
