@@ -123,10 +123,9 @@
         </div>
         <div class="card-body">
           <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;{{post.createDate}}</div>
-          <a class="card-link" href="#">
+          <a class="card-link" [routerLink]="['/scratchpad/' + post.trip.id]">
             <h5 class="card-title">{{post.trip.title}}</h5>
           </a>
-
           <div>
             <img class="ta-trip-image" [src]="post.trip.imgLink" alt="trip image">
           </div>

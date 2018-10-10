@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripDetailsService } from '../trip-details.service';
+import { Trip } from '../models/trip';
 
 @Component({
   selector: 'app-scratchpad',
@@ -14,6 +15,8 @@ export class ScratchpadComponent implements OnInit {
   userProfile = null;
 
   id = localStorage.getItem('profileId');
+
+  trip: Trip = new Trip();
 
   tripId;
 
@@ -34,7 +37,9 @@ export class ScratchpadComponent implements OnInit {
 
   loadTrip = function(tripId: string) {
     this.tripDetailsService.showTrip(tripId).subscribe(
-      data => {},
+      data => {
+        this.trip = data;
+      },
       err => {
         this.handleError(err);
       }
