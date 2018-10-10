@@ -8,16 +8,18 @@ import { TripComponent } from './trip/trip.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FollowingComponent } from './following/following.component';
+import { TripDetailsComponent } from './trip-details/trip-details.component';
 
 const routes: Routes = [
   { path: 'home', component: RegisterComponent },
   { path: 'settings', component: SettingComponent },
   { path: 'profile', component: ProfileComponent},
-  { path: 'trips', component: TripComponent },
+  { path: 'oldtrips', component: TripComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'followers', component: FollowersComponent },
   { path: 'following', component: FollowingComponent },
-  { path: 'feed', component: FeedComponent }
+  { path: 'feed', component: FeedComponent },
+  { path: 'trips', component: TripDetailsComponent }
 
 
 
