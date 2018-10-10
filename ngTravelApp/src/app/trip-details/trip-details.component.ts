@@ -14,11 +14,11 @@ export class TripDetailsComponent implements OnInit {
   id = localStorage.getItem('profileId');
 
   loadProfile = function(id: string) {
-    this.tripService.showProfile(id).subscribe(data => {
+    this.tripService.show(id).subscribe(data => {
       this.userProfile = data;
       console.log(this.userProfile);
     });
-  }; 
+  };
 
   loadTrips = function (id: string) {
     console.log(id);
@@ -26,7 +26,7 @@ export class TripDetailsComponent implements OnInit {
     this.tripService.index(id).subscribe(
       data => {
         this.trips = data;
-        console.log(this.trips);
+        console.log();
 
       });
   };
