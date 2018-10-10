@@ -21,8 +21,9 @@ const routes: Routes = [
   { path: 'following', component: FollowingComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'trips', component: TripDetailsComponent },
-  { path: 'scratchpad', component: ScratchpadComponent }
-
+  { path: 'trips/:id', component: TripDetailsComponent },
+  { path: 'scratchpad', component: ScratchpadComponent },
+  { path: 'scratchpad/:id', component: ScratchpadComponent }
 
 
 ];

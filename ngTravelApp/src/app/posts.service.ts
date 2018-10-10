@@ -9,8 +9,14 @@ import { PostDTO } from './models/post-dto';
   providedIn: 'root'
 })
 export class PostsService {
+  // *******************************************************************************
+  // FIELDS
+
   private baseUrl = 'http://localhost:8080/';
   private url = this.baseUrl + 'api/posts';
+
+  // *******************************************************************************
+  // METHODS
 
   public index(): Observable<Posts[]> {
     return this.http.get<Posts[]>(this.url).pipe(
@@ -113,6 +119,9 @@ export class PostsService {
       })
     );
   }
+
+  // *******************************************************************************
+  // HELPERS
 
   constructor(private http: HttpClient) {}
 }
