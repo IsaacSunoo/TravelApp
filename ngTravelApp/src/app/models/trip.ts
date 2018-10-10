@@ -1,3 +1,5 @@
+import { Destination } from './destination';
+
 export class Trip {
   id: number;
   title: string;
@@ -7,6 +9,7 @@ export class Trip {
   dateEnd: string;
   review: string;
   imgLink: string;
+  destination: Destination;
 
   constructor(
     id?: number,
@@ -17,6 +20,7 @@ export class Trip {
     dateEnd?: string,
     review?: string,
     imgLink?: string,
+    destination?: Destination
   ) {
     this.id = id;
     this.title = title;
@@ -26,7 +30,6 @@ export class Trip {
     this.dateEnd = dateEnd;
     this.review = review;
     this.imgLink = imgLink;
+    this.destination = destination;
   }
-
-
 }

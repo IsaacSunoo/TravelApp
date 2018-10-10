@@ -60,7 +60,7 @@
 
 <!-- Profile picture and Name -->
 <!-- Trip Div with Tabs -->
-<div class="container">
+<div class="container" *ngIf="haveTrip">
   <div class="row">
     <div class="col">
       <div *ngIf="userProfile" id="detailProfPic">
@@ -75,37 +75,42 @@
       <mat-tab-group dynamicHeight>
         <mat-tab label="Trip Details">
           <div class="example-large-box mat-elevation-z4">
-            Large Content
-
 
             <div>
-              <h1>Test</h1>
-              <div class="row">
-                <div class="col-md-6 how-img">
-                  <img src="https://image.ibb.co/dDW27U/Work_Section2_freelance_img1.png" class="rounded-circle img-fluid"
-                    alt="" />
-                </div>
-                <div class="col-md-6">
-                  <h4>Find rewarding projects</h4>
-                  <h4 class="subheading">GetLance is a great place to find more clients, and to run and grow your own
-                    freelance business.</h4>
-                  <p class="text-muted">Freedom to work on ideal projects. On GetLance, you run your own business and
-                    choose your own clients and projects. Just complete your profile and we’ll highlight ideal jobs.
-                    Also search projects, and respond to client invitations.
-                    Wide variety and high pay. Clients are now posting jobs in hundreds of skill categories, paying top
-                    price for great work.
-                    More and more success. The greater the success you have on projects, the more likely you are to get
-                    hired by clients that use GetLance.</p>
+
+              <div class="how-section1">
+                <div class="row">
+
+                  <div class="col-md-6 how-img">
+                    <img [src]="trip.imgLink" class="img-fluid" alt="trip related image" />
+                  </div>
+
+                  <div class="col-md-6">
+                    <h4>{{trip.title}}</h4>
+                    <h4 class="subheading">City</h4>
+                    <p class="text-muted">{{trip.destination.city}}</p>
+                    <h4 class="subheading">Country</h4>
+                    <p class="text-muted">{{trip.destination.country}}</p>
+                    <h4 class="subheading">Total Cost</h4>
+                    <p class="text-muted">{{trip.totalCost}}</p>
+                    <h4 class="subheading">Overall Rating</h4>
+                    <p class="text-muted">{{trip.rating}}</p>
+                    <h4 class="subheading">Trip Start Date</h4>
+                    <p class="text-muted">{{trip.dateStart}}</p>
+                    <h4 class="subheading">Trip End Date</h4>
+                    <p class="text-muted">{{trip.dateEnd}}</p>
+                  </div>
+
                 </div>
               </div>
-            </div>
 
+            </div>
 
           </div>
         </mat-tab>
         <mat-tab label="Review">
           <div class="example-large-box mat-elevation-z4">
-            Large content
+            <p class="text-muted">{{trip.review}}</p>
           </div>
         </mat-tab>
         <mat-tab label="Tips">
