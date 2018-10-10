@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostDTO } from '../models/post-dto';
 import { Profile } from '../models/profile';
+import { UserService } from '../user.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-posts',
@@ -21,6 +23,22 @@ export class PostsComponent implements OnInit {
   trips: PostDTO[] = [];
   haveReturnedPost: Boolean = false;
   testPost = null;
+  profileFromStorage = new Profile();
+
+  // //////////// TEST METHOD
+  getProfileFromStorage = function() {
+    this.profileService.show(this.id).subscribe(
+      data => {
+        this.profileFromStorage = data;
+        this.haveReturnedPost = true;
+        console.log(this.profileFromStorage);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\\\\\\\\ TEST METHOD
 
   displayTable = function() {
     this.selected = null;
@@ -80,6 +98,9 @@ export class PostsComponent implements OnInit {
     this.postServ.indexForOneProfile(this.id).subscribe(
       data => {
         this.allPosts = data;
+        this.allPosts.forEach(post => {
+          post.createDate = new Date(post.createDate);
+        });
         console.log(this.allPosts);
       },
       err => {
@@ -124,7 +145,8 @@ export class PostsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private postServ: PostsService
+    private postServ: PostsService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit() {
@@ -135,5 +157,6 @@ export class PostsComponent implements OnInit {
     // this.loadTestUserInfo();
     // Test case
     this.reloadForOneProfile();
+    this.getProfileFromStorage();
   }
 }
