@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripDetailsService } from '../trip-details.service';
+import { Trip } from '../models/trip';
 
 @Component({
   selector: 'app-trip-details',
@@ -9,13 +10,25 @@ import { TripDetailsService } from '../trip-details.service';
 })
 export class TripDetailsComponent implements OnInit {
   userProfile = null;
+  trips: Trip[] = [];
   id = localStorage.getItem('profileId');
 
   loadProfile = function(id: string) {
-    this.tripService.show(id).subscribe(data => {
+    this.tripService.showProfile(id).subscribe(data => {
       this.userProfile = data;
       console.log(this.userProfile);
     });
+  }; 
+
+  loadTrips = function (id: string) {
+    console.log(id);
+
+    this.tripService.index(id).subscribe(
+      data => {
+        this.trips = data;
+        console.log(this.trips);
+
+      });
   };
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -24,5 +37,7 @@ export class TripDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.loadProfile(this.id);
+    this.loadTrips(this.id);
+
   }
 }
