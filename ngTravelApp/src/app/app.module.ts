@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -58,6 +59,7 @@ import { TripDetailsComponent } from './trip-details/trip-details.component';
     MatCheckboxModule,
     MatNativeDateModule,
     MatInputModule,
+    MatTabsModule
   ],
   providers: [DatePipe, TripService],
   bootstrap: [AppComponent]
