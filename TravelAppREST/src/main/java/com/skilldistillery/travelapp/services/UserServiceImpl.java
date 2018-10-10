@@ -1,6 +1,6 @@
 package com.skilldistillery.travelapp.services;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -117,5 +117,39 @@ public class UserServiceImpl implements UserService {
 
 		return null;
 	}
+	
+	@Override
+	public User followUser(Integer uid, Integer fid) {
+		//uid is the person logged in, fid is the person they want to follow
+		User personToFollow = userRepo.queryForFollowersByUserId(fid);
+		if(personToFollow == null) {
+			return null;
+		}
+//		List<User> result = userRepo.queryForFollowersByUserId(uid);
+		
+		User user = userRepo.queryForFollowersByUserId(uid);
+		if(user == null) {
+			return null;
+		}
+		
+		if(user.getFollowers() != null) {
+			
+			user.getFollowers().add(personToFollow);
+			userRepo.saveAndFlush(user);
+			return user;
+		} 
+		return null;
+		
+	}
+	
+	@Override 
+	public List<User> findFollowers(Integer uid) {
+		User user = userRepo.queryForFollowersByUserId(uid);
+		if(user == null) {
+			return null;
+		}
+		return user.getFollowers();
+	}
 
 }
+

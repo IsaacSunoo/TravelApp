@@ -1,3 +1,4 @@
+import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 import { FeedComponent } from './feed/feed.component';
 import { FollowersComponent } from './followers/followers.component';
 import { PostsComponent } from './posts/posts.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'followers', component: FollowersComponent },
   { path: 'following', component: FollowingComponent },
   { path: 'feed', component: FeedComponent },
-  { path: 'trips', component: TripDetailsComponent }
+  { path: 'trips', component: TripDetailsComponent },
+  { path: 'scratchpad', component: ScratchpadComponent }
 
 
 

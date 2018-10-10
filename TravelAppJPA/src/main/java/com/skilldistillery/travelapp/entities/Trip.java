@@ -46,6 +46,8 @@ public class Trip {
 	@Column(name = "img_link")
 	private String imgLink;
 
+	// Object reference fields (i.e. other tables from DB)
+	
 	@ManyToOne
 	@JoinColumn(name = "profile_id")
 	private Profile profile;

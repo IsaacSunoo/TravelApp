@@ -23,30 +23,61 @@ import com.skilldistillery.travelapp.services.UserService;
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4201" })
 public class TripController {
-	
+
+	// Fields
+
 	@Autowired
 	private ProfileService profileService;
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private TripService tripService;
-	
+
 	@Autowired
 	private TripRepository tripRepo;
-	
-	
-	@RequestMapping(path="trips/{pid}", method=RequestMethod.GET)
-	public List<Trip> index(HttpServletRequest req, HttpServletResponse res,
-			@PathVariable(name="pid")int pid) {
-		return tripRepo.queryForTripsByProfileId(pid);
-	}
-	
-	@RequestMapping(path="trips", method=RequestMethod.POST)
-	public Trip index(HttpServletRequest req, HttpServletResponse res,
+
+	// Methods
+
+	// CREATE
+
+	// Richard: We don't seem to be using this route -- creating a trip from the
+	// feed page actually uses api/profile/id/posts. Also tripRepo should be
+	// called only in service classes
+	@RequestMapping(path = "trips", method = RequestMethod.POST)
+	public Trip createTrip(HttpServletRequest req, HttpServletResponse res,
 			@RequestBody Trip trip) {
 		return tripRepo.saveAndFlush(trip);
 	}
+
+	// READ
+
+	// Richard: Note -- This method seems to be pulling trips for a particular
+	// profile? Also tripRepo should be called only in service classes. If we were
+	// to use this route, change it to /profile/{pid}/trips.
+//	@RequestMapping(path = "trips/{pid}", method = RequestMethod.GET)
+//	public List<Trip> index(HttpServletRequest req, HttpServletResponse res,
+//			@PathVariable(name = "pid") int pid) {
+//		return tripRepo.queryForTripsByProfileId(pid);
+//	}
+
+	// Get the trip by its trip id, *tid* here would be the trip id
+	@RequestMapping(path = "/trips/{tid}", method = RequestMethod.GET)
+	public Trip show(@PathVariable(name = "tid") Integer tid,
+			HttpServletResponse res) {
+
+		Trip returnedTrip = tripService.show(tid);
+
+		if (returnedTrip == null) {
+			res.setStatus(500);
+		}
+
+		return returnedTrip;
+	}
+
+	// UPDATE
+
+	// DELETE
 
 }

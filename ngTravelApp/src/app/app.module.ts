@@ -26,6 +26,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import { MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 
 
 
@@ -45,6 +46,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     StepperComponent,
     DatePickerComponent,
     TripDetailsComponent,
+    ScratchpadComponent,
   ],
   imports: [
     BrowserModule,
