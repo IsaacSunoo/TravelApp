@@ -84,7 +84,7 @@
             <div class="h6 text-muted">Following</div>
             <div class="h5">6758</div>
           </li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">{{profileFromStorage.bio}}</li>
         </ul>
       </div>
     </div>
@@ -134,6 +134,7 @@
             <img class="ta-trip-image" [src]="post.trip.imgLink" alt="trip image">
           </div>
 
+          <hr>
           <p class="card-text">
             {{post.message}}
           </p>
