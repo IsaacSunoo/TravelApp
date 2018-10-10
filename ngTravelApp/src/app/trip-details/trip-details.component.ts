@@ -18,26 +18,25 @@ export class TripDetailsComponent implements OnInit {
       this.userProfile = data;
       console.log(this.userProfile);
     });
-  }; 
-
-  loadTrips = function (id: string) {
-    console.log(id);
-
-    this.tripService.index(id).subscribe(
-      data => {
-        this.trips = data;
-        console.log(this.trips);
-
-      });
   };
 
-  constructor(private activatedRoute: ActivatedRoute,
+  loadTrips = function(id: string) {
+    console.log(id);
+
+    this.tripService.index(id).subscribe(data => {
+      this.trips = data;
+      console.log(this.trips);
+    });
+  };
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private tripService: TripDetailsService) { }
+    private tripService: TripDetailsService
+  ) {}
 
   ngOnInit() {
     this.loadProfile(this.id);
     this.loadTrips(this.id);
-
   }
 }

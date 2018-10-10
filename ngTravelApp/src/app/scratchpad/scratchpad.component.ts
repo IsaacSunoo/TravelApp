@@ -12,17 +12,39 @@ export class ScratchpadComponent implements OnInit {
   // FIELDS
 
   userProfile = null;
+
   id = localStorage.getItem('profileId');
+
+  tripId;
 
   // *******************************************************************************
   // METHODS
 
   loadProfile = function(id: string) {
-    this.tripService.show(id).subscribe(data => {
-      this.userProfile = data;
-      console.log(this.userProfile);
-    });
+    this.tripDetailsService.show(id).subscribe(
+      data => {
+        this.userProfile = data;
+        console.log(this.userProfile);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
   };
+
+  loadTrip = function(tripId: string) {
+    this.tripDetailsService.showTrip(tripId).subscribe(
+      data => {},
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+
+  handleError(error: any) {
+    console.error('Something Broke');
+    console.log(error);
+  }
 
   // *******************************************************************************
   // HELPERS
@@ -30,7 +52,7 @@ export class ScratchpadComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private tripService: TripDetailsService
+    private tripDetailsService: TripDetailsService
   ) {}
 
   ngOnInit() {
