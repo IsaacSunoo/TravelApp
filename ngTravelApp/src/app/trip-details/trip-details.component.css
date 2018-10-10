@@ -1,4 +1,43 @@
-#tripsCarousel{
+/* .carousel slide{
   width: 100%;
-  height: 200px;
+  height: 1px;
+} */
+
+.tripsCarousel{
+  width: 100%;
+  height: 20px;;
+}
+
+#detailProfPic {
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#detailProfPic img {
+  border-radius: 50%;
+  height: 300px;
+}
+
+#tripsProfileName {
+color: navy;
+text-align: center;
+}
+
+.example-small-box, .example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.example-small-box {
+  height: 100px;
+  width: 100px;
+}
+
+.example-large-box {
+  height: 400px;
+  width: 50%px;
 }
