@@ -45,6 +45,11 @@ public class PostServiceImpl implements PostService {
 		return null;
 	}
 
+	@Override
+	public List<Posts> getAllPostsForOneProfile(Integer pid) {
+		return postRepo.queryAllPostsForOneProfile(pid);
+	}
+
 	// CREATE ***********************************************************
 
 	@Override

@@ -17,11 +17,27 @@ export class PostsService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          'Error retireving list of posts... Status: ' + err.status
+          'Error retrieving list of posts... Status: ' + err.status
         );
       })
     );
   }
+
+  // //////////// TEST METHOD
+  public indexForOneProfile(id): Observable<Posts[]> {
+    return this.http
+      .get<Posts[]>(this.baseUrl + 'api/' + 'profile/' + id + '/posts')
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            'Error retrieving list of posts... Status: ' + err.status
+          );
+        })
+      );
+  }
+  // \\\\\\\\\\\\ TEST METHOD
+
   // public indexDTO(id): Observable<PostDTO[]> {
   //   return this.http.get<PostDTO[]>(this.url)
   //     .pipe(
@@ -32,7 +48,6 @@ export class PostsService {
   //     );
   // }
 
-  // Richard: Coming back to this tonight -- going to make a route for show 1 profile for use in my test case in posts.component.ts
   public show(id): Observable<Posts> {
     return this.http.get<Posts>(this.url + '/' + id).pipe(
       catchError((err: any) => {

@@ -24,10 +24,7 @@ public class PostsController {
 	@Autowired
 	private PostService postService;
 
-	@RequestMapping(path = "/posts", method = RequestMethod.GET)
-	public List<Posts> index() {
-		return postService.index();
-	}
+	// CREATE
 
 	@RequestMapping(path = "/posts", method = RequestMethod.POST)
 	public Posts createPost(@RequestBody Posts post, HttpServletResponse res) {
@@ -55,10 +52,28 @@ public class PostsController {
 		return post;
 	}
 
+	// READ
+
+	@RequestMapping(path = "/posts", method = RequestMethod.GET)
+	public List<Posts> index() {
+		return postService.index();
+	}
+
 	@RequestMapping(path = "/posts/{pid}", method = RequestMethod.GET)
 	public Posts show(@PathVariable(name = "pid") Integer id) {
 
 		return postService.show(id);
 	}
+
+	@RequestMapping(path = "/profile/{pid}/posts", method = RequestMethod.GET)
+	public List<Posts>
+			allPostsForOneProfile(@PathVariable(name = "pid") Integer pid) {
+
+		return postService.getAllPostsForOneProfile(pid);
+	}
+
+	// UPDATE
+
+	// DELETE
 
 }

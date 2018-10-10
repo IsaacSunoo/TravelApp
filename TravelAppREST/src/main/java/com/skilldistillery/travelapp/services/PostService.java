@@ -17,4 +17,6 @@ public interface PostService {
 
 	public Posts createTripPost(Integer id, NewTripPostDTO newTripPostDTO);
 
+	public List<Posts> getAllPostsForOneProfile(Integer pid);
+
 }

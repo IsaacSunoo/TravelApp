@@ -12,20 +12,14 @@ import { Profile } from '../models/profile';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  // might need a field for a plain vanilla post later
-
   selected: Posts = null;
   newPost: PostDTO = new PostDTO();
-  posts: Posts[] = [];
+  allPosts: Posts[] = [];
   testDate: Date;
-
   id = localStorage.getItem('profileId');
   returnedPost: Posts = new Posts();
-  // returnedPost = null;
   trips: PostDTO[] = [];
-
   haveReturnedPost: Boolean = false;
-
   testPost = null;
 
   displayTable = function() {
@@ -70,10 +64,30 @@ export class PostsComponent implements OnInit {
   };
 
   reload = function() {
-    this.postServ.index().subscribe(data => {
-      this.posts = data;
-    });
+    this.postServ.index().subscribe(
+      data => {
+        this.allPosts = data;
+        console.log(this.allPosts);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
   };
+
+  // //////////// TEST METHOD
+  reloadForOneProfile = function() {
+    this.postServ.indexForOneProfile(this.id).subscribe(
+      data => {
+        this.allPosts = data;
+        console.log(this.allPosts);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\\\\\\\\ TEST METHOD
 
   loadUserInfo = function(id: string) {
     this.postServ.show(id).subscribe(data => {
@@ -102,6 +116,11 @@ export class PostsComponent implements OnInit {
   //   });
   // };
 
+  handleError(error: any) {
+    console.error('Something Broke');
+    console.log(error);
+  }
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -109,9 +128,12 @@ export class PostsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // We probably don't need this code on line 108, but just in case
     // const id = localStorage.getItem('profileId');
     // this.reload();
     // Test case
-    this.loadTestUserInfo();
+    // this.loadTestUserInfo();
+    // Test case
+    this.reloadForOneProfile();
   }
 }
