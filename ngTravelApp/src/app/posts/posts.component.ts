@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostDTO } from '../models/post-dto';
 import { Profile } from '../models/profile';
+import { UserService } from '../user.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-posts',
@@ -12,21 +14,31 @@ import { Profile } from '../models/profile';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  // might need a field for a plain vanilla post later
-
   selected: Posts = null;
   newPost: PostDTO = new PostDTO();
-  posts: Posts[] = [];
+  allPosts: Posts[] = [];
   testDate: Date;
-
   id = localStorage.getItem('profileId');
   returnedPost: Posts = new Posts();
-  // returnedPost = null;
   trips: PostDTO[] = [];
-
   haveReturnedPost: Boolean = false;
+  testPost = null;
+  profileFromStorage = new Profile();
 
-  testProfile = null;
+  // //////////// TEST METHOD
+  getProfileFromStorage = function() {
+    this.profileService.show(this.id).subscribe(
+      data => {
+        this.profileFromStorage = data;
+        this.haveReturnedPost = true;
+        console.log(this.profileFromStorage);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\\\\\\\\ TEST METHOD
 
   displayTable = function() {
     this.selected = null;
@@ -70,10 +82,33 @@ export class PostsComponent implements OnInit {
   };
 
   reload = function() {
-    this.postServ.index().subscribe(data => {
-      this.posts = data;
-    });
+    this.postServ.index().subscribe(
+      data => {
+        this.allPosts = data;
+        console.log(this.allPosts);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
   };
+
+  // //////////// TEST METHOD
+  reloadForOneProfile = function() {
+    this.postServ.indexForOneProfile(this.id).subscribe(
+      data => {
+        this.allPosts = data;
+        this.allPosts.forEach(post => {
+          post.createDate = new Date(post.createDate);
+        });
+        console.log(this.allPosts);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\\\\\\\\ TEST METHOD
 
   loadUserInfo = function(id: string) {
     this.postServ.show(id).subscribe(data => {
@@ -85,8 +120,10 @@ export class PostsComponent implements OnInit {
   // //////////// TEST METHOD
   loadTestUserInfo = function() {
     this.postServ.show(this.id).subscribe(data => {
-      this.testProfile = data;
-      console.log(this.testProfile);
+      this.testPost = data;
+      this.testDate = new Date(this.testPost.createDate);
+      console.log(this.testPost);
+      this.haveReturnedPost = true;
     });
   };
   // \\\\\\\\\\\\ TEST METHOD
@@ -100,17 +137,26 @@ export class PostsComponent implements OnInit {
   //   });
   // };
 
+  handleError(error: any) {
+    console.error('Something Broke');
+    console.log(error);
+  }
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private postServ: PostsService
+    private postServ: PostsService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit() {
+    // We probably don't need this code on line 108, but just in case
     // const id = localStorage.getItem('profileId');
     // this.reload();
-
     // Test case
     // this.loadTestUserInfo();
+    // Test case
+    this.reloadForOneProfile();
+    this.getProfileFromStorage();
   }
 }
