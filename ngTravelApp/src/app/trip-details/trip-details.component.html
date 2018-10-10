@@ -65,22 +65,19 @@
           <div class="col-2 profilePicture">
             <img [src]="userProfile.imgLink" alt="Profile Picture">
           </div>
-          <div class="col" id="tripsProfileName">
+        </div>
+        <div id="tripsProfileName">
           <h3>
             <p>{{userProfile.firstName}} {{userProfile.lastName}}</p>
           </h3>
-          </div>
         </div>
       </div>
     </div>
-
-<!-- Tabs section -->
-
-      <div class="col ">
+      <div class="col">
         <mat-tab-group dynamicHeight>
           <mat-tab label="Trip Details">
             <div class="example-large-box mat-elevation-z4">
-              Small content
+              Large Content
             </div>
           </mat-tab>
           <mat-tab label="Review">
@@ -105,6 +102,5 @@
           </mat-tab>
         </mat-tab-group>
       </div>
-
   </div>
 </div>

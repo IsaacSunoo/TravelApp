@@ -15,12 +15,14 @@
 
 #detailProfPic img {
   border-radius: 50%;
-  height: 300px;
+  height: 100px;
 }
 
 #tripsProfileName {
+font-weight: bolder;
 color: navy;
 text-align: center;
+
 }
 
 .example-small-box, .example-large-box {
