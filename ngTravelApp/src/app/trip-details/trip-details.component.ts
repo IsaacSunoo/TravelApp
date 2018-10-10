@@ -14,7 +14,7 @@ export class TripDetailsComponent implements OnInit {
   id = localStorage.getItem('profileId');
 
   loadProfile = function(id: string) {
-    this.tripService.showProfile(id).subscribe(data => {
+    this.tripService.show(id).subscribe(data => {
       this.userProfile = data;
       console.log(this.userProfile);
     });
