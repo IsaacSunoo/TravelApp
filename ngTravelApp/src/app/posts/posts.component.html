@@ -44,13 +44,6 @@
   <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="addTripPost()">Add Trip</button>
 </form>
 <br>
-<div *ngIf="haveReturnedPost">
-  <ul>
-    <li>{{returnedPost.message}}</li>
-    <li>{{returnedPost.trip.title}}</li>
-    <li>{{returnedPost.profile.firstName}}</li>
-  </ul>
-</div>
 
 <!-- Put this into the index.html later -->
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
@@ -83,8 +76,8 @@
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <div class="h5">@LeeCross</div>
-          <div class="h7 text-muted">Fullname : Miracles Lee Cross</div>
+          <div class="h5">@{{testPost.profile.user.name}}</div>
+          <div class="h7 text-muted">Fullname : {{testPost.profile.firstName}} {{testPost.profile.lastName}}</div>
           <div class="h7">Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
             etc.
           </div>
@@ -112,11 +105,11 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
               <div class="mr-2">
-                <img class="rounded-circle" width="45" [src]="returnedPost.profile.imgLink" alt="profile image">
+                <img class="rounded-circle" width="45" [src]="testPost.profile.imgLink" alt="profile image">
               </div>
               <div class="ml-2">
-                <div class="h5 m-0">@{{returnedPost.profile.user.name}}</div>
-                <div class="h7 text-muted">{{returnedPost.profile.firstName}} {{returnedPost.profile.lastName}}</div>
+                <div class="h5 m-0">@{{testPost.profile.user.name}}</div>
+                <div class="h7 text-muted">{{testPost.profile.firstName}} {{testPost.profile.lastName}}</div>
               </div>
             </div>
             <div>
@@ -139,16 +132,16 @@
         <div class="card-body">
           <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;{{testDate}}</div>
           <a class="card-link" href="#">
-            <h5 class="card-title">{{returnedPost.trip.title}}</h5>
+            <h5 class="card-title">{{testPost.trip.title}}</h5>
           </a>
 
           <!-- Richard: Testing -->
           <div>
-            <img class="ta-trip-image" [src]="returnedPost.trip.imgLink" alt="trip image">
+            <img class="ta-trip-image" [src]="testPost.trip.imgLink" alt="trip image">
           </div>
 
           <p class="card-text">
-            {{returnedPost.message}}
+            {{testPost.message}}
           </p>
         </div>
         <div class="card-footer">

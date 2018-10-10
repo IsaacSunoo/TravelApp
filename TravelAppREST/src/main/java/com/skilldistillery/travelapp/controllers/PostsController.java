@@ -55,4 +55,10 @@ public class PostsController {
 		return post;
 	}
 
+	@RequestMapping(path = "/posts/{pid}", method = RequestMethod.GET)
+	public Posts show(@PathVariable(name = "pid") Integer id) {
+
+		return postService.show(id);
+	}
+
 }

@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
 
   haveReturnedPost: Boolean = false;
 
-  testProfile = null;
+  testPost = null;
 
   displayTable = function() {
     this.selected = null;
@@ -85,8 +85,10 @@ export class PostsComponent implements OnInit {
   // //////////// TEST METHOD
   loadTestUserInfo = function() {
     this.postServ.show(this.id).subscribe(data => {
-      this.testProfile = data;
-      console.log(this.testProfile);
+      this.testPost = data;
+      this.testDate = new Date(this.testPost.createDate);
+      console.log(this.testPost);
+      this.haveReturnedPost = true;
     });
   };
   // \\\\\\\\\\\\ TEST METHOD
@@ -109,8 +111,7 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     // const id = localStorage.getItem('profileId');
     // this.reload();
-
     // Test case
-    // this.loadTestUserInfo();
+    this.loadTestUserInfo();
   }
 }

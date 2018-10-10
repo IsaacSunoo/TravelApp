@@ -34,7 +34,7 @@ export class PostsService {
 
   // Richard: Coming back to this tonight -- going to make a route for show 1 profile for use in my test case in posts.component.ts
   public show(id): Observable<Posts> {
-    return this.http.get<Posts>('${this.url/:id').pipe(
+    return this.http.get<Posts>(this.url + '/' + id).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
