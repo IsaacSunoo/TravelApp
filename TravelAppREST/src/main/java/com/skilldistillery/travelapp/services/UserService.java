@@ -1,5 +1,7 @@
 package com.skilldistillery.travelapp.services;
 
+import java.util.List;
+
 import com.skilldistillery.travelapp.entities.SettingsDTO;
 import com.skilldistillery.travelapp.entities.User;
 
@@ -10,5 +12,10 @@ public interface UserService {
 	public User updateSettings(Integer id, SettingsDTO settingsDTO);
 
 	public User getOneUser(String username);
+
+	User followUser(Integer uid, Integer friendId);
+
+	List<User> findFollowers(Integer uid);
+	
 
 }

@@ -1,9 +1,12 @@
 package com.skilldistillery.travelapp.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +46,21 @@ public class UserController {
 		}
 
 		return null;
+	}
+
+	@RequestMapping(path = "/addfollower/{uid}/{fid}", method = RequestMethod.POST)
+	public User addFollower(@PathVariable(name = "uid") int uid, @PathVariable(name = "fid") int fid) {
+		
+		User newList = userService.followUser(uid, fid);
+		return newList;
+
+	}
+	
+	@RequestMapping(path = "/findfollowers/{uid}", method = RequestMethod.GET)
+	public List<User> findFollowers(@PathVariable(name = "uid") int uid) {
+		List<User> followers = userService.findFollowers(uid);
+		return followers;
+
 	}
 
 }
