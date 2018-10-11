@@ -31,21 +31,26 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 
-//	@RequestMapping(path="profiles/{pid}", method=RequestMethod.PUT)
-//	public Profile replace(HttpServletRequest req, HttpServletResponse res,
-//			@PathVariable(name="pid")int pid,
-//			@RequestBody Profile profile){
-//		Profile updated = profileService.replace(pid, profile);
-//		if(updated == null) {
-//			res.setStatus(404);
-//		}
-//		return updated;	
-//	}
-	
-	@RequestMapping(path="profiles/{pid}", method=RequestMethod.GET)
-	public Profile getOneById(@PathVariable(name="pid") int pid) {
+	// CREATE
+
+	// READ
+
+	@RequestMapping(path = "profiles/{pid}", method = RequestMethod.GET)
+	public Profile getOneById(@PathVariable(name = "pid") int pid) {
 		return profileService.show(pid);
 	}
+
+	// This method is for retrieving a user/profile's list of favorite trips (i.e.
+	// bookmarked trips)
+	@RequestMapping(path = "/profile/{pid}/favoriteTrips",
+			method = RequestMethod.GET)
+	public List<Trip> favoriteTripsIndexByProfileId(
+			@PathVariable(name = "pid") Integer pid, HttpServletResponse res) {
+
+		return profileService.queryForFavoriteTripsByProfileId(pid);
+	}
+
+	// UPDATE
 
 	@RequestMapping(path = "profiles/{pid}", method = RequestMethod.PATCH)
 	public Profile patch(HttpServletRequest req, HttpServletResponse res,
@@ -62,13 +67,6 @@ public class ProfileController {
 		return updatedProfile;
 	}
 
-	// This method is for retrieving a user/profile's list of favorite trips (i.e.
-	// bookmarked trips)
-	@RequestMapping(path = "/profile/{pid}/favoriteTrips", method = RequestMethod.GET)
-	public List<Trip> favoriteTripsIndexByProfileId(
-			@PathVariable(name = "pid") Integer pid, HttpServletResponse res) {
+	// DELETE
 
-		return profileService.queryForFavoriteTripsByProfileId(pid);
-	}
-	
 }
