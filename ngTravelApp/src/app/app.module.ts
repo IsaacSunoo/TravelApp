@@ -27,6 +27,7 @@ import { MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatInputModule
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ScratchpadComponent } from './scratchpad/scratchpad.component';
+import { StepperToPostsShellService } from './stepper-to-posts-shell.service';
 
 
 
@@ -63,7 +64,7 @@ import { ScratchpadComponent } from './scratchpad/scratchpad.component';
     MatInputModule,
     MatTabsModule
   ],
-  providers: [DatePipe, TripService],
+  providers: [DatePipe, TripService, StepperToPostsShellService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
