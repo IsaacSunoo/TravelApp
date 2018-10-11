@@ -101,10 +101,8 @@ export class PostsComponent implements OnInit {
         this.allPosts.forEach(post => {
           post.createDate = new Date(post.createDate);
         });
-        // this.STPSS.allPosts = this.allPosts;
         this.STPSS.setPosts(this.allPosts);
         this.allPosts.reverse();
-        console.log(this.allPosts);
       },
       err => {
         this.handleError(err);
