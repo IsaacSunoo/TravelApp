@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   followClicked;
   unFollowClicked = null;
   testId;
+  loggedIn;
 
   hideFollowBtn = function() {
     if (this.followClicked) {
