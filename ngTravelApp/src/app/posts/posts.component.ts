@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostDTO } from '../models/post-dto';
 import { Profile } from '../models/profile';
-import { UserService } from '../user.service';
 import { ProfileService } from '../profile.service';
 
 @Component({
