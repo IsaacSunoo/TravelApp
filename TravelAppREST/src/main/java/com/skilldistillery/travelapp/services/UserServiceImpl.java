@@ -1,5 +1,6 @@
 package com.skilldistillery.travelapp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,8 +93,7 @@ public class UserServiceImpl implements UserService {
 				managedUser.setEmail(settingsDTO.getEmail());
 			}
 
-			if (settingsDTO.getPassword() != null
-					&& !settingsDTO.getPassword().equals("")
+			if (settingsDTO.getPassword() != null && !settingsDTO.getPassword().equals("")
 					&& settingsDTO.getPassword() != managedUser.getPassword()) {
 				managedUser.setPassword(settingsDTO.getPassword());
 			}
@@ -117,63 +117,84 @@ public class UserServiceImpl implements UserService {
 
 		return null;
 	}
-	
+
 	@Override
 	public User followUser(Integer uid, Integer fid) {
-		//uid is the person logged in, fid is the person they want to follow
-		User personToFollow = userRepo.queryForFollowersByUserId(fid);
-		if(personToFollow == null) {
+		// uid is the person logged in, fid is the person they want to follow
+		User personToFollow = userRepo.findById(fid).get();
+		if (personToFollow == null) {
 			return null;
 		}
-//		List<User> result = userRepo.queryForFollowersByUserId(uid);
-		
+		// List<User> result = userRepo.queryForFollowersByUserId(uid);
+
 		User user = userRepo.queryForFollowersByUserId(uid);
-		if(user == null) {
-			return null;
+		if (user == null) {
+			user = userRepo.findById(uid).get();
+			if (user == null) {
+				return null;
+			}
 		}
-		
-		if(user.getFollowers() != null) {
-			
-			user.getFollowers().add(personToFollow);
-			userRepo.saveAndFlush(user);
-			return user;
-		} 
-		return null;
-		
+
+//		if (user.getFollowers() == null) {
+//			user.setFollowers(new ArrayList<User>());
+//		}
+//		user.getFollowers().add(personToFollow);
+		user.addFollower(personToFollow);
+		userRepo.saveAndFlush(user);
+		return user;
+
 	}
-	
+
 	@Override
 	public boolean unfollowUser(Integer uid, Integer fid) {
-		//uid is the person logged in, fid is the person they want to follow
+		// uid is the person logged in, fid is the person they want to follow
 		User personToUnFollow = userRepo.queryForFollowersByUserId(fid);
-		if(personToUnFollow == null) {
+		if (personToUnFollow == null) {
 			return false;
 		}
 //		List<User> result = userRepo.queryForFollowersByUserId(uid);
-		
+
 		User user = userRepo.queryForFollowersByUserId(uid);
-		if(user == null) {
+		if (user == null) {
 			return false;
 		}
-		
-		if(user.getFollowers() != null) {
-			
+
+		if (user.getFollowers() != null) {
+
 			user.getFollowers().remove(personToUnFollow);
 			userRepo.saveAndFlush(user);
 			return true;
-		} 
+		}
 		return false;
-		
+
 	}
-	
-	@Override 
+
+	@Override
 	public List<User> findFollowers(Integer uid) {
 		User user = userRepo.queryForFollowersByUserId(uid);
-		if(user == null) {
+		if (user == null) {
 			return null;
 		}
 		return user.getFollowers();
 	}
 
-}
+	@Override
+	public List<User> discoverPeopleToFollow(Integer uid) {
+		User user = userRepo.queryForFollowersByUserId(uid);
+		if (user == null) {
+			return null;
+		}
+		List<User> followedUsers = user.getFollowers();
+		List<User> allUsers = userRepo.findAll();
+		List<User> discover = new ArrayList();
 
+		for (User user2 : allUsers) {
+			if (followedUsers.contains(user2)) {
+				continue;
+			}
+			discover.add(user2);
+		}
+		return discover;
+	}
+
+}

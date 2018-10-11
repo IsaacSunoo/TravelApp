@@ -68,5 +68,11 @@ public class UserController {
 		boolean result = userService.unfollowUser(uid, fid);
 		return result;
 	}
+	
+	@RequestMapping(path="discover/{uid}", method = RequestMethod.GET)
+	public List<User> discoverPeople(@PathVariable(name = "uid") int uid){
+		List <User> result = userService.discoverPeopleToFollow(uid);
+		return result ;
+	}
 
 }

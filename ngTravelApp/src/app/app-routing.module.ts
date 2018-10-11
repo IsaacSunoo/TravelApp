@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'trips', component: TripDetailsComponent },
   { path: 'trips/:id', component: TripDetailsComponent },
   { path: 'scratchpad', component: ScratchpadComponent },
-  { path: 'scratchpad/:id', component: ScratchpadComponent }
+  { path: 'scratchpad/:id', component: ScratchpadComponent },
+  { path: 'profile/:id', component: ProfileComponent }
 
 
 ];

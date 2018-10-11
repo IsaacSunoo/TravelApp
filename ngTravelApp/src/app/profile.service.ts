@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { UpdateProfile } from './models/update-profile';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { User } from './models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,18 @@ export class ProfileService {
       })
     );
   }
+  public discover(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'users').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving data ' + err.status);
+      })
+    );
+  }
 
   // following a user is adding a follower to followed person's followers
-  public followUser(id: number, fid: number) {
-    return this.http.post<any>(this.baseUrl + 'addfollower/' + id + '/' + fid, {}).pipe(
+  public followUser(id: string, testId: string) {
+    return this.http.post<any>(this.baseUrl + 'addfollower/' + id + '/' + testId, {}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving data ');
@@ -33,8 +42,8 @@ export class ProfileService {
     );
     }
   // unfollow a user that you are following
-    public unfollowUser(id: number, fid: number) {
-      return this.http.delete(this.baseUrl + 'removefollower/' + id + '/' + fid, {}).pipe(
+    public unfollowUser(id: string, testId: string) {
+      return this.http.delete(this.baseUrl + 'removefollower/' + id + '/' + testId).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError('Error retrieving data ' + err.status);
@@ -42,5 +51,16 @@ export class ProfileService {
       );
     }
 
+    public followingIndex(id: string): Observable<User[]> {
+      return this.http.get<User[]>(this.baseUrl + 'findfollowers/' + id).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error retrieving data ' + err.status);
+        })
+      );
+    }
+
+
   constructor(private http: HttpClient) {}
 }
+

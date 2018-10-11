@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findOneUserByName(String username);
 	
-	@Query("SELECT u FROM User u JOIN FETCH u.followers WHERE u.id =:id")
+	@Query("SELECT u FROM User u JOIN FETCH u.followers WHERE u.id = :id")
 	User queryForFollowersByUserId(@Param("id") Integer id);
 	
 }

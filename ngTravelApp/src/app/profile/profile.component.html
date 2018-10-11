@@ -65,12 +65,25 @@
       <!-- Follow Button -->
       <!-- <div id="followBtn" *ngIf="!followClicked"> -->
       <div id="followBtn" >
-        <button class="btn btn-outline-dark" type="submit" value="Follow"(click)="followUser()">Follow</button>
+        <button class="btn btn-outline-dark" type="submit" value="Follow"(click)="followUser(id, testId)">Follow</button>
       </div>
       <!-- <div id="unfollowBtn" *ngIf="followClicked"> -->
       <div id="unfollowBtn" >
-          <button class="btn btn-outline-dark" type="submit" value="unFollow"(click)="unfollowUser()">unFollow</button>
+          <button class="btn btn-outline-dark" type="submit" value="unFollow"(click)="unfollowUser(id, testId)">unFollow</button>
       </div>
+      <br>
+      <div class="col border rounded">
+          <table>
+            <thead>
+              <th>Following:</th></thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td><a class="card-link" [routerLink]="['/profile/' + user.id]">{{user.name}} </a></td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+
 
     </div>
 
@@ -109,6 +122,9 @@
 
         <div class="col border rounded">
           <h2>My Trips</h2>
+          <!-- <ul *ngFor="let trip of trips">
+              <li>{{trip.title}} </li>
+          </ul> -->
         </div>
 
       </div>
@@ -118,3 +134,5 @@
   </div>
 
 </div>
+
+
