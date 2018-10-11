@@ -13,5 +13,4 @@ public interface TripRepository extends JpaRepository<Trip, Integer> {
 	@Query("SELECT t from Trip t WHERE t.profile.id = :id")
 	List<Trip> queryForTripsByProfileId(@Param("id") Integer pid);
 	
-
 }

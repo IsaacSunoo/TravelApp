@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.ProfileLocation;
 import com.skilldistillery.travelapp.entities.SettingsDTO;
+import com.skilldistillery.travelapp.entities.Trip;
 import com.skilldistillery.travelapp.repositories.ProfileLocationRepository;
 import com.skilldistillery.travelapp.repositories.ProfileRepository;
 
@@ -35,6 +36,11 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 
 		return null;
+	}
+	
+	@Override
+	public List<Trip> queryForFavoriteTripsByProfileId(Integer pid) {
+		return profileRepo.queryForFavoriteTripsByProfileId(pid).getFavoriteTrips();
 	}
 
 	// UPDATE

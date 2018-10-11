@@ -107,6 +107,20 @@
 
         <div class="col border rounded">
           <h2>Bookmarked Trips</h2>
+          <!-- TEMP STUFF STYLING TEST -->
+          <div *ngFor="let post of postsById" class="row">
+              <div class="col">
+                <div class="card mb-4 border-dark">
+                  <img class="card-img-top" [src]="post.trip.imgLink" alt="Card trip image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{post.trip.title}}</h5>
+                    <p class="card-text">{{post.message}}</p>
+                    <a [routerLink]="['/trips/' + post.trip.id]" class="btn btn-dark btn-sm">View Trip</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END TEMP STUFF -->
         </div>
 
         <div class="col border rounded">
