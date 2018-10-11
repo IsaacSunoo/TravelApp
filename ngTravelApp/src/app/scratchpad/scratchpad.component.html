@@ -71,8 +71,11 @@
         </div>
       </div>
     </div>
+
     <div class="col">
       <mat-tab-group dynamicHeight>
+
+        <!-- Trip Details///// -->
         <mat-tab label="Trip Details">
           <div class="example-large-box mat-elevation-z4">
 
@@ -108,26 +111,106 @@
 
           </div>
         </mat-tab>
+        <!-- \\\\\Trip Details -->
+
+        <!-- Trip Review///// -->
         <mat-tab label="Review">
           <div class="example-large-box mat-elevation-z4">
-            <p class="text-muted">{{trip.review}}</p>
+
+            <div class="how-section1">
+              <div class="row">
+
+                <div>
+                  <h4>Trip Report</h4>
+                  <h4 class="subheading">My Trip Reflections</h4>
+                  <p>{{trip.review}}</p>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </mat-tab>
+        <!-- \\\\\Trip Review -->
+
+        <!-- Trip Tips///// -->
         <mat-tab label="Tips">
           <div class="example-large-box mat-elevation-z4">
-            Large content
+
+            <div class="how-section1">
+              <div class="row">
+
+                <div *ngIf="haveResource">
+                  <h4>Resources</h4><br>
+                  <h4 class="subheading">Useful Links For Your Trip</h4>
+                  <div class="row">
+                    <ul>
+                      <li *ngFor="let recommendation of trip.recommendations">
+                        <h4 class="subheading" *ngIf="recommendation.recType.name === 'resource'">
+                          <a [href]="recommendation.content">{{recommendation.content}}</a>
+                        </h4>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div *ngIf="haveTip">
+                  <h4>Tips</h4><br>
+                  <h4 class="subheading">Information Which May Be Helpful</h4>
+                  <div class="row">
+                    <ul>
+                      <li *ngFor="let recommendation of trip.recommendations">
+                        <h4 class="subheading" *ngIf="recommendation.recType.name === 'tip'">
+                          <p class="text-muted">{{recommendation.content}}</p>
+                        </h4>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </mat-tab>
+        <!-- \\\\\Trip Tips -->
+
+        <!-- Trip Warnings///// -->
         <mat-tab label="Warnings">
           <div class="example-large-box mat-elevation-z4">
-            Large content
+
+            <div class="how-section1">
+              <div class="row">
+
+                <div *ngIf="haveWarning">
+                  <h4>Caution</h4><br>
+                  <h4 class="subheading">Things to Look Out For</h4>
+                  <div class="row">
+                    <ul>
+                      <li *ngFor="let recommendation of trip.recommendations">
+                        <h4 class="subheading" *ngIf="recommendation.recType.name === 'warning'">
+                          <p class="text-muted">{{recommendation.content}}</p>
+                        </h4>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </mat-tab>
+        <!-- \\\\\Trip Warnings -->
+
+        <!-- Trip Notable Places///// -->
         <mat-tab label="Notable Places">
           <div class="example-large-box mat-elevation-z4">
             Large content
           </div>
         </mat-tab>
+        <!-- \\\\\Trip Notable Places -->
+
       </mat-tab-group>
     </div>
   </div>
