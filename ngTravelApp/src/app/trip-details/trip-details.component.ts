@@ -9,9 +9,6 @@ import { Trip } from '../models/trip';
   styleUrls: ['./trip-details.component.css']
 })
 export class TripDetailsComponent implements OnInit {
-  // userProfile = null;
-  // trips: Trip[] = [];
-
   // *******************************************************************************
   // FIELDS
 
@@ -36,27 +33,6 @@ export class TripDetailsComponent implements OnInit {
   haveResource: Boolean = false;
   haveTip: Boolean = false;
   haveWarning: Boolean = false;
-
-  // loadProfile = function(id: string) {
-  //   this.tripService.showProfile(id).subscribe(data => {
-  //     this.userProfile = data;
-  //     console.log(this.userProfile);
-  //   });
-  // };
-
-  // loadTrips = function(id: string) {
-  //   console.log(id);
-
-  //   this.tripService.index(id).subscribe(data => {
-  //     this.trips = data;
-  //     console.log(this.trips);
-  //   });
-  // };
-
-  // *******************************************************************************
-  // *******************************************************************************
-  // *******************************************************************************
-  // NEW STUFF
 
   // *******************************************************************************
   // METHODS
