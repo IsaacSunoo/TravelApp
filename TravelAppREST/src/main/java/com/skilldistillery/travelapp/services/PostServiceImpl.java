@@ -97,7 +97,6 @@ public class PostServiceImpl implements PostService {
 			destination.setLongitude(newTripPostDTO.getLongitude());
 			destination.setLatitude(newTripPostDTO.getLatitude());
 			trip.setDestination(destination);
-
 		}
 
 		post.setProfile(managedProfile);

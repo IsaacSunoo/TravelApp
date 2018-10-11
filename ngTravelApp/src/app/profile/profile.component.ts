@@ -1,3 +1,4 @@
+import { FollowersService } from './../followers.service';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,12 +16,14 @@ export class ProfileComponent implements OnInit {
   showProfile: UpdateProfile = null;
   id = localStorage.getItem('profileId');
   following: User [] = [];
-  followClicked;
 
+  followClicked;
+  unFollowClicked = null;
 
     hideFollowBtn = function() {
-    if (this.followUser) {
+    if (this.followClicked) {
       this.followClicked = null;
+      this.unFollowClicked = true;
     }
   };
 
@@ -35,14 +38,14 @@ export class ProfileComponent implements OnInit {
   };
 
   followUser = function(id: number, fid: number) {
-    this.followingService.followUser(fid).subscribe(
+    this.profService.followUser(fid).subscribe(
       data => {
         this.following = data;
       });
   };
 
   unfollowUser = function(id: number, fid: number) {
-    this.followingService.unfollowUser(fid).subscribe(
+    this.profService.unfollowUser(fid).subscribe(
       data => {
         console.log('user unfollowed');
       });
@@ -50,10 +53,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private profServ: ProfileService, private followingService: FollowingService) { }
+    private profServ: ProfileService) { }
 
   ngOnInit() {
     this.loadUserInfo(this.id);
   }
-
 }

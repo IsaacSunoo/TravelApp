@@ -63,16 +63,20 @@
       </div>
 
       <!-- Follow Button -->
-      <div id="followBtn" *ngIf="!followClicked">
+      <!-- <div id="followBtn" *ngIf="!followClicked"> -->
+      <div id="followBtn" >
         <button class="btn btn-outline-dark" type="submit" value="Follow"(click)="followUser()">Follow</button>
       </div>
-      <div id="unfollowBtn" *ngIf="followClicked">
+      <!-- <div id="unfollowBtn" *ngIf="followClicked"> -->
+      <div id="unfollowBtn" >
           <button class="btn btn-outline-dark" type="submit" value="unFollow"(click)="unfollowUser()">unFollow</button>
       </div>
 
     </div>
 
     <!-- Carousel -->
+
+    
 
     <div id="profileCarousel" class="col-10 carousel slide carousel-fade" data-ride="carousel">
       <div class="carousel-inner">

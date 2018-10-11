@@ -16,6 +16,8 @@ public interface UserService {
 	User followUser(Integer uid, Integer friendId);
 
 	List<User> findFollowers(Integer uid);
+
+	boolean unfollowUser(Integer uid, Integer fid);
 	
 
 }
