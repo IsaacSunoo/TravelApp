@@ -63,8 +63,11 @@
       </div>
 
       <!-- Follow Button -->
-      <div id="followBtn">
-        <button class="btn btn-outline-dark" type="submit" value="Follow">Follow</button>
+      <div id="followBtn" *ngIf="!followClicked">
+        <button class="btn btn-outline-dark" type="submit" value="Follow"(click)="followUser()">Follow</button>
+      </div>
+      <div id="unfollowBtn" *ngIf="followClicked">
+          <button class="btn btn-outline-dark" type="submit" value="unFollow"(click)="unfollowUser()">unFollow</button>
       </div>
 
     </div>
