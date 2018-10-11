@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.travelapp.entities.NewTripPostDTO;
 import com.skilldistillery.travelapp.entities.Posts;
+import com.skilldistillery.travelapp.entities.Trip;
 
 public interface PostService {
 

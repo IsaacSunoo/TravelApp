@@ -1,5 +1,7 @@
 package com.skilldistillery.travelapp.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.SettingsDTO;
+import com.skilldistillery.travelapp.entities.Trip;
 import com.skilldistillery.travelapp.entities.User;
 import com.skilldistillery.travelapp.services.ProfileService;
 import com.skilldistillery.travelapp.services.UserService;
@@ -59,4 +62,13 @@ public class ProfileController {
 		return updatedProfile;
 	}
 
+	// This method is for retrieving a user/profile's list of favorite trips (i.e.
+	// bookmarked trips)
+	@RequestMapping(path = "/profile/{pid}/favoriteTrips", method = RequestMethod.GET)
+	public List<Trip> favoriteTripsIndexByProfileId(
+			@PathVariable(name = "pid") Integer pid, HttpServletResponse res) {
+
+		return profileService.queryForFavoriteTripsByProfileId(pid);
+	}
+	
 }
