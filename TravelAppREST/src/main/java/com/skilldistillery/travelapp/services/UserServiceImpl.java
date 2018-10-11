@@ -142,6 +142,30 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
+	@Override
+	public boolean unfollowUser(Integer uid, Integer fid) {
+		//uid is the person logged in, fid is the person they want to follow
+		User personToUnFollow = userRepo.queryForFollowersByUserId(fid);
+		if(personToUnFollow == null) {
+			return false;
+		}
+//		List<User> result = userRepo.queryForFollowersByUserId(uid);
+		
+		User user = userRepo.queryForFollowersByUserId(uid);
+		if(user == null) {
+			return false;
+		}
+		
+		if(user.getFollowers() != null) {
+			
+			user.getFollowers().remove(personToUnFollow);
+			userRepo.saveAndFlush(user);
+			return true;
+		} 
+		return false;
+		
+	}
+	
 	@Override 
 	public List<User> findFollowers(Integer uid) {
 		User user = userRepo.queryForFollowersByUserId(uid);
