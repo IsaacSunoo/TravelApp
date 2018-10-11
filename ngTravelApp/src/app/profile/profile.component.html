@@ -64,12 +64,14 @@
 
       <!-- Follow Button -->
       <!-- <div id="followBtn" *ngIf="!followClicked"> -->
-      <div id="followBtn" >
-        <button class="btn btn-outline-dark" type="submit" value="Follow"(click)="followUser(id, testId)">Follow</button>
-      </div>
+      <div id="follow/unfollow buttons" >
+        <div id="followBtn" >
+          <button class="btn btn-outline-dark" type="submit" value="Follow"(click)="followUser(id, testId)">Follow</button>
+        </div>
       <!-- <div id="unfollowBtn" *ngIf="followClicked"> -->
-      <div id="unfollowBtn" >
+        <div id="unfollowBtn" >
           <button class="btn btn-outline-dark" type="submit" value="unFollow"(click)="unfollowUser(id, testId)">unFollow</button>
+        </div>
       </div>
       <br>
       <div class="col border rounded">
