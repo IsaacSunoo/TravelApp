@@ -101,6 +101,9 @@ export class PostsComponent implements OnInit {
         this.allPosts.forEach(post => {
           post.createDate = new Date(post.createDate);
         });
+        // The service posts field and the local allPosts field
+        // get bound to one another, so changes to one affects the
+        // other (point to the same object in memory)
         this.STPSS.setPosts(this.allPosts);
         this.allPosts.reverse();
       },
