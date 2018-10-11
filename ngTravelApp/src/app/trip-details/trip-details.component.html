@@ -88,12 +88,14 @@
               <div class="how-section1">
                 <div class="row">
 
-                  <div class="col-md-6 how-img">
-                    <img [src]="trip.imgLink" class="img-fluid" alt="trip related image" />
+                  <div class="col-md-6 row justify-content-center align-self-center how-img">
+                    <img [src]="trip.imgLink" class="img-fluid" alt="trip related image"/>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-6 text-center">
                     <h4>{{trip.title}}</h4>
+                    <br>
+                    <br>
                     <h4 class="subheading">City</h4>
                     <p class="text-muted">{{trip.destination.city}}</p>
                     <h4 class="subheading">Country</h4>
@@ -210,7 +212,7 @@
         <!-- Trip Notable Places///// -->
         <mat-tab label="Notable Places">
           <div class="example-large-box mat-elevation-z4">
-            Large content
+
           </div>
         </mat-tab>
         <!-- \\\\\Trip Notable Places -->

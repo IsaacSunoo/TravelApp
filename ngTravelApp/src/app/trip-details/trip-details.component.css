@@ -40,9 +40,10 @@ text-align: center;
 }
 
 .example-large-box {
-  height: 400px;
+  height: 600px;
   width: 50%px;
 }
+
 
 /* NEW STUFF BELOW */
 
@@ -51,7 +52,7 @@ text-align: center;
   padding: 10%;
 }
 .how-section1 h4{
-  color: #ffa500;
+  color: rgb(103, 128, 160);
   font-weight: bold;
   font-size: 30px;
 }
@@ -63,9 +64,12 @@ text-align: center;
 {
   margin-top: 10%;
 }
+
 .how-img
 {
   text-align: center;
+  display: inline-block;
+  
 }
 .how-img img{
   width: 100%;
