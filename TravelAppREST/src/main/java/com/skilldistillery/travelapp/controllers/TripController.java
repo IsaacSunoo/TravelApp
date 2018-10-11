@@ -53,14 +53,12 @@ public class TripController {
 
 	// READ
 
-	// Richard: Note -- This method seems to be pulling trips for a particular
-	// profile? Also tripRepo should be called only in service classes. If we were
-	// to use this route, change it to /profile/{pid}/trips.
-//	@RequestMapping(path = "trips/{pid}", method = RequestMethod.GET)
-//	public List<Trip> index(HttpServletRequest req, HttpServletResponse res,
-//			@PathVariable(name = "pid") int pid) {
-//		return tripRepo.queryForTripsByProfileId(pid);
-//	}
+	@RequestMapping(path = "/profile/{pid}/trips")
+	public List<Trip> tripsIndexByProfileId(
+			@PathVariable(name = "pid") Integer pid, HttpServletResponse res) {
+
+		return tripService.queryForTripsByProfileId(pid);
+	}
 
 	// Get the trip by its trip id, *tid* here would be the trip id
 	@RequestMapping(path = "/trips/{tid}", method = RequestMethod.GET)

@@ -1,3 +1,4 @@
+import { StepperToPostsShellService } from './../stepper-to-posts-shell.service';
 import { LogoutComponent } from './../logout/logout.component';
 import { PostsService } from './../posts.service';
 import { Posts } from './../models/posts';
@@ -100,7 +101,11 @@ export class PostsComponent implements OnInit {
         this.allPosts.forEach(post => {
           post.createDate = new Date(post.createDate);
         });
-        console.log(this.allPosts);
+        // The service posts field and the local allPosts field
+        // get bound to one another, so changes to one affects the
+        // other (point to the same object in memory)
+        this.STPSS.setPosts(this.allPosts);
+        this.allPosts.reverse();
       },
       err => {
         this.handleError(err);
@@ -145,7 +150,8 @@ export class PostsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private postServ: PostsService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private STPSS: StepperToPostsShellService
   ) {}
 
   ngOnInit() {
