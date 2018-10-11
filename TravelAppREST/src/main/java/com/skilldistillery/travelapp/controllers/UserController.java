@@ -62,5 +62,11 @@ public class UserController {
 		return followers;
 
 	}
+	
+	@RequestMapping(path= "/removefollower/{uid}/{fid}", method = RequestMethod.DELETE)
+	public boolean unFollow(@PathVariable(name = "uid") int uid, @PathVariable(name = "fid") int fid) {
+		boolean result = userService.unfollowUser(uid, fid);
+		return result;
+	}
 
 }

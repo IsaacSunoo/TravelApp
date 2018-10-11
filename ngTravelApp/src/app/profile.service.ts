@@ -32,9 +32,14 @@ export class ProfileService {
       })
     );
     }
-
+  // unfollow a user that you are following
     public unfollowUser(id: number, fid: number) {
-
+      return this.http.delete(this.baseUrl + 'removefollower/' + id + '/' + fid, {}).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error retrieving data ' + err.status);
+        })
+      );
     }
 
   constructor(private http: HttpClient) {}
