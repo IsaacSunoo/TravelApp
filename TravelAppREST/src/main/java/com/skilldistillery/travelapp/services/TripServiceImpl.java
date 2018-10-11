@@ -81,6 +81,11 @@ public class TripServiceImpl implements TripService {
 		return null;
 	}
 
+	@Override
+	public List<Trip> queryForTripsByProfileId(Integer pid) {
+		return tripRepo.queryForTripsByProfileId(pid);
+	}
+
 	// UPDATE ***************************************************************
 
 	@Override

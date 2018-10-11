@@ -1,17 +1,13 @@
 <!-- NavBar -->
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/profile']">Profile</a>
-      </li>
-      <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/feed']">Timeline</a>
       </li>
-      <!-- <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/discover']">Discover</a>
-        </li> -->
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/discover']">Discover</a>
+      </li>
     </ul>
   </div>
   <div class="mx-auto order-0">
@@ -23,195 +19,118 @@
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/settings']">Settings</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="logout.do">Logout</a>
       </li>
     </ul>
   </div>
 </nav>
+<br>
 
 
-<!-- Classic Carousel -->
-
-<div id="tripsCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://victoriafallstourism.org/wp-content/uploads/2018/01/victoria_falls.jpg"
-        alt="First slide">
+<!-- Search bar for -->
+<div class="container">
+  <form>
+    <div>
+      <input class="form-control mr-sm-2" id="searchBar" type="text" placeholder="Search">
+      <button class="btn btn-dark" type="submit" value="Search">Search</button>
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://cdn.shopify.com/s/files/1/0907/6598/products/SpotlightAntelopeCanyon_1920x.jpg?v=1477676477"
-        alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Fcdn-image.travelandleisure.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F1600x1000%2Fpublic%2F1521824431%2Fice-capped-mountains-patagonia-chile-TORRESTREK0318.jpg%3Fitok%3DPPU_EZV1&w=1000&q=70"
-        alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#tripsCarousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#tripsCarousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+  </form>
 </div>
+<br>
 
 
-<!-- Profile picture and Name -->
-<!-- Trip Div with Tabs -->
-<div class="container" *ngIf="haveTrip">
+<div class="container-fluid" *ngIf="showProfile">
+
   <div class="row">
-    <div class="col">
-      <div *ngIf="userProfile" id="detailProfPic">
-        <div id="tripsProfileName">
-          <h3>
-            <p>{{userProfile.firstName}} {{userProfile.lastName}}</p>
-          </h3>
+
+
+    <!-- Profile left side\\\\\ -->
+    <div class="col-2 profilePicture">
+
+      <img [src]="showProfile.imgLink" class="img-fluid img-thumbnail profilePic" alt="Profile Picture">
+
+
+      <!-- Profile First and Last Name -->
+      <div class="profileName">
+        <h3>
+          <p>{{showProfile.firstName}} {{showProfile.lastName}}</p>
+        </h3>
+      </div>
+
+
+      <!-- Follow Button -->
+      <!-- <div id="followBtn" *ngIf="!followClicked"> -->
+      <div id="followBtn">
+        <button class="btn btn-outline-dark" type="submit" value="Follow" (click)="followUser()">Follow</button>
+      </div>
+      <!-- <div id="unfollowBtn" *ngIf="followClicked"> -->
+      <div id="unfollowBtn">
+        <button class="btn btn-outline-dark" type="submit" value="unFollow" (click)="unfollowUser()">unFollow</button>
+      </div>
+
+
+    </div>
+    <!-- /////Profile left side -->
+
+
+    <!-- Carousel -->
+    <div id="profileCarousel" class="col-10 carousel slide carousel-fade" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="https://www.rei.com/adventures/assets/adventures/images/trip/core/latinamerica/pam_hero"
+            alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="https://media.gq.com/photos/58249cdda9546c3d5193215a/3:4/w_640/1216-GQ-FERR02-01-Ryan-Reynolds-Deadpool-04.jpg"
+            alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="https://news.bbcimg.co.uk/news/special/2015/newsspec_12558/media/1920xxjasonhawkes-0056-mr.jpg"
+            alt="Third slide">
         </div>
       </div>
+      <a class="carousel-control-prev" href="#profileCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#profileCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+
+      <!-- Trips Div///// -->
+      <div class="row">
+
+        <div class="col border rounded">
+          <h2>Bookmarked Trips</h2>
+        </div>
+
+        <div class="col border rounded">
+          <h2>My Trips</h2>
+          <div *ngFor="let post of postsById" class="row">
+            <div class="col">
+              <div class="card mb-4 border-dark">
+                <img class="card-img-top" [src]="post.trip.imgLink" alt="Card trip image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{post.trip.title}}</h5>
+                  <p class="card-text">{{post.message}}</p>
+                  <a [routerLink]="['/trips/' + post.trip.id]" class="btn btn-dark btn-sm">View Trip</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /////Trips Div -->
+
+
     </div>
 
-    <div class="col">
-      <mat-tab-group dynamicHeight>
-
-        <!-- Trip Details///// -->
-        <mat-tab label="Trip Details">
-          <div class="example-large-box mat-elevation-z4">
-
-            <div>
-
-              <div class="how-section1">
-                <div class="row">
-
-                  <div class="col-md-6 how-img">
-                    <img [src]="trip.imgLink" class="img-fluid" alt="trip related image" />
-                  </div>
-
-                  <div class="col-md-6">
-                    <h4>{{trip.title}}</h4>
-                    <h4 class="subheading">City</h4>
-                    <p class="text-muted">{{trip.destination.city}}</p>
-                    <h4 class="subheading">Country</h4>
-                    <p class="text-muted">{{trip.destination.country}}</p>
-                    <h4 class="subheading">Total Cost</h4>
-                    <p class="text-muted">{{trip.totalCost}}</p>
-                    <h4 class="subheading">Overall Rating</h4>
-                    <p class="text-muted">{{trip.rating}}</p>
-                    <h4 class="subheading">Trip Start Date</h4>
-                    <p class="text-muted">{{trip.dateStart}}</p>
-                    <h4 class="subheading">Trip End Date</h4>
-                    <p class="text-muted">{{trip.dateEnd}}</p>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </mat-tab>
-        <!-- \\\\\Trip Details -->
-
-        <!-- Trip Review///// -->
-        <mat-tab label="Review">
-          <div class="example-large-box mat-elevation-z4">
-
-            <div class="how-section1">
-              <div class="row">
-
-                <div>
-                  <h4>Trip Report</h4>
-                  <h4 class="subheading">My Trip Reflections</h4>
-                  <p>{{trip.review}}</p>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </mat-tab>
-        <!-- \\\\\Trip Review -->
-
-        <!-- Trip Tips///// -->
-        <mat-tab label="Tips">
-          <div class="example-large-box mat-elevation-z4">
-
-            <div class="how-section1">
-              <div class="row">
-
-                <div *ngIf="haveResource">
-                  <h4>Resources</h4><br>
-                  <h4 class="subheading">Useful Links For Your Trip</h4>
-                  <div class="row">
-                    <ul>
-                      <li *ngFor="let recommendation of trip.recommendations">
-                        <h4 class="subheading" *ngIf="recommendation.recType.name === 'resource'">
-                          <a [href]="recommendation.content">{{recommendation.content}}</a>
-                        </h4>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div *ngIf="haveTip">
-                  <h4>Tips</h4><br>
-                  <h4 class="subheading">Information Which May Be Helpful</h4>
-                  <div class="row">
-                    <ul>
-                      <li *ngFor="let recommendation of trip.recommendations">
-                        <h4 class="subheading" *ngIf="recommendation.recType.name === 'tip'">
-                          <p class="text-muted">{{recommendation.content}}</p>
-                        </h4>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </mat-tab>
-        <!-- \\\\\Trip Tips -->
-
-        <!-- Trip Warnings///// -->
-        <mat-tab label="Warnings">
-          <div class="example-large-box mat-elevation-z4">
-
-            <div class="how-section1">
-              <div class="row">
-
-                <div *ngIf="haveWarning">
-                  <h4>Caution</h4><br>
-                  <h4 class="subheading">Things to Look Out For</h4>
-                  <div class="row">
-                    <ul>
-                      <li *ngFor="let recommendation of trip.recommendations">
-                        <h4 class="subheading" *ngIf="recommendation.recType.name === 'warning'">
-                          <p class="text-muted">{{recommendation.content}}</p>
-                        </h4>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </mat-tab>
-        <!-- \\\\\Trip Warnings -->
-
-        <!-- Trip Notable Places///// -->
-        <mat-tab label="Notable Places">
-          <div class="example-large-box mat-elevation-z4">
-            Large content
-          </div>
-        </mat-tab>
-        <!-- \\\\\Trip Notable Places -->
-
-      </mat-tab-group>
-    </div>
   </div>
+
 </div>

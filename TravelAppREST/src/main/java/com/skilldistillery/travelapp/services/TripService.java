@@ -18,4 +18,6 @@ public interface TripService {
 
 	public Trip newTrip(String json);
 
+	public List<Trip> queryForTripsByProfileId(Integer pid);
+
 }

@@ -1,25 +1,47 @@
-.how-section1{
-  margin-top:-15%;
-  padding: 10%;
-}
-.how-section1 h4{
-  color: #ffa500;
-  font-weight: bold;
-  font-size: 30px;
-}
-.how-section1 .subheading{
-  color: #3931af;
-  font-size: 20px;
-}
-.how-section1 .row
-{
-  margin-top: 10%;
-}
-.how-img
-{
-  text-align: center;
-}
-.how-img img{
-  width: 100%;
+#profileCarousel img {
+  height: 340px;
 }
 
+/* For Card Styling */
+.social-card-header {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 96px;
+}
+.social-card-header i {
+  font-size: 32px;
+  color: #fff;
+}
+.bg-facebook {
+  background-color: #3b5998;
+}
+.text-facebook {
+  color: #3b5998;
+}
+.bg-google-plus {
+  background-color: #dd4b39;
+}
+.text-google-plus {
+  color: #dd4b39;
+}
+.bg-twitter {
+  background-color: #1da1f2;
+}
+.text-twitter {
+  color: #1da1f2;
+}
+.bg-pinterest {
+  background-color: #bd081c;
+}
+.text-pinterest {
+  color: #bd081c;
+}
+.share:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}

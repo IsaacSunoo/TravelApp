@@ -1,7 +1,12 @@
+import { TripService } from 'src/app/trip.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TripDetailsService } from '../trip-details.service';
+import { ProfileService } from '../profile.service';
+import { User } from '../models/user';
+import { UpdateProfile } from '../models/update-profile';
 import { Trip } from '../models/trip';
+import { Posts } from '../models/posts';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-scratchpad',
@@ -12,95 +17,75 @@ export class ScratchpadComponent implements OnInit {
   // *******************************************************************************
   // FIELDS
 
-  userProfile = null;
-
+  showProfile: UpdateProfile = null;
   id = localStorage.getItem('profileId');
+  following: User[] = [];
 
-  trip: Trip = new Trip();
+  followClicked;
+  unFollowClicked = null;
 
-  tripDateStart: Date = new Date();
+  // **
+  tripsById: Trip[] = [];
 
-  tripDateEnd: Date = new Date();
-
-  // This is false initially,
-  // but when we load the trip from subscribe, set it to true,
-  // this is to avoid errors in console complaining about not being able
-  // to access properties, but this is because of the asynchronous
-  // process of the server
-  haveTrip: Boolean = false;
-  haveResource: Boolean = false;
-  haveTip: Boolean = false;
-  haveWarning: Boolean = false;
-
-  tripId;
+  // **
+  postsById: Posts[] = [];
 
   // *******************************************************************************
   // METHODS
 
-  loadProfile = function(id: string) {
-    this.tripDetailsService.showProfile(id).subscribe(
+  hideFollowBtn = function() {
+    if (this.followClicked) {
+      this.followClicked = null;
+      this.unFollowClicked = true;
+    }
+  };
+
+  loadUserInfo = function(id: string) {
+    this.profServ.show(id).subscribe(data => {
+      this.showProfile = data;
+      console.log(this.showProfile);
+    });
+  };
+
+  followUser = function(id: number, fid: number) {
+    this.profService.followUser(fid).subscribe(data => {
+      this.following = data;
+    });
+  };
+
+  unfollowUser = function(id: number, fid: number) {
+    this.profService.unfollowUser(fid).subscribe(data => {
+      console.log('user unfollowed');
+    });
+  };
+
+  // TEST METHOD /////
+  getTripsByProfileId = function(pid) {
+    this.tripService.tripIndexByProfileId(pid).subscribe(
       data => {
-        this.userProfile = data;
-        console.log(this.userProfile);
+        this.tripsById = data;
+        console.log(this.tripsById);
       },
       err => {
         this.handleError(err);
       }
     );
   };
+  // \\\\\ TEST METHOD
 
-  loadTrip = function(tripId: string) {
-    this.tripDetailsService.showTrip(tripId).subscribe(
+  // TEST METHOD /////
+  getPostsByProfileId = function(pid) {
+    this.postService.indexForOneProfile(pid).subscribe(
       data => {
-        this.trip = data;
-        this.trip.dateStart = this.formatDate(new Date(this.trip.dateStart));
-        this.trip.dateEnd = this.formatDate(new Date(this.trip.dateEnd));
-        this.haveTrip = true;
-
-        this.trip.recommendations.forEach(recommendation => {
-          if (recommendation.recType.name.includes('resource')) {
-            this.haveResource = true;
-          }
-
-          if (recommendation.recType.name.includes('tip')) {
-            this.haveTip = true;
-          }
-
-          if (recommendation.recType.name.includes('warning')) {
-            this.haveWarning = true;
-          }
-        });
-
-        console.log(this.trip);
+        this.postsById = data;
+        console.log(this.postsById);
       },
       err => {
         this.handleError(err);
       }
     );
   };
-
-  formatDate = function(date) {
-    const monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ];
-
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
-  };
+  // \\\\\ TEST METHOD
 
   handleError(error: any) {
     console.error('Something Broke');
@@ -113,18 +98,14 @@ export class ScratchpadComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private tripDetailsService: TripDetailsService
+    private profServ: ProfileService,
+    private tripService: TripService,
+    private postService: PostsService
   ) {}
 
   ngOnInit() {
-    this.loadProfile(this.id);
-
-    // Get the tripId from the URL
-    // (which is the routerLink created when you click on a post from the feed page)
-    this.tripId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.tripId);
-    if (this.tripId) {
-      this.loadTrip(this.tripId);
-    }
+    this.loadUserInfo(this.id);
+    this.getTripsByProfileId(this.id);
+    this.getPostsByProfileId(this.id);
   }
 }
