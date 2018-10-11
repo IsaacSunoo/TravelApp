@@ -135,10 +135,6 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 
-//		if (user.getFollowers() == null) {
-//			user.setFollowers(new ArrayList<User>());
-//		}
-//		user.getFollowers().add(personToFollow);
 		user.addFollower(personToFollow);
 		userRepo.saveAndFlush(user);
 		return user;
