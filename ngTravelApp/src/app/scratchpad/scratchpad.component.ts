@@ -28,6 +28,9 @@ export class ScratchpadComponent implements OnInit {
   // to access properties, but this is because of the asynchronous
   // process of the server
   haveTrip: Boolean = false;
+  haveResource: Boolean = false;
+  haveTip: Boolean = false;
+  haveWarning: Boolean = false;
 
   tripId;
 
@@ -53,6 +56,21 @@ export class ScratchpadComponent implements OnInit {
         this.trip.dateStart = this.formatDate(new Date(this.trip.dateStart));
         this.trip.dateEnd = this.formatDate(new Date(this.trip.dateEnd));
         this.haveTrip = true;
+
+        this.trip.recommendations.forEach(recommendation => {
+          if (recommendation.recType.name.includes('resource')) {
+            this.haveResource = true;
+          }
+
+          if (recommendation.recType.name.includes('tip')) {
+            this.haveTip = true;
+          }
+
+          if (recommendation.recType.name.includes('warning')) {
+            this.haveWarning = true;
+          }
+        });
+
         console.log(this.trip);
       },
       err => {

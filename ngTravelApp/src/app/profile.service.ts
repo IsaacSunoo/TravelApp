@@ -23,5 +23,19 @@ export class ProfileService {
     );
   }
 
+  // following a user is adding a follower to followed person's followers
+  public followUser(id: number, fid: number) {
+    return this.http.post<any>(this.baseUrl + 'addfollower/' + id + '/' + fid, {}).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving data ');
+      })
+    );
+    }
+
+    public unfollowUser(id: number, fid: number) {
+
+    }
+
   constructor(private http: HttpClient) {}
 }
