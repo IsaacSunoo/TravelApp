@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
+  { path: '', component: RegisterComponent },
   { path: 'home', component: RegisterComponent },
   { path: 'settings', component: SettingComponent },
   { path: 'profile', component: ProfileComponent},w
