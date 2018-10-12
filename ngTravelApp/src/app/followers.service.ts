@@ -42,9 +42,6 @@ export class FollowersService {
   }
 
   public search(keyword: string): Observable<UpdateProfile[]> {
-    console.log('debugging 101');
-    console.log(keyword);
-
     return this.http.get<UpdateProfile[]>(this.baseUrl + 'search/' + keyword).pipe(
       catchError((err: any) => {
         console.log(err);

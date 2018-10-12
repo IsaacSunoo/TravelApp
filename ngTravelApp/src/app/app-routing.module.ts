@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FollowingComponent } from './following/following.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,9 @@ const routes: Routes = [
   { path: 'scratchpad', component: ScratchpadComponent },
   { path: 'scratchpad/:id', component: ScratchpadComponent },
   { path: 'profile/:id', component: ProfileComponent },
-  { path: 'follow', component: FollowersComponent }
+  { path: 'follow', component: FollowersComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'search/:keyword', component: SearchComponent }
 
 
 ];

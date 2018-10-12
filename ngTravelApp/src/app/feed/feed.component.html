@@ -39,28 +39,27 @@
   </form>
 </div> -->
 <div class="container">
-  <form class="form-inline">
+   <!-- <form class="form-inline" #searchForm="ngForm"> -->
     <div class="input-group">
       <input type="text" size="128" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2"
-        placeholder="Search">
+        placeholder="Search Profiles" [(ngModel)]="keyword">
       <div class="input-group-append">
-        <button class="btn btn-outline-primary" type="button" id="button-addon2">
+        <button class="btn btn-outline-primary" type="button" id="button-addon2" [routerLink]="['/search/' + keyword]">
           <i class="fa fa-search"></i>
         </button>
       </div>
     </div>
-  </form>
+   <!-- </form> -->
 </div>
 <br>
-
 
 <!-- Trip form stepper with date picker -->
 <div class="container">
   <app-stepper></app-stepper>
 </div>
 
-
 <!-- From posts.component.html -->
 <div>
   <app-posts></app-posts>
 </div>
+

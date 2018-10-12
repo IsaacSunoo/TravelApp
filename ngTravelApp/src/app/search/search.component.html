@@ -1,0 +1,12 @@
+<div class="col border rounded">
+    <table>
+      <thead>
+        <th>Search Results:</th></thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td><a class="card-link" [routerLink]="['/profile/' + user.id]">{{user.name}} </a></td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+
