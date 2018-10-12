@@ -122,7 +122,16 @@ export class PostsService {
 
   // 5:59PM TEST METHOD /////
 
-
+  public getPostByProfileAndTripId(pid, tid): Observable<Posts> {
+    return this.http
+      .get<Posts>(`${this.baseUrl}api/profile/${pid}/trip/${tid}/posts`)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error deleting Post... Status: ' + err.status);
+        })
+      );
+  }
 
   // \\\\\ TEST METHOD
 

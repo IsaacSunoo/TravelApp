@@ -50,6 +50,11 @@ public class PostServiceImpl implements PostService {
 		return postRepo.queryAllPostsForOneProfile(pid);
 	}
 
+	@Override
+	public Posts queryForPostByProfileAndTripId(Integer pid, Integer tid) {
+		return postRepo.queryForPostByProfileAndTripId(pid, tid);
+	}
+
 	// CREATE ***********************************************************
 
 	@Override

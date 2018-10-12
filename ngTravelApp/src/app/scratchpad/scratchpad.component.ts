@@ -33,6 +33,9 @@ export class ScratchpadComponent implements OnInit {
   // **
   favoriteTripsById: Trip[] = [];
 
+  // **
+  favoritePosts: Posts[] = [];
+
   // *******************************************************************************
   // METHODS
 
@@ -67,7 +70,6 @@ export class ScratchpadComponent implements OnInit {
     this.tripService.tripIndexByProfileId(pid).subscribe(
       data => {
         this.tripsById = data;
-        console.log(this.tripsById);
       },
       err => {
         this.handleError(err);
@@ -96,6 +98,21 @@ export class ScratchpadComponent implements OnInit {
       data => {
         this.favoriteTripsById = data;
         console.log(this.favoriteTripsById);
+
+        this.favoriteTripsById.forEach(trip => {
+          this.postService
+            .getPostByProfileAndTripId(trip.profile.id, trip.id)
+            .subscribe(
+              postReturnData => {
+                const tripPost = postReturnData;
+
+                this.favoritePosts.push(tripPost);
+              },
+              errPostReturn => {
+                this.handleError(errPostReturn);
+              }
+            );
+        });
       },
       err => {
         this.handleError(err);

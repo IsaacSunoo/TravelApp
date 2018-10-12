@@ -72,6 +72,15 @@ public class PostsController {
 		return postService.getAllPostsForOneProfile(pid);
 	}
 
+	@RequestMapping(path = "/profile/{pid}/trip/{tid}/posts",
+			method = RequestMethod.GET)
+	public Posts getOnePostByProfileAndTripId(
+			@PathVariable(name = "pid") Integer pid,
+			@PathVariable(name = "tid") Integer tid) {
+
+		return postService.queryForPostByProfileAndTripId(pid, tid);
+	}
+
 	// UPDATE
 
 	// DELETE

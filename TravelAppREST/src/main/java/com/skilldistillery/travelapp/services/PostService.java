@@ -20,4 +20,6 @@ public interface PostService {
 
 	public List<Posts> getAllPostsForOneProfile(Integer pid);
 
+	public Posts queryForPostByProfileAndTripId(Integer pid, Integer tid);
+
 }
