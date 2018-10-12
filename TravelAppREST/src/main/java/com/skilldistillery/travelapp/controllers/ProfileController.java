@@ -42,7 +42,7 @@ public class ProfileController {
 
 	// This method is for retrieving a user/profile's list of favorite trips (i.e.
 	// bookmarked trips)
-	@RequestMapping(path = "/profile/{pid}/favoriteTrips",
+	@RequestMapping(path = "/profiles/{pid}/favoriteTrips",
 			method = RequestMethod.GET)
 	public List<Trip> favoriteTripsIndexByProfileId(
 			@PathVariable(name = "pid") Integer pid, HttpServletResponse res) {

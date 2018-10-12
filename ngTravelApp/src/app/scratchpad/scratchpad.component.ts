@@ -30,6 +30,9 @@ export class ScratchpadComponent implements OnInit {
   // **
   postsById: Posts[] = [];
 
+  // **
+  favoriteTripsById: Trip[] = [];
+
   // *******************************************************************************
   // METHODS
 
@@ -87,6 +90,20 @@ export class ScratchpadComponent implements OnInit {
   };
   // \\\\\ TEST METHOD
 
+  // TEST METHOD /////
+  getFavoriteTripsByProfileId = function(pid) {
+    this.profServ.getFavoriteTripsByProfileId(pid).subscribe(
+      data => {
+        this.favoriteTripsById = data;
+        console.log(this.favoriteTripsById);
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\ TEST METHOD
+
   handleError(error: any) {
     console.error('Something Broke');
     console.log(error);
@@ -107,5 +124,6 @@ export class ScratchpadComponent implements OnInit {
     this.loadUserInfo(this.id);
     this.getTripsByProfileId(this.id);
     this.getPostsByProfileId(this.id);
+    this.getFavoriteTripsByProfileId(this.id);
   }
 }
