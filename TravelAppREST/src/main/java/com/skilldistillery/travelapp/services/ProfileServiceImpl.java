@@ -55,6 +55,33 @@ public class ProfileServiceImpl implements ProfileService {
 
 		return managedProfileWithFavoriteTripsLoaded;
 	}
+	
+	@Override
+	public Profile removeTripBookmark(Integer pid, Integer tid) {
+		
+		// Get the person in session profile from DB
+		Profile managedProfileWithFavoriteTripsLoaded = profileRepo
+				.queryForFavoriteTripsByProfileId(pid);
+		
+		if (managedProfileWithFavoriteTripsLoaded == null) {
+			managedProfileWithFavoriteTripsLoaded = profileRepo.findById(pid).get();
+			if (managedProfileWithFavoriteTripsLoaded == null) {
+				return null;
+			}
+		}
+		
+		// Get the trip to remove bookmark from, from the DB
+		Optional<Trip> opTrip = tripRepo.findById(tid);
+		Trip managedTrip = opTrip.get();
+		if (!opTrip.isPresent()) {
+			return null;
+		}
+		
+		managedProfileWithFavoriteTripsLoaded.removeFavoriteTrip(managedTrip);
+		profileRepo.saveAndFlush(managedProfileWithFavoriteTripsLoaded);
+		
+		return managedProfileWithFavoriteTripsLoaded;
+	}
 
 	// READ
 

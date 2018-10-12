@@ -116,7 +116,8 @@
                     </h5>
 
                     <div *ngIf="isTripBookmarked">
-                      <button type="button" class="btn btn-dark">Remove Bookmark</button>
+                      <button type="button" class="btn btn-dark" (click)="removeTripBookmark(id, trip.id)">Remove
+                        Bookmark</button>
                     </div>
 
                     <div *ngIf="!isTripBookmarked && !isThisMyTrip">

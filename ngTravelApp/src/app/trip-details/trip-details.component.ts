@@ -136,7 +136,9 @@ export class TripDetailsComponent implements OnInit {
 
         // ***** EXTENSION BOOKMARK LOGIC *****
         this.tripsForProfileInStorage.forEach(trip => {
+          console.log('***\n' + this.trip.id + '\n***' + '\n' + trip.id);
           if (trip.id === this.trip.id) {
+            console.log('***\n' + this.trip.id + '\n***' + '\n' + trip.id);
             this.isThisMyTrip = true;
           }
         });
@@ -176,6 +178,17 @@ export class TripDetailsComponent implements OnInit {
     this.profileService.bookmarkTrip(pid, tid).subscribe(
       data => {
         this.isTripBookmarked = true;
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+
+  removeTripBookmark = function(pid, tid) {
+    this.profileService.removeTripBookmark(pid, tid).subscribe(
+      data => {
+        this.isTripBookmarked = false;
       },
       err => {
         this.handleError(err);

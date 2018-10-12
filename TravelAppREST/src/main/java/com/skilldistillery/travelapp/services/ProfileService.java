@@ -16,4 +16,6 @@ public interface ProfileService {
 
 	public Profile bookmarkTrip(Integer pid, Integer tid);
 
+	public Profile removeTripBookmark(Integer pid, Integer tid);
+
 }
