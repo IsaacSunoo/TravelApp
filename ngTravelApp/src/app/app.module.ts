@@ -28,6 +28,7 @@ import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 import { StepperToPostsShellService } from './stepper-to-posts-shell.service';
+import { CarouselComponent } from './carousel/carousel.component';
 
 
 
@@ -48,6 +49,7 @@ import { StepperToPostsShellService } from './stepper-to-posts-shell.service';
     DatePickerComponent,
     TripDetailsComponent,
     ScratchpadComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,

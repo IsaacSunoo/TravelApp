@@ -11,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FollowingComponent } from './following/following.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 
+
 const routes: Routes = [
   { path: 'home', component: RegisterComponent },
   { path: 'settings', component: SettingComponent },
