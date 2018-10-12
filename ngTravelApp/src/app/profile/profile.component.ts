@@ -27,8 +27,6 @@ export class ProfileComponent implements OnInit {
   testId;
   loggedIn;
 
-  toFollow: User [] = [];
-
   logout = function() {
     this.userServ.logout();
     this.router.navigateByUrl('home');
@@ -39,14 +37,6 @@ export class ProfileComponent implements OnInit {
       this.followClicked = null;
       this.unFollowClicked = true;
     }
-  };
-
-  discoverFollowers = function() {
-    this.profServ.discover().subscribe(
-      data => {
-        this.users = data;
-      }
-    );
   };
 
  followingIndex = function(id: string) {
@@ -87,7 +77,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.testId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.discoverFollowers();
+
     if (this.testId) {
     this.loadUserInfo(this.testId);
     this.followingIndex(this.testId);

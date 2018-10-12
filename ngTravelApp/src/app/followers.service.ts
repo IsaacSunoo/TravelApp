@@ -3,6 +3,8 @@ import { Observable, throwError } from 'rxjs';
 import { Profile } from './models/profile';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { User } from './models/user';
+import { UpdateProfile } from './models/update-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,27 @@ export class FollowersService {
           return throwError('Error retrieving To do List: ' + ' Status: ' + err.status);
         })
       );
+  }
+
+  public discover(id: string): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'discover/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving data ' + err.status);
+      })
+    );
+  }
+
+  public search(keyword: string): Observable<UpdateProfile[]> {
+    console.log('debugging 101');
+    console.log(keyword);
+
+    return this.http.get<UpdateProfile[]>(this.baseUrl + 'search/' + keyword).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving data ' + err.status);
+      })
+    );
   }
 
   constructor(private http: HttpClient) {}

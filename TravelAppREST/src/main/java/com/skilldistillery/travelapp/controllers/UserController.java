@@ -74,5 +74,11 @@ public class UserController {
 		List <User> result = userService.discoverPeopleToFollow(uid);
 		return result ;
 	}
+	
+	@RequestMapping(path="search/{keyword}", method = RequestMethod.GET)
+	public List<User> search(@PathVariable(name="keyword") String keyword){
+		List<User> result = userService.searchForUsers(keyword);
+		return result;
+	}
 
 }

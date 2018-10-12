@@ -25,14 +25,6 @@ export class ProfileService {
       })
     );
   }
-  public discover(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'users').pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error retrieving data ' + err.status);
-      })
-    );
-  }
 
   // following a user is adding a follower to followed person's followers
   public followUser(id: string, testId: string) {

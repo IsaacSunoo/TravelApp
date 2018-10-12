@@ -20,6 +20,8 @@ public interface UserService {
 	boolean unfollowUser(Integer uid, Integer fid);
 
 	List<User> discoverPeopleToFollow(Integer uid);
+
+	List<User> searchForUsers(String keyword);
 	
 
 }

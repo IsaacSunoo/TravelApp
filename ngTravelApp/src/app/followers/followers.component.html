@@ -35,3 +35,27 @@
   </div>
 </nav>
 <br>
+<!-- <form> -->
+  <input type="text" name="keyword" placeholder="search keyword" [(ngModel)]="keyword" >
+  <button class="btn-primary" type="submit" value="keyword" (click)="searchForUsers()">Search For Users</button>
+<!-- </form> -->
+<div>
+  <ul>
+    <li *ngFor="let result of results">{{result.name}} {{result.firstName}} {{result.lastName}}</li>
+  </ul>
+</div>
+
+<!-- <div class="col border rounded">
+        <table>
+          <thead>
+            <th>Discover:</th></thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><a class="card-link" [routerLink]="['/profile/' + user.id]">{{user.name}} </a></td>
+              </tr>
+            </tbody>
+        </table>
+      </div> -->
+
+
+
