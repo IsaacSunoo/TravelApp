@@ -49,7 +49,6 @@ import { StepperToPostsShellService } from './stepper-to-posts-shell.service';
     DatePickerComponent,
     TripDetailsComponent,
     ScratchpadComponent,
-    CarouselComponent,
   ],
   imports: [
     BrowserModule,
