@@ -5,12 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { User } from './models/user';
 import { Trip } from './models/trip';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/profiles';
 
   public show(id: string): Observable<UpdateProfile> {

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { Posts } from './models/posts';
 import { PostDTO } from './models/post-dto';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class PostsService {
   // *******************************************************************************
   // FIELDS
 
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/posts';
 
   // *******************************************************************************

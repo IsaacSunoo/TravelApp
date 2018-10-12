@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { UpdateProfile } from './models/update-profile';
 import { catchError } from 'rxjs/operators';
@@ -9,7 +10,7 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class FeedService {
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/feed';
 
   public search(keyword: string): Observable<User[]> {

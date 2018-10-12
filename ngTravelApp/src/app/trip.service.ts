@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { Trip } from './models/trip';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TripService {
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/trips';
 
   // TEST METHOD /////

@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Posts } from './models/posts';
 import { Trip } from './models/trip';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class TripDetailsService {
   // *******************************************************************************
   // FIELDS
 
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/profiles';
   private postUrl = this.baseUrl + 'api/posts';
   private tripUrl = this.baseUrl + 'api/trips';

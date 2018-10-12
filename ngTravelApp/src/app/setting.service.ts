@@ -4,13 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { User } from './models/user';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingService {
 
-  private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/profiles';
 
   public index(): Observable<UpdateProfile[]> {
