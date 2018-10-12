@@ -29,7 +29,7 @@ sourceCompatibility = 1.8
 repositories {
 	mavenCentral()
 }
-
+project.webAppDirName='src/main/resources/static'
 
 dependencies {
 	compile project(':TravelAppJPA')
