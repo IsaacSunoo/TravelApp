@@ -14,4 +14,8 @@ public interface ProfileService {
 
 	public List<Trip> queryForFavoriteTripsByProfileId(Integer pid);
 
+	public Profile bookmarkTrip(Integer pid, Integer tid);
+
+	public Profile removeTripBookmark(Integer pid, Integer tid);
+
 }

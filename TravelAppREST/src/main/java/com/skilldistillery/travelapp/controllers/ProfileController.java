@@ -33,6 +33,35 @@ public class ProfileController {
 
 	// CREATE
 
+	// Post request for add bookmark here
+	@RequestMapping(path = "profiles/{pid}/favoriteTrips/{tid}",
+			method = RequestMethod.POST)
+	public Profile bookmarkTrip(@PathVariable(name = "pid") Integer pid,
+			@PathVariable(name = "tid") Integer tid, HttpServletResponse res) {
+
+		Profile profile = profileService.bookmarkTrip(pid, tid);
+
+		if (profile == null) {
+			res.setStatus(500);
+		}
+
+		return profile;
+	}
+
+	@RequestMapping(path = "profiles/{pid}/favoriteTrips/{tid}",
+			method = RequestMethod.DELETE)
+	public Profile removeTripBookmark(@PathVariable(name = "pid") Integer pid,
+			@PathVariable(name = "tid") Integer tid, HttpServletResponse res) {
+
+		Profile profile = profileService.removeTripBookmark(pid, tid);
+
+		if (profile == null) {
+			res.setStatus(500);
+		}
+
+		return profile;
+	}
+
 	// READ
 
 	@RequestMapping(path = "profiles/{pid}", method = RequestMethod.GET)

@@ -70,6 +70,9 @@ export class ScratchpadComponent implements OnInit {
     this.tripService.tripIndexByProfileId(pid).subscribe(
       data => {
         this.tripsById = data;
+        this.tripsById.forEach(element => {
+          console.log(element.id);
+        });
       },
       err => {
         this.handleError(err);

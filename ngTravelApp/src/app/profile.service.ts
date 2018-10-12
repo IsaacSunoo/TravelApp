@@ -67,5 +67,27 @@ export class ProfileService {
     );
   }
 
+  public bookmarkTrip(pid, tid) {
+    return this.http
+      .post(`${this.baseUrl}api/profiles/${pid}/favoriteTrips/${tid}`, {})
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error retrieving data ' + err.status);
+        })
+      );
+  }
+
+  public removeTripBookmark(pid, tid) {
+    return this.http
+      .delete(`${this.baseUrl}api/profiles/${pid}/favoriteTrips/${tid}`)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error retrieving data ' + err.status);
+        })
+      );
+  }
+
   constructor(private http: HttpClient) {}
 }
