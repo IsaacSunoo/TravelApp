@@ -64,28 +64,29 @@
 
       <!-- Follow Button -->
       <!-- <div id="followBtn" *ngIf="!followClicked"> -->
-      <div id="follow/unfollow buttons" >
-        <div id="followBtn" >
-          <button class="btn btn-outline-dark" type="submit" value="Follow"(click)="followUser(id, testId)">Follow</button>
+      <div id="follow/unfollow buttons">
+        <div id="followBtn">
+          <button class="btn btn-outline-dark" type="submit" value="Follow" (click)="followUser(id, testId)">Follow</button>
         </div>
-      <!-- <div id="unfollowBtn" *ngIf="followClicked"> -->
-        <div id="unfollowBtn" >
-          <button class="btn btn-outline-dark" type="submit" value="unFollow"(click)="unfollowUser(id, testId)">unFollow</button>
+        <!-- <div id="unfollowBtn" *ngIf="followClicked"> -->
+        <div id="unfollowBtn">
+          <button class="btn btn-outline-dark" type="submit" value="unFollow" (click)="unfollowUser(id, testId)">unFollow</button>
         </div>
       </div>
       <br>
 
       <div class="col border rounded">
-          <table>
-            <thead>
-              <th>Following:</th></thead>
-              <tbody>
-                <tr *ngFor="let user of users">
-                  <td><a class="card-link" [routerLink]="['/profile/' + user.id]">{{user.name}} </a></td>
-                </tr>
-              </tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <th>Following:</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td><a class="card-link" [routerLink]="['/profile/' + user.id]">{{user.name}} </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <br>
 
@@ -116,25 +117,68 @@
       </a>
 
       <!-- TEST DIV -->
-      <div class="row">
+      <!-- <div class="row">
 
         <div class="col border rounded">
           <h2>Bookmarked Trips</h2>
         </div>
 
         <div class="col border rounded">
-          <h2>My Trips</h2>
-          <!-- <ul *ngFor="let trip of trips">
+          <h2>My Trips</h2> -->
+      <!-- <ul *ngFor="let trip of trips">
               <li>{{trip.title}} </li>
           </ul> -->
-        </div>
+      <!-- </div>
 
       </div>
 
     </div>
 
+  </div> -->
+
+      <!-- Trips Div///// -->
+      <div class="row">
+
+        <div class="col border rounded">
+          <h2>Bookmarked Trips</h2>
+          <!-- TEMP STUFF STYLING TEST -->
+          <div *ngFor="let favoritePost of favoritePosts" class="row">
+            <div class="col">
+              <div class="card mb-4 border-dark">
+                <img class="card-img-top" [src]="favoritePost.trip.imgLink" alt="Card trip image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{favoritePost.trip.title}}</h5>
+                  <p class="card-text">{{favoritePost.message}}</p>
+                  <a [routerLink]="['/trips/' + favoritePost.trip.id]" class="btn btn-dark btn-sm">View Trip</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END TEMP STUFF -->
+        </div>
+
+        <div class="col border rounded">
+          <h2>My Trips</h2>
+          <div *ngFor="let post of postsById" class="row">
+            <div class="col">
+              <div class="card mb-4 border-dark">
+                <img class="card-img-top" [src]="post.trip.imgLink" alt="Card trip image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{post.trip.title}}</h5>
+                  <p class="card-text">{{post.message}}</p>
+                  <a [routerLink]="['/trips/' + post.trip.id]" class="btn btn-dark btn-sm">View Trip</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /////Trips Div -->
+
+
+    </div>
+
   </div>
 
-
-
-
+</div>
