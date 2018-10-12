@@ -24,16 +24,12 @@ export class ScratchpadComponent implements OnInit {
   followClicked;
   unFollowClicked = null;
 
-  // **
   tripsById: Trip[] = [];
 
-  // **
   postsById: Posts[] = [];
 
-  // **
   favoriteTripsById: Trip[] = [];
 
-  // **
   favoritePosts: Posts[] = [];
 
   // *******************************************************************************
@@ -65,7 +61,6 @@ export class ScratchpadComponent implements OnInit {
     });
   };
 
-  // TEST METHOD /////
   getTripsByProfileId = function(pid) {
     this.tripService.tripIndexByProfileId(pid).subscribe(
       data => {
@@ -79,9 +74,7 @@ export class ScratchpadComponent implements OnInit {
       }
     );
   };
-  // \\\\\ TEST METHOD
 
-  // TEST METHOD /////
   getPostsByProfileId = function(pid) {
     this.postService.indexForOneProfile(pid).subscribe(
       data => {
@@ -93,9 +86,7 @@ export class ScratchpadComponent implements OnInit {
       }
     );
   };
-  // \\\\\ TEST METHOD
 
-  // TEST METHOD /////
   getFavoriteTripsByProfileId = function(pid) {
     this.profServ.getFavoriteTripsByProfileId(pid).subscribe(
       data => {
@@ -122,7 +113,6 @@ export class ScratchpadComponent implements OnInit {
       }
     );
   };
-  // \\\\\ TEST METHOD
 
   handleError(error: any) {
     console.error('Something Broke');
