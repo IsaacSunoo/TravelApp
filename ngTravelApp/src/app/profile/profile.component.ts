@@ -1,13 +1,17 @@
 import { FollowersService } from './../followers.service';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { UpdateProfile } from '../models/update-profile';
 import { FollowingService } from '../following.service';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
 import { UserService } from '../user.service';
+import { TripService } from 'src/app/trip.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import { Trip } from '../models/trip';
+import { Posts } from '../models/posts';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,17 +19,29 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  // *******************************************************************************
+  // FIELDS
   showProfile: UpdateProfile = null;
   id = localStorage.getItem('profileId');
-  following: User [] = [];
-  users: User [] = [];
-  profiles: Profile [] = [];
+  following: User[] = [];
+  users: User[] = [];
+  profiles: Profile[] = [];
 
   followClicked;
   unFollowClicked = null;
   testId;
   loggedIn;
+
+  tripsById: Trip[] = [];
+
+  postsById: Posts[] = [];
+
+  favoriteTripsById: Trip[] = [];
+
+  favoritePosts: Posts[] = [];
+
+  // *******************************************************************************
+  // METHODS
 
   logout = function() {
     this.userServ.logout();
@@ -39,53 +55,115 @@ export class ProfileComponent implements OnInit {
     }
   };
 
- followingIndex = function(id: string) {
-   this.profServ.followingIndex(id).subscribe(
-     data => {
-        this.users = data;
-     });
- };
+  followingIndex = function(id: string) {
+    this.profServ.followingIndex(id).subscribe(data => {
+      this.users = data;
+    });
+  };
 
-  loadUserInfo = function (id: string) {
-    this.profServ.show(id).subscribe(
-      data => {
-        this.showProfile = data;
-        console.log(this.showProfile);
-
-      });
+  loadUserInfo = function(id: string) {
+    this.profServ.show(id).subscribe(data => {
+      this.showProfile = data;
+    });
   };
 
   followUser = function(id: string, testId: string) {
-    this.profServ.followUser(id, testId).subscribe(
-      data => {
-        console.log('user followed');
-         this.users = data;
-      });
+    this.profServ.followUser(id, testId).subscribe(data => {
+      console.log('user followed');
+      this.users = data;
+    });
   };
 
   unfollowUser = function(id: string, testId: string) {
-
-    this.profServ.unfollowUser(id, testId).subscribe(
-      data => {
-        console.log('user unfollowed');
-      });
+    this.profServ.unfollowUser(id, testId).subscribe(data => {
+      console.log('user unfollowed');
+    });
   };
 
-  constructor(private activatedRoute: ActivatedRoute,
+  // new stuff
+
+  getTripsByProfileId = function(pid) {
+    this.tripService.tripIndexByProfileId(pid).subscribe(
+      data => {
+        this.tripsById = data;
+        this.tripsById.forEach(element => {});
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+
+  getPostsByProfileId = function(pid) {
+    this.postService.indexForOneProfile(pid).subscribe(
+      data => {
+        this.postsById = data;
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+
+  getFavoriteTripsByProfileId = function(pid) {
+    this.profServ.getFavoriteTripsByProfileId(pid).subscribe(
+      data => {
+        this.favoriteTripsById = data;
+
+        this.favoriteTripsById.forEach(trip => {
+          this.postService
+            .getPostByProfileAndTripId(trip.profile.id, trip.id)
+            .subscribe(
+              postReturnData => {
+                const tripPost = postReturnData;
+
+                this.favoritePosts.push(tripPost);
+              },
+              errPostReturn => {
+                this.handleError(errPostReturn);
+              }
+            );
+        });
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+
+  handleError(error: any) {
+    console.error('Something Broke');
+    console.log(error);
+  }
+
+  // *******************************************************************************
+  // HELPERS
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private profServ: ProfileService, private userServ: UserService) { }
+    private profServ: ProfileService,
+    private userServ: UserService,
+    private tripService: TripService,
+    private postService: PostsService
+  ) {}
 
   ngOnInit() {
     this.testId = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (this.testId) {
-    this.loadUserInfo(this.testId);
-    this.followingIndex(this.testId);
+      this.loadUserInfo(this.testId);
+      this.followingIndex(this.testId);
     } else {
       this.followingIndex(this.id);
       this.loadUserInfo(this.id);
     }
 
+    // new stuff
 
+    this.loadUserInfo(this.id);
+    this.getTripsByProfileId(this.id);
+    this.getPostsByProfileId(this.id);
+    this.getFavoriteTripsByProfileId(this.id);
   }
 }
