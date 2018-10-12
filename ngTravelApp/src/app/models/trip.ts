@@ -1,5 +1,6 @@
 import { Destination } from './destination';
 import { Recommendation } from './recommendation';
+import { Profile } from './profile';
 
 export class Trip {
   id: number;
@@ -12,6 +13,7 @@ export class Trip {
   imgLink: string;
   destination: Destination;
   recommendations: Recommendation[];
+  profile: Profile;
 
   constructor(
     id?: number,
@@ -23,7 +25,8 @@ export class Trip {
     review?: string,
     imgLink?: string,
     destination?: Destination,
-    recommendations?: Recommendation[]
+    recommendations?: Recommendation[],
+    profile?: Profile
   ) {
     this.id = id;
     this.title = title;
@@ -35,5 +38,6 @@ export class Trip {
     this.imgLink = imgLink;
     this.destination = destination;
     this.recommendations = recommendations;
+    this.profile = profile;
   }
 }

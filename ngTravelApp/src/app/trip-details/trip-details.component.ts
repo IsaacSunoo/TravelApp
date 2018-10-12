@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TripDetailsService } from '../trip-details.service';
 import { Trip } from '../models/trip';
 import { UserService } from '../user.service';
+import { TripService } from '../trip.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -25,6 +26,12 @@ export class TripDetailsComponent implements OnInit {
 
   tripId;
 
+  // **
+  tripsForProfileInStorage: Trip[] = [];
+
+  // **
+  favoriteTripsForProfileInStorage: Trip[] = [];
+
   // This is false initially,
   // but when we load the trip from subscribe, set it to true,
   // this is to avoid errors in console complaining about not being able
@@ -34,6 +41,8 @@ export class TripDetailsComponent implements OnInit {
   haveResource: Boolean = false;
   haveTip: Boolean = false;
   haveWarning: Boolean = false;
+  isTripBookmarked: Boolean = false;
+  isThisMyTrip: Boolean = false;
 
   // *******************************************************************************
   // METHODS
@@ -77,6 +86,14 @@ export class TripDetailsComponent implements OnInit {
           }
         });
 
+        // ***** START BOOKMARK LOGIC *****
+        // Query for favoriteTripsByProfileId (id in storage)
+        this.getFavoriteTripsForProfileInStorage(this.id);
+
+        // Also query for tripsByProfileId (id in storage)
+        this.getTripsForProfileInStorage(this.id);
+        // ***** END BOOKMARK LOGIC *****
+
         console.log(this.trip);
       },
       err => {
@@ -84,6 +101,52 @@ export class TripDetailsComponent implements OnInit {
       }
     );
   };
+
+  // TEST METHOD /////
+  getFavoriteTripsForProfileInStorage = function(pid) {
+    this.tripService.favoriteTripIndexByProfileId(pid).subscribe(
+      data => {
+        this.favoriteTripsForProfileInStorage = data;
+        console.log(
+          '****\n' + this.favoriteTripsForProfileInStorage + '\n****'
+        );
+
+        // ***** EXTENSION BOOKMARK LOGIC *****
+        this.favoriteTripsForProfileInStorage.forEach(favoriteTrip => {
+          if (favoriteTrip.id === this.trip.id) {
+            this.isTripBookmarked = true;
+          }
+        });
+        // ***** END EXTENSION BOOKMARK LOGIC *****
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\ TEST METHOD
+
+  // TEST METHOD /////
+  getTripsForProfileInStorage = function(pid) {
+    this.tripService.tripIndexByProfileId(pid).subscribe(
+      data => {
+        this.tripsForProfileInStorage = data;
+        console.log('****\n' + this.tripsForProfileInStorage + '\n****');
+
+        // ***** EXTENSION BOOKMARK LOGIC *****
+        this.tripsForProfileInStorage.forEach(trip => {
+          if (trip.id === this.trip.id) {
+            this.isThisMyTrip = true;
+          }
+        });
+        // ***** END EXTENSION BOOKMARK LOGIC *****
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\ TEST METHOD
 
   formatDate = function(date) {
     const monthNames = [
@@ -120,7 +183,8 @@ export class TripDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private tripDetailsService: TripDetailsService,
-    private userServ: UserService
+    private userServ: UserService,
+    private tripService: TripService
   ) {}
 
   ngOnInit() {
