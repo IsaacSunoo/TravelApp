@@ -88,7 +88,7 @@
                 <div class="row">
 
                   <div class="col-md-6 row justify-content-center align-self-center how-img">
-                    <img [src]="trip.imgLink" class="img-fluid" alt="trip related image"/>
+                    <img [src]="trip.imgLink" class="img-fluid" alt="trip related image" />
                   </div>
 
                   <div class="col-md-6 text-center">
@@ -108,6 +108,25 @@
                     <h4 class="subheading">Trip End Date</h4>
                     <p class="text-muted">{{trip.dateEnd}}</p>
                   </div>
+
+                  <!-- New Content -->
+                  <div *ngIf="!isThisMyTrip">
+                    <h5>
+                      Trip Poster: {{trip.profile.user.name}}
+                    </h5>
+
+                    <div *ngIf="isTripBookmarked">
+                      <button type="button" class="btn btn-dark">Remove Bookmark</button>
+                    </div>
+
+
+
+                    <div *ngIf="!isTripBookmarked && !isThisMyTrip">
+                      <button type="button" class="btn btn-dark">Bookmark This Trip</button>
+                    </div>
+
+                  </div>
+                  <!-- End New Content -->
 
                 </div>
               </div>

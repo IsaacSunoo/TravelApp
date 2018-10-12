@@ -12,7 +12,6 @@ export class TripService {
   private url = this.baseUrl + 'api/trips';
 
   // TEST METHOD /////
-
   public tripIndexByProfileId(pid): Observable<Trip[]> {
     return this.http
       .get<Trip[]>(`${this.baseUrl}api/profile/${pid}/trips`)
@@ -25,7 +24,21 @@ export class TripService {
         })
       );
   }
+  // \\\\\ TEST METHOD
 
+  // TEST METHOD /////
+  public favoriteTripIndexByProfileId(pid): Observable<Trip[]> {
+    return this.http
+      .get<Trip[]>(`${this.baseUrl}api/profiles/${pid}/favoriteTrips`)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            'Error retrieving Trips By Profile Id: ' + ' Status: ' + err.status
+          );
+        })
+      );
+  }
   // \\\\\ TEST METHOD
 
   public index(id): Observable<Trip[]> {
