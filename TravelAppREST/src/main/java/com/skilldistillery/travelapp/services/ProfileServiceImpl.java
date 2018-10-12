@@ -10,8 +10,10 @@ import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.ProfileLocation;
 import com.skilldistillery.travelapp.entities.SettingsDTO;
 import com.skilldistillery.travelapp.entities.Trip;
+import com.skilldistillery.travelapp.entities.User;
 import com.skilldistillery.travelapp.repositories.ProfileLocationRepository;
 import com.skilldistillery.travelapp.repositories.ProfileRepository;
+import com.skilldistillery.travelapp.repositories.TripRepository;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -20,9 +22,39 @@ public class ProfileServiceImpl implements ProfileService {
 	private ProfileRepository profileRepo;
 
 	@Autowired
+	private TripRepository tripRepo;
+
+	@Autowired
 	private ProfileLocationRepository profileLocationRepo;
 
 	// CREATE
+
+	@Override
+	public Profile bookmarkTrip(Integer pid, Integer tid) {
+
+		// Get the person in session profile from DB
+		Profile managedProfileWithFavoriteTripsLoaded = profileRepo
+				.queryForFavoriteTripsByProfileId(pid);
+
+		if (managedProfileWithFavoriteTripsLoaded == null) {
+			managedProfileWithFavoriteTripsLoaded = profileRepo.findById(pid).get();
+			if (managedProfileWithFavoriteTripsLoaded == null) {
+				return null;
+			}
+		}
+
+		// Get the trip to bookmark from DB
+		Optional<Trip> opTrip = tripRepo.findById(tid);
+		Trip managedTrip = opTrip.get();
+		if (!opTrip.isPresent()) {
+			return null;
+		}
+
+		managedProfileWithFavoriteTripsLoaded.addFavoriteTrip(managedTrip);
+		profileRepo.saveAndFlush(managedProfileWithFavoriteTripsLoaded);
+
+		return managedProfileWithFavoriteTripsLoaded;
+	}
 
 	// READ
 
@@ -37,7 +69,7 @@ public class ProfileServiceImpl implements ProfileService {
 
 		return null;
 	}
-	
+
 	@Override
 	public List<Trip> queryForFavoriteTripsByProfileId(Integer pid) {
 		return profileRepo.queryForFavoriteTripsByProfileId(pid).getFavoriteTrips();

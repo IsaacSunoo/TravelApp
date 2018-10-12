@@ -11,4 +11,7 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 	@Query("SELECT p FROM Profile p JOIN FETCH p.favoriteTrips WHERE p.id = :id")
 	public Profile queryForFavoriteTripsByProfileId(@Param("id") Integer pid);
 	
+	
+	
+	
 }
