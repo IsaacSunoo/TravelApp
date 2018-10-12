@@ -1,7 +1,7 @@
 import { Registration } from './../models/registration';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -20,15 +20,15 @@ export class RegisterComponent implements OnInit {
       data => {
         console.log('returned data: ');
         console.log(data);
-        // this.router.navigateByUrl('trips');
+         this.router.navigateByUrl('feed');
       },
       err => {
-        // this.router.navigateByUrl('register');
+         this.router.navigateByUrl('register');
       }
     );
   };
 
-  constructor(private userService: UserService, private router: ActivatedRoute) { }
+  constructor(private userService: UserService, private activateRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }
