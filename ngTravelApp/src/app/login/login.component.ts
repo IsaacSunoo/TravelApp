@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginTemp(user).subscribe(
       data => {
         localStorage.setItem('profileId', data.id);
+        this.router.navigateByUrl('feed');
       },
       err => {
         console.error('Observer got an error: ' + err);
@@ -32,7 +34,9 @@ export class LoginComponent implements OnInit {
     );
   };
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {}
 }

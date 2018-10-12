@@ -49,14 +49,15 @@ export class SettingComponent implements OnInit {
   };
 
   logout = function() {
-    this.userService.logout();
+    this.userServ.logout();
+    this.router.navigateByUrl('home');
   };
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private setService: SettingService,
-    private userService: UserService
+    private userServ: UserService
   ) {}
 
   ngOnInit() {
