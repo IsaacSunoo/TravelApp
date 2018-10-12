@@ -6,6 +6,7 @@ import { UpdateProfile } from '../models/update-profile';
 import { FollowingService } from '../following.service';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -25,6 +26,11 @@ export class ProfileComponent implements OnInit {
   unFollowClicked = null;
   testId;
   loggedIn;
+
+  logout = function() {
+    this.userServ.logout();
+    this.router.navigateByUrl('home');
+  };
 
   hideFollowBtn = function() {
     if (this.followClicked) {
@@ -75,7 +81,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
-    private profServ: ProfileService) { }
+    private profServ: ProfileService, private userServ: UserService) { }
 
   ngOnInit() {
     this.testId = this.activatedRoute.snapshot.paramMap.get('id');

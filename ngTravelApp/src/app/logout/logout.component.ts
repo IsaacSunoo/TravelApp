@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LogoutComponent implements OnInit {
 
   logout = function() {
-    this.authServ.logout();
+    this.userServ.logout();
     this.router.navigateByUrl('home');
   };
 

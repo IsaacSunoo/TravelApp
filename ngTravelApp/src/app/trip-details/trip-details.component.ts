@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripDetailsService } from '../trip-details.service';
 import { Trip } from '../models/trip';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -36,6 +37,11 @@ export class TripDetailsComponent implements OnInit {
 
   // *******************************************************************************
   // METHODS
+
+  logout = function() {
+    this.userServ.logout();
+    this.router.navigateByUrl('home');
+  };
 
   loadProfile = function(id: string) {
     this.tripDetailsService.showProfile(id).subscribe(
@@ -113,7 +119,8 @@ export class TripDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private tripDetailsService: TripDetailsService
+    private tripDetailsService: TripDetailsService,
+    private userServ: UserService
   ) {}
 
   ngOnInit() {
