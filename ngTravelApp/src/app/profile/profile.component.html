@@ -86,6 +86,19 @@
           </table>
         </div>
     </div>
+    <br>
+    <div class="col border rounded">
+        <table>
+          <thead>
+            <th>Discover:</th></thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><a class="card-link" [routerLink]="['/profile/' + user.id]">{{user.name}} </a></td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+  </div>
 
     <!-- Carousel -->
 

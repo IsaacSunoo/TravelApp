@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
   testId;
   loggedIn;
 
+  toFollow: User [] = [];
+
   logout = function() {
     this.userServ.logout();
     this.router.navigateByUrl('home');
