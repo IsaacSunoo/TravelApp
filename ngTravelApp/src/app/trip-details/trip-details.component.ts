@@ -4,6 +4,7 @@ import { TripDetailsService } from '../trip-details.service';
 import { Trip } from '../models/trip';
 import { UserService } from '../user.service';
 import { TripService } from '../trip.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -171,6 +172,17 @@ export class TripDetailsComponent implements OnInit {
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
   };
 
+  bookmarkTrip = function(pid, tid) {
+    this.profileService.bookmarkTrip(pid, tid).subscribe(
+      data => {
+        this.isTripBookmarked = true;
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+
   handleError(error: any) {
     console.error('Something Broke');
     console.log(error);
@@ -184,7 +196,8 @@ export class TripDetailsComponent implements OnInit {
     private router: Router,
     private tripDetailsService: TripDetailsService,
     private userServ: UserService,
-    private tripService: TripService
+    private tripService: TripService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit() {

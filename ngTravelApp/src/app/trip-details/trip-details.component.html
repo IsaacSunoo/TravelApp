@@ -119,10 +119,8 @@
                       <button type="button" class="btn btn-dark">Remove Bookmark</button>
                     </div>
 
-
-
                     <div *ngIf="!isTripBookmarked && !isThisMyTrip">
-                      <button type="button" class="btn btn-dark">Bookmark This Trip</button>
+                      <button type="button" class="btn btn-dark" (click)="bookmarkTrip(id, trip.id)">Bookmark This Trip</button>
                     </div>
 
                   </div>
