@@ -4,6 +4,7 @@ import { FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Profile } from '../models/profile';
 import { Trip } from '../models/trip';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +17,7 @@ export class SearchComponent implements OnInit {
   profiles: Profile [] = [];
   keyword;
   trips: Trip [] = [];
+  showTable = true;
 
   searchForUsers = function() {
     this.feedServ.search(this.keyword).subscribe(
@@ -33,7 +35,7 @@ export class SearchComponent implements OnInit {
 
     this.feedServ.searchProfiles(this.keyword).subscribe(
       data => {
-        this.profiles = data;
+          this.profiles = data;
       },
       err => {
         console.log('error');
@@ -45,7 +47,7 @@ export class SearchComponent implements OnInit {
 
     this.feedServ.searchTrips(this.keyword).subscribe(
       data => {
-        this.trips = data;
+      this.trips = data;
       },
       err => {
         console.log('error');

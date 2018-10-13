@@ -39,24 +39,13 @@
   </form>
 </div> -->
 <div class="container">
-    <!-- <div class="input-group">
-      <input type="text" size="128" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2"
-        placeholder="Search Profiles" [(ngModel)]="keyword">
-       <div class="input-group-append">
-        <button class="btn btn-outline-primary" type="button" id="button-addon2" [routerLink]="['/search/' + keyword]">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
-    </div> -->
-
       <div class="input-group">
           <input type="text" class="form-control" placeholder="Search Profiles or Trips" aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="keyword"[(ngModel)]="keywordt">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button"[routerLink]="['/search/' + keyword]">Trips</button>
-            <button class="btn btn-outline-secondary" type="button"[routerLink]="['/search/' + keyword]">Profiles</button>
+            <button class="btn btn-outline-secondary" type="button"[routerLink]="['/search/' + keyword]"><i class="fa fa-search"></i></button>
           </div>
         </div>
-</div>
+  </div>
 
 <!-- Trip form stepper with date picker -->
 <div class="container">
