@@ -3,10 +3,11 @@
       <thead>
         <th>Search Results:</th></thead>
         <tbody>
-          <tr *ngFor="let user of users">
-            <td><a class="card-link" [routerLink]="['/profile/' + user.id]">{{user.name}} </a></td>
+          <tr *ngFor="let profile of profiles">
+            <td><a class="card-link" [routerLink]="['/profile/' + profile.id]">{{profile.lastName}} </a></td>
           </tr>
         </tbody>
     </table>
   </div>
+
 

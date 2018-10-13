@@ -80,5 +80,11 @@ public class UserController {
 		List<User> result = userService.searchForUsers(keyword);
 		return result;
 	}
+	
+	@RequestMapping(path="searchp/{keyword}", method = RequestMethod.GET)
+	public List<Profile> searchProfiles(@PathVariable(name="keyword") String keyword){
+		List<Profile> result = userService.searchForProfiles(keyword);
+		return result;
+	}
 
 }

@@ -199,5 +199,12 @@ public class UserServiceImpl implements UserService {
 		return users;
 		
 	}
+	
+	@Override
+	public List<Profile> searchForProfiles(String keyword) {
+		List<Profile> profiles = userRepo.queryForProfilesByKeyword("%"+keyword+"%");
+		return profiles;
+		
+	}
 
 }
