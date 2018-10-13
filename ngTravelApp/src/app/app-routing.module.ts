@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: '', component: RegisterComponent },
   { path: 'home', component: RegisterComponent },
   { path: 'settings', component: SettingComponent },
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent},w
   { path: 'oldtrips', component: TripComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'followers', component: FollowersComponent },
