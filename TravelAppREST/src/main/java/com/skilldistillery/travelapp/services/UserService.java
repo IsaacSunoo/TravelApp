@@ -25,6 +25,7 @@ public interface UserService {
 	List<User> searchForUsers(String keyword);
 
 	List<Profile> searchForProfiles(String keyword);
-	
+
+	List<User> getFollowersByUserId(Integer uid);
 
 }

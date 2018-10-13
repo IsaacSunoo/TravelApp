@@ -35,7 +35,8 @@ public class UserController {
 	// Temporary login method, find the user by their username, return the profile
 	// object, store profile ID in local storage via angular side
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public Profile retrieveProfile(@RequestBody User user, HttpServletResponse res) {
+	public Profile retrieveProfile(@RequestBody User user,
+			HttpServletResponse res) {
 
 		String username = user.getName();
 		User managedUser = userService.getOneUser(username);
@@ -48,43 +49,54 @@ public class UserController {
 		return null;
 	}
 
-	@RequestMapping(path = "/addfollower/{uid}/{fid}", method = RequestMethod.POST)
-	public User addFollower(@PathVariable(name = "uid") int uid, @PathVariable(name = "fid") int fid) {
-		
+	@RequestMapping(path = "/addfollower/{uid}/{fid}",
+			method = RequestMethod.POST)
+	public User addFollower(@PathVariable(name = "uid") int uid,
+			@PathVariable(name = "fid") int fid) {
+
 		User newList = userService.followUser(uid, fid);
 		return newList;
 
 	}
-	
+
 	@RequestMapping(path = "/findfollowers/{uid}", method = RequestMethod.GET)
 	public List<User> findFollowers(@PathVariable(name = "uid") int uid) {
 		List<User> followers = userService.findFollowers(uid);
 		return followers;
 
 	}
-	
-	@RequestMapping(path= "/removefollower/{uid}/{fid}", method = RequestMethod.DELETE)
-	public boolean unFollow(@PathVariable(name = "uid") int uid, @PathVariable(name = "fid") int fid) {
+
+	@RequestMapping(path = "/removefollower/{uid}/{fid}",
+			method = RequestMethod.DELETE)
+	public boolean unFollow(@PathVariable(name = "uid") int uid,
+			@PathVariable(name = "fid") int fid) {
 		boolean result = userService.unfollowUser(uid, fid);
 		return result;
 	}
-	
-	@RequestMapping(path="discover/{uid}", method = RequestMethod.GET)
-	public List<User> discoverPeople(@PathVariable(name = "uid") int uid){
-		List <User> result = userService.discoverPeopleToFollow(uid);
-		return result ;
+
+	@RequestMapping(path = "discover/{uid}", method = RequestMethod.GET)
+	public List<User> discoverPeople(@PathVariable(name = "uid") int uid) {
+		List<User> result = userService.discoverPeopleToFollow(uid);
+		return result;
 	}
-	
-	@RequestMapping(path="search/{keyword}", method = RequestMethod.GET)
-	public List<User> search(@PathVariable(name="keyword") String keyword){
+
+	@RequestMapping(path = "search/{keyword}", method = RequestMethod.GET)
+	public List<User> search(@PathVariable(name = "keyword") String keyword) {
 		List<User> result = userService.searchForUsers(keyword);
 		return result;
 	}
-	
-	@RequestMapping(path="searchp/{keyword}", method = RequestMethod.GET)
-	public List<Profile> searchProfiles(@PathVariable(name="keyword") String keyword){
+
+	@RequestMapping(path = "searchp/{keyword}", method = RequestMethod.GET)
+	public List<Profile>
+			searchProfiles(@PathVariable(name = "keyword") String keyword) {
 		List<Profile> result = userService.searchForProfiles(keyword);
 		return result;
+	}
+
+	@RequestMapping(path = "user/{uid}/followers", method = RequestMethod.GET)
+	public List<User> testMethod(@PathVariable(name = "uid") Integer uid) {
+
+		return userService.getFollowersByUserId(uid);
 	}
 
 }

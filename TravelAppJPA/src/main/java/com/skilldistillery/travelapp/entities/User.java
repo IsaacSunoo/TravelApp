@@ -46,7 +46,7 @@ public class User {
 			joinColumns = @JoinColumn(name = "follower_id"),
 			inverseJoinColumns = @JoinColumn(name = "followed_id"))
 	private List<User> followers;
-
+	
 	// constructors
 
 	public User() {
