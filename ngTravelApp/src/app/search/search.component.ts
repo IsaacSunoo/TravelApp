@@ -3,6 +3,7 @@ import { User } from '../models/user';
 import { FeedService } from '../feed.service';
 import { ActivatedRoute } from '@angular/router';
 import { Profile } from '../models/profile';
+import { Trip } from '../models/trip';
 
 @Component({
   selector: 'app-search',
@@ -14,6 +15,7 @@ export class SearchComponent implements OnInit {
   users: User [] = [];
   profiles: Profile [] = [];
   keyword;
+  trips: Trip [] = [];
 
   searchForUsers = function() {
     this.feedServ.search(this.keyword).subscribe(
@@ -27,11 +29,23 @@ export class SearchComponent implements OnInit {
   };
 
   searchForProfiles = function() {
-    console.log('hey');
+    console.log('profiles');
 
     this.feedServ.searchProfiles(this.keyword).subscribe(
       data => {
         this.profiles = data;
+      },
+      err => {
+        console.log('error');
+      }
+    );
+  };
+  searchForTrips = function() {
+    console.log('trips');
+
+    this.feedServ.searchTrips(this.keyword).subscribe(
+      data => {
+        this.trips = data;
       },
       err => {
         console.log('error');
@@ -45,6 +59,7 @@ export class SearchComponent implements OnInit {
     this.keyword = this.activatedRoute.snapshot.paramMap.get('keyword');
     // this.searchForUsers();
     this.searchForProfiles();
+    this.searchForTrips();
   }
 
 }
