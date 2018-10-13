@@ -93,7 +93,8 @@ public class UserServiceImpl implements UserService {
 				managedUser.setEmail(settingsDTO.getEmail());
 			}
 
-			if (settingsDTO.getPassword() != null && !settingsDTO.getPassword().equals("")
+			if (settingsDTO.getPassword() != null
+					&& !settingsDTO.getPassword().equals("")
 					&& settingsDTO.getPassword() != managedUser.getPassword()) {
 				managedUser.setPassword(settingsDTO.getPassword());
 			}
@@ -145,10 +146,13 @@ public class UserServiceImpl implements UserService {
 	public boolean unfollowUser(Integer uid, Integer fid) {
 		// uid is the person logged in, fid is the person they want to follow
 		User personToUnFollow = userRepo.queryForUserWithFollowers(fid);
+
 		if (personToUnFollow == null) {
-			return false;
+			personToUnFollow = userRepo.findById(fid).get();
+			if (personToUnFollow == null) {
+				return false;
+			}
 		}
-//		List<User> result = userRepo.queryForFollowersByUserId(uid);
 
 		User user = userRepo.queryForUserWithFollowers(uid);
 		if (user == null) {
@@ -187,25 +191,26 @@ public class UserServiceImpl implements UserService {
 		for (User user2 : allUsers) {
 			if (followedUsers.contains(user2)) {
 				continue;
-			}else {
-			discover.add(user2);
+			} else {
+				discover.add(user2);
 			}
 		}
 		return discover;
 	}
-	
+
 	@Override
 	public List<User> searchForUsers(String keyword) {
-		List<User> users = userRepo.queryForUsersByKeyword("%"+keyword+"%");
+		List<User> users = userRepo.queryForUsersByKeyword("%" + keyword + "%");
 		return users;
-		
+
 	}
-	
+
 	@Override
 	public List<Profile> searchForProfiles(String keyword) {
-		List<Profile> profiles = userRepo.queryForProfilesByKeyword("%"+keyword+"%");
+		List<Profile> profiles = userRepo
+				.queryForProfilesByKeyword("%" + keyword + "%");
 		return profiles;
-		
+
 	}
 
 }
