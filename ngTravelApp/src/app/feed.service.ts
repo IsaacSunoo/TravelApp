@@ -6,6 +6,7 @@ import { throwError, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from './models/user';
 import { Profile } from './models/profile';
+import { Trip } from './models/trip';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,17 @@ export class FeedService {
     console.log(keyword);
 
     return this.http.get<Profile[]>(this.baseUrl + 'searchp/' + keyword).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving data ' + err.status);
+      })
+    );
+  }
+
+  public searchTrips(keyword: string): Observable<Trip[]> {
+    console.log(keyword);
+
+    return this.http.get<Trip[]>(this.baseUrl + 'api/trips/search/' + keyword).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving data ' + err.status);

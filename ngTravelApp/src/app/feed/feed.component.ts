@@ -7,6 +7,7 @@ import { UpdateProfile } from '../models/update-profile';
 import { User } from '../models/user';
 import { FeedService } from '../feed.service';
 
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
