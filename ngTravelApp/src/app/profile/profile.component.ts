@@ -21,6 +21,9 @@ import { PostsService } from '../posts.service';
 export class ProfileComponent implements OnInit {
   // *******************************************************************************
   // FIELDS
+
+  isDifferentProfile: Boolean = false;
+
   showProfile: UpdateProfile = null;
   id = localStorage.getItem('profileId');
   following: User[] = [];
@@ -29,7 +32,7 @@ export class ProfileComponent implements OnInit {
 
   followClicked;
   unFollowClicked = null;
-  testId;
+  otherProfileId;
   loggedIn;
 
   tripsById: Trip[] = [];
@@ -67,15 +70,15 @@ export class ProfileComponent implements OnInit {
     });
   };
 
-  followUser = function(id: string, testId: string) {
-    this.profServ.followUser(id, testId).subscribe(data => {
+  followUser = function(id: string, otherProfileId: string) {
+    this.profServ.followUser(id, otherProfileId).subscribe(data => {
       console.log('user followed');
       this.users = data;
     });
   };
 
-  unfollowUser = function(id: string, testId: string) {
-    this.profServ.unfollowUser(id, testId).subscribe(data => {
+  unfollowUser = function(id: string, otherProfileId: string) {
+    this.profServ.unfollowUser(id, otherProfileId).subscribe(data => {
       console.log('user unfollowed');
     });
   };
@@ -149,21 +152,24 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.testId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.otherProfileId = this.activatedRoute.snapshot.paramMap.get('id');
 
-    if (this.testId) {
-      this.loadUserInfo(this.testId);
-      this.followingIndex(this.testId);
+    if (this.otherProfileId && this.otherProfileId !== this.id) {
+      // Set this boolean to true, tells us whether or not to show the
+      // follow/unfollow buttons on the page
+      this.isDifferentProfile = true;
+
+      this.loadUserInfo(this.otherProfileId);
+      this.followingIndex(this.otherProfileId);
+      this.getTripsByProfileId(this.otherProfileId);
+      this.getPostsByProfileId(this.otherProfileId);
+      this.getFavoriteTripsByProfileId(this.otherProfileId);
     } else {
       this.followingIndex(this.id);
       this.loadUserInfo(this.id);
+      this.getTripsByProfileId(this.id);
+      this.getPostsByProfileId(this.id);
+      this.getFavoriteTripsByProfileId(this.id);
     }
-
-    // new stuff
-
-    this.loadUserInfo(this.id);
-    this.getTripsByProfileId(this.id);
-    this.getPostsByProfileId(this.id);
-    this.getFavoriteTripsByProfileId(this.id);
   }
 }

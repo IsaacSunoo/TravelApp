@@ -49,7 +49,6 @@
 
   <!-- Profile picture -->
 
-  <!-- TEST DIV -->
   <div class="row">
 
     <div class="col-2 profilePicture">
@@ -63,14 +62,13 @@
       </div>
 
       <!-- Follow Button -->
-      <!-- <div id="followBtn" *ngIf="!followClicked"> -->
-      <div id="follow/unfollow buttons">
+      <div id="follow/unfollow buttons" *ngIf="isDifferentProfile">
         <div id="followBtn">
-          <button class="btn btn-outline-dark" type="submit" value="Follow" (click)="followUser(id, testId)">Follow</button>
+          <button class="btn btn-outline-dark" type="submit" value="Follow" (click)="followUser(id, otherProfileId)">Follow</button>
         </div>
-        <!-- <div id="unfollowBtn" *ngIf="followClicked"> -->
+
         <div id="unfollowBtn">
-          <button class="btn btn-outline-dark" type="submit" value="unFollow" (click)="unfollowUser(id, testId)">unFollow</button>
+          <button class="btn btn-outline-dark" type="submit" value="unFollow" (click)="unfollowUser(id, otherProfileId)">unFollow</button>
         </div>
       </div>
       <br>
@@ -115,26 +113,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-
-      <!-- TEST DIV -->
-      <!-- <div class="row">
-
-        <div class="col border rounded">
-          <h2>Bookmarked Trips</h2>
-        </div>
-
-        <div class="col border rounded">
-          <h2>My Trips</h2> -->
-      <!-- <ul *ngFor="let trip of trips">
-              <li>{{trip.title}} </li>
-          </ul> -->
-      <!-- </div>
-
-      </div>
-
-    </div>
-
-  </div> -->
 
       <!-- Trips Div///// -->
       <div class="row">
