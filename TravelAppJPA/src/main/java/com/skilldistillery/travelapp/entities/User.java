@@ -150,7 +150,7 @@ public class User {
 
 		if (!followers.contains(follower)) {
 			followers.add(follower);
-			follower.getFollowers().add(this);
+//			follower.getFollowers().add(this);
 		}
 
 	}
@@ -158,7 +158,7 @@ public class User {
 	public void removeFollower(User follower) {
 		if (followers != null && followers.contains(follower)) {
 			followers.remove(follower);
-			follower.getFollowers().remove(this);
+//			follower.getFollowers().remove(this);
 		}
 	}
 

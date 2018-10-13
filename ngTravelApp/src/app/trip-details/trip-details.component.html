@@ -110,18 +110,21 @@
                   </div>
 
                   <!-- New Content -->
-                  <div *ngIf="!isThisMyTrip">
+                  <div>
                     <h5>
                       Trip Poster: {{trip.profile.user.name}}
                     </h5>
 
-                    <div *ngIf="isTripBookmarked">
-                      <button type="button" class="btn btn-dark" (click)="removeTripBookmark(id, trip.id)">Remove
-                        Bookmark</button>
-                    </div>
+                    <div *ngIf="!isThisMyTrip">
+                      <div *ngIf="isTripBookmarked">
+                        <button type="button" class="btn btn-dark" (click)="removeTripBookmark(id, trip.id)">Remove
+                          Bookmark</button>
+                      </div>
 
-                    <div *ngIf="!isTripBookmarked && !isThisMyTrip">
-                      <button type="button" class="btn btn-dark" (click)="bookmarkTrip(id, trip.id)">Bookmark This Trip</button>
+                      <div *ngIf="!isTripBookmarked && !isThisMyTrip">
+                        <button type="button" class="btn btn-dark" (click)="bookmarkTrip(id, trip.id)">Bookmark This
+                          Trip</button>
+                      </div>
                     </div>
 
                   </div>
