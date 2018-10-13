@@ -63,12 +63,12 @@
 
       <!-- Follow Button -->
       <div id="follow/unfollow buttons" *ngIf="isDifferentProfile">
-        <div id="followBtn">
+        <div id="followBtn" *ngIf="!amIFollowing">
           <button class="btn btn-outline-dark" type="submit" value="Follow" (click)="followUser(id, otherProfileId)">Follow</button>
         </div>
 
-        <div id="unfollowBtn">
-          <button class="btn btn-outline-dark" type="submit" value="unFollow" (click)="unfollowUser(id, otherProfileId)">unFollow</button>
+        <div id="unfollowBtn" *ngIf="amIFollowing">
+          <button class="btn btn-outline-dark" type="submit" value="unFollow" (click)="unfollowUser(id, otherProfileId)">Unfollow</button>
         </div>
       </div>
       <br>

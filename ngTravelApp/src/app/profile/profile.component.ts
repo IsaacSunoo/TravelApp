@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   // FIELDS
 
   isDifferentProfile: Boolean = false;
+  amIFollowing: Boolean = false;
 
   showProfile: UpdateProfile = null;
   id = localStorage.getItem('profileId');
@@ -42,6 +43,9 @@ export class ProfileComponent implements OnInit {
   favoriteTripsById: Trip[] = [];
 
   favoritePosts: Posts[] = [];
+
+  // **
+  loggedInProfileFollowing: User[] = [];
 
   // *******************************************************************************
   // METHODS
@@ -63,6 +67,33 @@ export class ProfileComponent implements OnInit {
       this.users = data;
     });
   };
+
+  // TEST METHOD /////
+  // This method needs to be called even if you are on the person
+  // who is logged in' profile page. This is because we have to
+  // get the logged in profile's list of people they are following
+  // to write the conditional as to whether or not when they go
+  // to someone else's profile they should have the ability to
+  // follow or unfollow that person.
+  followingIndexForLocalStorageProfile = function(id: string) {
+    this.profServ.followingIndex(id).subscribe(
+      data => {
+        this.loggedInProfileFollowing = data;
+
+        if (this.otherProfileId && this.loggedInProfileFollowing !== null) {
+          this.loggedInProfileFollowing.forEach(userImFollowing => {
+            if (userImFollowing.id === this.showProfile.id) {
+              this.amIFollowing = true;
+            }
+          });
+        }
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+  // \\\\\ TEST METHOD
 
   loadUserInfo = function(id: string) {
     this.profServ.show(id).subscribe(data => {
@@ -171,5 +202,7 @@ export class ProfileComponent implements OnInit {
       this.getPostsByProfileId(this.id);
       this.getFavoriteTripsByProfileId(this.id);
     }
+
+    this.followingIndexForLocalStorageProfile(this.id);
   }
 }
