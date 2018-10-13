@@ -73,6 +73,12 @@ public class TripController {
 
 		return returnedTrip;
 	}
+	
+	@RequestMapping(path="/trips/search/{keyword}", method = RequestMethod.GET)
+	public List<Trip> searchForTripByKeyword(@PathVariable(name="keyword") String keyword) {
+		List<Trip> trips = tripService.queryForTripByKeyword(keyword);
+		return trips;
+	}
 
 	// UPDATE
 

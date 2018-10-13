@@ -144,4 +144,11 @@ public class TripServiceImpl implements TripService {
 		return false;
 	}
 
+	@Override
+	public List<Trip> queryForTripByKeyword(String keyword) {
+		System.out.println(keyword);
+		List<Trip> trips = tripRepo.queryForTripByKeyword("%"+keyword+"%");
+		return trips;
+	}
+
 }
