@@ -1,13 +1,31 @@
+<div class="container">
+  <div class="row">
+
 <div class="col border rounded">
     <table>
       <thead>
-        <th>Search Results:</th></thead>
+        <th><h4>Search Results:</h4></th><th>Username</th><th></th><th>Name</th></thead>
         <tbody>
           <tr *ngFor="let profile of profiles">
-            <td><a class="card-link" [routerLink]="['/profile/' + profile.id]">{{profile.lastName}} </a></td>
+            <td><div class="col-lg-3 col-md-4 col-xs-6">
+                <a class="card-link" [routerLink]="['/profile/' + profile.user.id]">
+                      <img [src]="profile.imgLink" height="200" alt="">
+                    </a>
+              </div></td>
+              <td><a class="card-link" [routerLink]="['/profile/' + profile.user.id]">{{profile.user.name}}</a></td>
+              <td></td>
+              <td>{{profile.firstName}}</td>
+              <td>{{profile.lastName}}</td>
           </tr>
         </tbody>
     </table>
   </div>
+  <div class="col"></div>
+</div>
+</div>
+
+
+
+
 
 

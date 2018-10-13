@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
 		}
 		// List<User> result = userRepo.queryForFollowersByUserId(uid);
 
-		User user = userRepo.queryForFollowersByUserId(uid);
+		User user = userRepo.queryForUserWithFollowers(uid);
 		if (user == null) {
 			user = userRepo.findById(uid).get();
 			if (user == null) {
@@ -144,13 +144,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean unfollowUser(Integer uid, Integer fid) {
 		// uid is the person logged in, fid is the person they want to follow
-		User personToUnFollow = userRepo.queryForFollowersByUserId(fid);
+		User personToUnFollow = userRepo.queryForUserWithFollowers(fid);
 		if (personToUnFollow == null) {
 			return false;
 		}
 //		List<User> result = userRepo.queryForFollowersByUserId(uid);
 
-		User user = userRepo.queryForFollowersByUserId(uid);
+		User user = userRepo.queryForUserWithFollowers(uid);
 		if (user == null) {
 			return false;
 		}
@@ -167,7 +167,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findFollowers(Integer uid) {
-		User user = userRepo.queryForFollowersByUserId(uid);
+		User user = userRepo.queryForUserWithFollowers(uid);
 		if (user == null) {
 			return null;
 		}
@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> discoverPeopleToFollow(Integer uid) {
-		User user = userRepo.queryForFollowersByUserId(uid);
+		User user = userRepo.queryForUserWithFollowers(uid);
 		if (user == null) {
 			return null;
 		}
@@ -187,8 +187,9 @@ public class UserServiceImpl implements UserService {
 		for (User user2 : allUsers) {
 			if (followedUsers.contains(user2)) {
 				continue;
-			}
+			}else {
 			discover.add(user2);
+			}
 		}
 		return discover;
 	}

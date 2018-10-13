@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	User findOneUserByName(String username);
 	
 	@Query("SELECT u FROM User u JOIN FETCH u.followers WHERE u.id = :id")
-	User queryForFollowersByUserId(@Param("id") Integer id);
+	User queryForUserWithFollowers(@Param("id") Integer id);
 	
 	@Query("SELECT u FROM User u WHERE u.name LIKE :keyword OR u.profile.firstName LIKE :keyword OR u.profile.lastName LIKE :keyword")
 	List <User> queryForUsersByKeyword(@Param("keyword") String keyword);
