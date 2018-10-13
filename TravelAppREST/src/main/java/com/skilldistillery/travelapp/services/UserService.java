@@ -2,6 +2,7 @@ package com.skilldistillery.travelapp.services;
 
 import java.util.List;
 
+import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.SettingsDTO;
 import com.skilldistillery.travelapp.entities.User;
 
@@ -22,6 +23,8 @@ public interface UserService {
 	List<User> discoverPeopleToFollow(Integer uid);
 
 	List<User> searchForUsers(String keyword);
+
+	List<Profile> searchForProfiles(String keyword);
 	
 
 }
