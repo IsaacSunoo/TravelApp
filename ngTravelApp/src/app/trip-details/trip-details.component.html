@@ -89,11 +89,13 @@
 
                   <div class="col-md-6 row justify-content-center align-self-center how-img">
                     <img [src]="trip.imgLink" class="img-fluid" alt="trip related image" />
+                    <div class="row">
+                      <img [src]="trip.profile.imgLink" width=20% height=20% alt="trip related image" />
+                    </div>
                   </div>
 
                   <div class="col-md-6 text-center">
                     <h4>{{trip.title}}</h4>
-                    <br>
                     <br>
                     <h4 class="subheading">City</h4>
                     <p class="text-muted">{{trip.destination.city}}</p>
@@ -107,18 +109,6 @@
                     <p class="text-muted">{{trip.dateStart}}</p>
                     <h4 class="subheading">Trip End Date</h4>
                     <p class="text-muted">{{trip.dateEnd}}</p>
-                  </div>
-
-                  <!-- New Content -->
-                  <div>
-
-
-                    <div>
-                      <!-- <img [src]="trip.profile.imgLink" width="20%" alt="trip poster's image"> -->
-                      <h4 class="poster-heading">Trip Poster: <a class="poster-name" [routerLink]="['/profile/' + trip.profile.user.id]">{{trip.profile.user.name}}</a></h4>
-                    </div>
-
-
 
                     <div *ngIf="!isThisMyTrip">
                       <div *ngIf="isTripBookmarked">
@@ -130,6 +120,15 @@
                         <button type="button" class="btn btn-dark" (click)="bookmarkTrip(id, trip.id)">Bookmark This
                           Trip</button>
                       </div>
+                    </div>
+
+                  </div>
+
+                  <!-- New Content -->
+                  <div>
+
+                    <div>
+                      <h4 class="poster-heading">Trip Poster: <a class="poster-name" [routerLink]="['/profile/' + trip.profile.user.id]">{{trip.profile.user.name}}</a></h4>
                     </div>
 
                   </div>
