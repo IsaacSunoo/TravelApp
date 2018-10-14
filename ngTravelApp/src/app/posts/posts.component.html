@@ -1,61 +1,3 @@
-<!-- <h1>Posts</h1>
-<p></p>
-
-<form #tripForm="ngForm">
-  Title
-  <input type="text" name="title" [(ngModel)]="newPost.title">
-  <br>
-  Rating
-  <input type="text" name="rating" [(ngModel)]="newPost.rating">
-  <br>
-  Total Cost
-  <input type="text" name="totalCost" [(ngModel)]="newPost.totalCost">
-  <br>
-  Date Start
-  <input type="date" name="dateStart" [(ngModel)]="newPost.dateStart">
-  <br>
-  Date End
-  <input type="date" name="dateEnd" [(ngModel)]="newPost.dateEnd">
-  <br>
-  Review
-  <input type="text" name="review" [(ngModel)]="newPost.review">
-  <br>
-  imgLink
-  <input type="text" name="imgLink" [(ngModel)]="newPost.imgLink">
-  <br>
-  city
-  <input type="text" name="city" [(ngModel)]="newPost.city">
-  <br>
-  state
-  <input type="text" name="state" [(ngModel)]="newPost.state">
-  <br>
-  country
-  <input type="text" name="country" [(ngModel)]="newPost.country">
-  <br>
-  latitude
-  <input type="text" name="latitude" placeholder="optional" [(ngModel)]="newPost.latitude">
-  <br>
-  longitude
-  <input type="text" name="longitude" placeholder="optional" [(ngModel)]="newPost.longitude">
-  <br>
-  message
-  <textarea rows="6" cols="50" name="message" [(ngModel)]="newPost.message"></textarea>
-  <br>
-  <button class="btn btn-primary btn-sm btn-dark" type="submit" value="Save" (click)="addTripPost()">Add Trip</button>
-</form>
-<br> -->
-
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script> -->
-
-<!-- \\\\\ Navbar -->
-<!-- ///// Navbar -->
-
-
 <div class="container-fluid gedf-wrapper" *ngIf="haveReturnedPost">
   <div class="row">
 
@@ -64,9 +6,12 @@
       <div class="card">
         <div class="card-body">
           <div>
-              <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><img width="100%" [src]="profileFromStorage.imgLink" alt="profile image in left side card"></a>
+            <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><img width="100%" [src]="profileFromStorage.imgLink"
+                alt="profile image in left side card"></a>
           </div>
-          <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><div class="h5">@{{profileFromStorage.user.name}}</div></a>
+          <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]">
+            <div class="h5">@{{profileFromStorage.user.name}}</div>
+          </a>
           <div class="h7 text-muted">Fullname : {{profileFromStorage.firstName}} {{profileFromStorage.lastName}}</div>
           <div class="h7">Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
             etc.
@@ -97,7 +42,8 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
               <div class="mr-2">
-                  <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><img class="rounded-circle" width="45" [src]="post.profile.imgLink" alt="profile image"></a>
+                <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><img class="rounded-circle"
+                    width="45" [src]="post.profile.imgLink" alt="profile image"></a>
               </div>
               <div class="ml-2">
                 <div class="h5 m-0"><a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]">@{{post.profile.user.name}}</a></div>
@@ -148,6 +94,33 @@
           <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
           <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
         </div>
+
+
+        <!-- TEST MATERIAL 3:42PM -->
+        <div class="card card-inner">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2">
+                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+              </div>
+              <div class="col-md-10">
+                <p id="timestamp" class="text-secondary text-center">15 Minutes Ago</p>
+                <p><a href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a></p>
+                <p>Lorem Ipsum is simply dummy text of the pr make but also the leap into electronic typesetting,
+                  remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                  sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                  Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>
+                  <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                  <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- TEST MATERIAL 3:42PM -->
+
+
       </div>
       <!-- Post /////-->
 
@@ -160,15 +133,18 @@
           <h5 class="card-title">Discover Destinations</h5>
           <p class="card-text">Find New Places to Go.</p>
           <table>
-              <thead><th></th></thead>
-              <tbody>
-                <tr *ngFor="let discover of discovers">
-                  <td><a class="card-link" [routerLink]="['/trips/' + discover.id]"><img class="rounded-circle" width="100" height="100" [src]="discover.imgLink" alt="trip image"></a></td>
-                  <td><a class="card-link" [routerLink]="['/trips/' + discover.id]">{{discover.title}}</a></td>
-                </tr>
-              </tbody>
-            </table>
-          <button class="btn btn-dark"(click)="discoverTrips(id)">Discover</button>
+            <thead>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let discover of discovers">
+                <td><a class="card-link" [routerLink]="['/trips/' + discover.id]"><img class="rounded-circle" width="100"
+                      height="100" [src]="discover.imgLink" alt="trip image"></a></td>
+                <td><a class="card-link" [routerLink]="['/trips/' + discover.id]">{{discover.title}}</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-dark" (click)="discoverTrips(id)">Discover</button>
         </div>
       </div>
     </div>

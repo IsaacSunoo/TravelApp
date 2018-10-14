@@ -102,3 +102,17 @@
   left: 1%;
   margin-right: 60px;
 }
+
+.card-inner{
+  margin-left: 4rem;
+}
+
+.card-inner img {
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+  position: relative;
+  right: 15%;
+}

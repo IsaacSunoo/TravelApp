@@ -33,3 +33,24 @@ body {
   content: none;
   display: none;
 }
+
+/* NEW TEST MATERIAL */
+
+.card-inner{
+  margin-left: 4rem;
+}
+
+.card-inner img {
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+  position: relative;
+  right: 15%;
+}
+
+.card-inner #timestamp {
+  text-align: left;
+  float: right;
+}
