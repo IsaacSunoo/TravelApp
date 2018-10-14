@@ -103,6 +103,13 @@ public class PostsController {
 		return postService.queryForPostByProfileAndTripId(pid, tid);
 	}
 
+	@RequestMapping(path = "/posts/{postId}/comments", method = RequestMethod.GET)
+	public Posts
+			getPostWithCommentsLoaded(@PathVariable(name = "postId") Integer postId) {
+		
+		return commentService.commentIndexForPostById(postId);
+	}
+
 	// UPDATE
 
 	// DELETE

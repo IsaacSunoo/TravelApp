@@ -11,6 +11,7 @@ export class Posts {
   trip: Trip;
   profile: Profile;
   createDate: Date;
+  comments: Comment;
 
   constructor(
     id?: number,
@@ -19,7 +20,8 @@ export class Posts {
     profileId?: number,
     trip?: Trip,
     profile?: Profile,
-    createDate?: Date
+    createDate?: Date,
+    comments?: Comment
   ) {
     this.id = id;
     this.message = message;
@@ -28,5 +30,6 @@ export class Posts {
     this.trip = trip;
     this.profile = profile;
     this.createDate = createDate;
+    this.comments = comments;
   }
 }

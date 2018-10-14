@@ -52,7 +52,22 @@ public class CommentServiceImpl implements CommentService {
 	// READ
 
 	// Get comments for a particular post
-	
+	@Override
+	public Posts commentIndexForPostById(Integer postId) {
+
+		Posts managedPostWithCommentsLoaded = postRepo
+				.queryForPostByIdWithCommentsLoaded(postId);
+
+		if (managedPostWithCommentsLoaded == null) {
+			managedPostWithCommentsLoaded = postRepo.findById(postId).get();
+			if (managedPostWithCommentsLoaded == null) {
+				return null;
+			}
+		}
+
+		return managedPostWithCommentsLoaded;
+	}
+
 	// UPDATE
 
 	// DELETE
