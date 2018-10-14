@@ -100,7 +100,7 @@
                   <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><img class="rounded-circle" width="45" [src]="post.profile.imgLink" alt="profile image"></a>
               </div>
               <div class="ml-2">
-                <div class="h5 m-0">@{{post.profile.user.name}}</div>
+                <div class="h5 m-0"><a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]">@{{post.profile.user.name}}</a></div>
                 <div class="h7 text-muted">{{post.profile.firstName}} {{post.profile.lastName}}</div>
               </div>
             </div>
