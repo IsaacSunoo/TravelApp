@@ -71,9 +71,10 @@
           <button class="btn btn-outline-dark" type="submit" value="unFollow" (click)="unfollowUser(id, otherProfileId)">Unfollow</button>
         </div>
       </div>
+
       <br>
 
-      <div class="col border rounded">
+      <!-- <div class="col border rounded">
         <table>
           <thead>
             <th>Following:</th>
@@ -97,7 +98,43 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
+
+      <section class="row-section">
+        <div class="col-md row-block">
+          <h5 class="following-title">Following</h5>
+          <ul>
+            <li *ngFor="let user of users">
+              <div class="media">
+                <div class="media-left">
+                  <img class="rounded-circle" [src]="showProfile.imgLink">
+                </div>
+                <div class="media-body">
+                  <h5><a class="card-link" [routerLink]="['/profile/' + user.id]">@{{user.name}} </a></h5>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="row-section">
+        <div class="col-md row-block">
+          <h5 class="following-title">Followers</h5>
+          <ul>
+            <li *ngFor="let follower of followersForUserOnPage">
+              <div class="media">
+                <div class="media-left">
+                  <img class="rounded-circle" [src]="showProfile.imgLink">
+                </div>
+                <div class="media-body">
+                  <h5><a class="card-link" [routerLink]="['/profile/' + follower.id]">@{{follower.name}} </a></h5>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
 
     </div>
     <br>
@@ -128,10 +165,12 @@
         <span class="sr-only">Next</span>
       </a>
 
+      <br>
+
       <!-- Trips Div///// -->
       <div class="row">
 
-        <div class="col border rounded">
+        <div class="col">
           <h2>Bookmarked Trips</h2>
           <!-- TEMP STUFF STYLING TEST -->
           <div *ngFor="let favoritePost of favoritePosts" class="row">
@@ -149,7 +188,7 @@
           <!-- END TEMP STUFF -->
         </div>
 
-        <div class="col border rounded">
+        <div class="col">
           <h2>My Trips</h2>
           <div *ngFor="let post of postsById" class="row">
             <div class="col">

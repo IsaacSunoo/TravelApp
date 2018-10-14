@@ -45,3 +45,60 @@
   text-decoration: none;
   opacity: 0.8;
 }
+
+/* New Content */
+
+/* @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"); */
+
+.row-section {
+  float: left;
+  width: 100%;
+  border: 1px solid rgb(185, 172, 172);
+  background: rgb(247, 245, 245);
+}
+
+.row-section .row-block {
+  background: rgb(247, 245, 245);
+  padding: 20px;
+  margin-bottom: 50px;
+}
+.row-section .row-block ul {
+  margin: 0;
+  padding: 0;
+}
+.row-section .row-block ul li {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.row-section .row-block ul li:last-child {
+  margin-bottom: 0;
+}
+
+.row-section .media .media-left img {
+  width: 75px;
+}
+.row-section .media .media-body p {
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.row-section .media-body {
+  width: 100px;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  position: relative;
+  right: 10%;
+  margin-right: 50px;
+}
+
+.row-section .following-title {
+  color: rgb(42, 73, 139);
+}
+
+.row-section img {
+  position: relative;
+  right: 30%;
+  left: 1%;
+  margin-right: 60px;
+}
