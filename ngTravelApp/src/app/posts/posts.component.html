@@ -159,14 +159,22 @@
         <div class="card-body">
           <h5 class="card-title">Discover Users</h5>
           <p class="card-text">Find New Travelers.</p>
-          <button class="btn btn-dark">Discover</button>
+          <button class="btn btn-dark" >Discover</button>
         </div>
       </div>
       <div class="card gedf-card">
         <div class="card-body">
           <h5 class="card-title">Discover Destinations</h5>
           <p class="card-text">Find New Places to Go.</p>
-          <button class="btn btn-dark">Discover</button>
+          <button class="btn btn-dark"(click)="discoverTrips(id)">Discover</button>
+          <table>
+              <thead><th></th></thead>
+              <tbody>
+                <tr *ngFor="let discover of discovers">
+                  <td><a class="card-link" [routerLink]="['/trips/' + discover.id]">{{discover.title}}</a></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
       </div>
     </div>
