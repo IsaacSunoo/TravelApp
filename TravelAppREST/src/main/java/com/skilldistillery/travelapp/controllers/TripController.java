@@ -79,6 +79,12 @@ public class TripController {
 		List<Trip> trips = tripService.queryForTripByKeyword(keyword);
 		return trips;
 	}
+	
+	@RequestMapping(path = "/trips/discover/{uid}", method = RequestMethod.GET)
+	public List<Trip> discoverTrips(@PathVariable(name="uid") Integer uid){
+		List<Trip> result = tripService.discoverTrips(uid);
+		return result;
+	}
 
 	// UPDATE
 

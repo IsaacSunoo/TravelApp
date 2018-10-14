@@ -1,5 +1,7 @@
 package com.skilldistillery.travelapp.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skilldistillery.travelapp.entities.Destination;
 import com.skilldistillery.travelapp.entities.NewTripDTO;
+import com.skilldistillery.travelapp.entities.Profile;
 import com.skilldistillery.travelapp.entities.Trip;
+import com.skilldistillery.travelapp.entities.User;
 import com.skilldistillery.travelapp.repositories.TripRepository;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -150,5 +154,28 @@ public class TripServiceImpl implements TripService {
 		List<Trip> trips = tripRepo.queryForTripByKeyword("%"+keyword+"%");
 		return trips;
 	}
+	
+	@Override
+	public List<Trip> discoverTrips(Integer uid) {
+		
+		Profile profile = tripRepo.queryForProfileWithTrips(uid);
+		if (profile == null) {
+			return null;
+		}
+		List<Trip> profileTrips = profile.getTrips();
+		List<Trip> allTrips = tripRepo.findAll();
+		List<Trip> discover = new ArrayList();
+
+		for (Trip trip : allTrips) {
+			if (profileTrips.contains(trip)) {
+				continue;
+			} else {
+				discover.add(trip);
+			}
+		}
+		Collections.shuffle(discover);
+		return discover.subList(0, 3);
+	}
+	
 
 }

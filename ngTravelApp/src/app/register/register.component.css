@@ -14,6 +14,125 @@ right: 70px;
 .formInput{
   width: 359px;
 }
+.jumbotron {
+	margin-top: 0px;
+	position: relative;
+	background: url("https://dynaimage.cdn.cnn.com/cnn/q_auto,w_900,c_fill,g_auto,h_506,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F180822162913-06-vacation-travel-0822-restricted.jpg") center
+		no-repeat;
+	min-height: 500px;
+	background-size: 150%;
+}
+.jumbotron h1 {
+	text-align: left;
+	color: white;
+	font-size: 2.7em;
+	margin-top: 50px;
+	margin-left: -20px;
+}
 
+.jumbotron-content {
+	color: white;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0px 15px;
+	width: 25%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .75);
+	border-radius: 5px;
+}
+
+.jumbotron-content h3 {
+	margin-top: 5%;
+	text-align: center;
+	color: white;
+	font-size: 1.75em;
+}
+
+.jumbotron .btn {
+	padding: 5px 5%;
+	margin: 5% 20%;
+}
+.jumbotron-content label {
+  color: white;
+  font-size: 1em;
+}
+
+@media ( min-width : 992px) {
+	.jumbotron .btn {
+		padding: 5px 10%;
+	}
+}
+
+@media ( max-width : 991px) {
+	.jumbotron-content {
+		position: absolute;
+		height: 100%;
+	}
+}
+
+@media ( max-width : 768px) {
+	.jumbotron {
+		background-size: 100% 100%;
+	}
+	.jumbotron-content {
+		top: 0;
+		height: 100%;
+		width: 37%;
+	}
+	.jumbotron .btn {
+		font-size: 0.85em;
+		padding: 8px 5%;
+		max-width: 65px;
+	}
+}
+
+body {
+	background-color: lightblue;
+}
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+	height: 450px
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+	padding-top: 20px;
+	background-color: #f1f1f1;
+	height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+	background-color: #555;
+	color: white;
+	padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+	.sidenav {
+		height: auto;
+		padding: 15px;
+	}
+	.row.content {
+		height: auto;
+	}
+}
+
+.font {
+	text-align: center;
+	color: white;
+}
+
+.container1 {
+	background: black;
+}
 
 

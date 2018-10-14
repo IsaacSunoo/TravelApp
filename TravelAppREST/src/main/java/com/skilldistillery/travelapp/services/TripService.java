@@ -22,4 +22,6 @@ public interface TripService {
 	
 	public List<Trip> queryForTripByKeyword(String keyword);
 
+	List<Trip> discoverTrips(Integer uid);
+
 }
