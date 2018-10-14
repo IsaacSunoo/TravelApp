@@ -174,7 +174,7 @@ public class TripServiceImpl implements TripService {
 			}
 		}
 		Collections.shuffle(discover);
-		return discover.subList(0, 3);
+		return discover.subList(0, 5);
 	}
 	
 
