@@ -1,6 +1,7 @@
 package com.skilldistillery.travelapp.services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -211,6 +212,43 @@ public class UserServiceImpl implements UserService {
 				.queryForProfilesByKeyword("%" + keyword + "%");
 		return profiles;
 
+	}
+
+	// New Code
+
+	// So this method actually gets a list of users, all of which are following
+	// the given user with the uid being passed in - the above methods that deal
+	// with followers are actually retrieving the list of users that person is
+	// "following"
+	@Override
+	public List<User> getFollowersByUserId(Integer uid) {
+		List<User> allUsers = userRepo.queryForAllUsersAndLoadTheirFollowers();
+
+		User currentUser = userRepo.findById(uid).get();
+
+		List<User> followersToUserWithGivenId = new ArrayList<>();
+
+		List<User> l2 = new ArrayList<>();
+
+		Iterator<User> iterator = allUsers.iterator();
+
+		while (iterator.hasNext()) {
+			User u = iterator.next();
+
+			if (!l2.contains(u)) {
+				l2.add(u);
+
+			}
+
+		}
+
+		for (User user : l2) {
+			if (user.getFollowers().contains(currentUser)) {
+				followersToUserWithGivenId.add(user);
+			}
+		}
+
+		return followersToUserWithGivenId;
 	}
 
 }

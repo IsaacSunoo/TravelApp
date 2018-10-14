@@ -85,6 +85,20 @@
           </tbody>
         </table>
       </div>
+
+      <div class="col border rounded">
+        <table>
+          <thead>
+            <th>Followers:</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let follower of followersForUserOnPage">
+              <td><a class="card-link" [routerLink]="['/profile/' + follower.id]">{{follower.name}} </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
     <br>
 

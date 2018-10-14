@@ -13,6 +13,18 @@ export class UserService {
   private baseUrl = environment.baseUrl;
   private fullUrl = this.baseUrl + '/authenticate';
 
+  loadFollowers(uid) {
+    return this.http.get(`${this.baseUrl}user/${uid}/followers`).pipe(
+      tap(res => {
+        return res;
+      }),
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error with temporary login');
+      })
+    );
+  }
+
   login(username, password) {
     // Make token
     const token = this.generateBasicAuthToken(username, password);
@@ -60,7 +72,6 @@ export class UserService {
       tap(res => {
         // create a user and then upon success, log them in
         // this.login(user.username, user.password);
-
         // TEMPORARY LOGIN BELOW
         // this.loginTemp(user).subscribe(
         //   data => {
