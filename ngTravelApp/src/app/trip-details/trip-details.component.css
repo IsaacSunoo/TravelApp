@@ -3,9 +3,9 @@
   height: 1px;
 } */
 
-.tripsCarousel{
+.tripsCarousel {
   width: 100%;
-  height: 20px;;
+  height: 20px;
 }
 
 #detailProfPic {
@@ -19,13 +19,13 @@
 }
 
 #tripsProfileName {
-font-weight: bolder;
-color: navy;
-text-align: center;
-
+  font-weight: bolder;
+  color: navy;
+  text-align: center;
 }
 
-.example-small-box, .example-large-box {
+.example-small-box,
+.example-large-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,34 +44,41 @@ text-align: center;
   width: 50%px;
 }
 
-
 /* NEW STUFF BELOW */
 
-.how-section1{
-  margin-top:-15%;
+.how-section1 {
+  margin-top: -15%;
   padding: 10%;
 }
-.how-section1 h4{
+.how-section1 h4 {
   color: rgb(103, 128, 160);
   font-weight: bold;
   font-size: 30px;
 }
-.how-section1 .subheading{
+.how-section1 .subheading {
   color: #3931af;
   font-size: 20px;
 }
-.how-section1 .row
-{
+
+.how-section1 .poster-heading {
+  color: #5f8838;
+  font-size: 20px;
+}
+.how-section1 .row {
   margin-top: 10%;
 }
 
-.how-img
-{
+.how-img {
   text-align: center;
   display: inline-block;
-
 }
-.how-img img{
+.how-img img {
   width: 100%;
 }
 
+.poster-name {
+  color: black;
+}
+.poster-name:hover {
+  color: blue;
+}

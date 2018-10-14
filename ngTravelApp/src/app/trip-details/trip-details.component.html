@@ -111,9 +111,14 @@
 
                   <!-- New Content -->
                   <div>
-                    <h5>
-                      Trip Poster: {{trip.profile.user.name}}
-                    </h5>
+
+
+                    <div>
+                      <!-- <img [src]="trip.profile.imgLink" width="20%" alt="trip poster's image"> -->
+                      <h4 class="poster-heading">Trip Poster: <a class="poster-name" [routerLink]="['/profile/' + trip.profile.user.id]">{{trip.profile.user.name}}</a></h4>
+                    </div>
+
+
 
                     <div *ngIf="!isThisMyTrip">
                       <div *ngIf="isTripBookmarked">
