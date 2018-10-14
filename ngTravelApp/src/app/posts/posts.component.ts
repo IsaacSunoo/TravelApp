@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PostDTO } from '../models/post-dto';
 import { Profile } from '../models/profile';
 import { ProfileService } from '../profile.service';
+import { Trip } from '../models/trip';
 
 @Component({
   selector: 'app-posts',
@@ -24,6 +25,7 @@ export class PostsComponent implements OnInit {
   haveReturnedPost: Boolean = false;
   testPost = null;
   profileFromStorage = new Profile();
+  discovers: Trip [] = [];
 
   // //////////// TEST METHOD
   getProfileFromStorage = function() {
@@ -145,6 +147,17 @@ export class PostsComponent implements OnInit {
     console.error('Something Broke');
     console.log(error);
   }
+
+  discoverTrips = function(id: string) {
+  console.log(id);
+
+    this.postServ.discover(id).subscribe(
+      data => {
+        this.discovers = data;
+        console.log(this.discovers);
+      }
+    );
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,

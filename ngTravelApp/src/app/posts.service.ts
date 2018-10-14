@@ -5,6 +5,7 @@ import { throwError, Observable } from 'rxjs';
 import { Posts } from './models/posts';
 import { PostDTO } from './models/post-dto';
 import { environment } from '../environments/environment';
+import { Trip } from './models/trip';
 
 @Injectable({
   providedIn: 'root'
@@ -132,6 +133,17 @@ export class PostsService {
           return throwError('Error deleting Post... Status: ' + err.status);
         })
       );
+  }
+
+  public discover(id: string): Observable<Trip[]> {
+    console.log(id);
+
+    return this.http.get<Trip[]>(this.baseUrl + 'api/trips/discover/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving data ' + err.status);
+      })
+    );
   }
 
   // \\\\\ TEST METHOD
