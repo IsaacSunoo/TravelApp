@@ -17,4 +17,7 @@ public interface PostsRepository extends JpaRepository<Posts, Integer> {
 	public Posts queryForPostByProfileAndTripId(@Param("pid") Integer pid,
 			@Param("tid") Integer tid);
 
+	@Query("SELECT p FROM Posts p JOIN FETCH p.comments WHERE p.id = :postId")
+	public Posts
+			queryForPostByIdWithCommentsLoaded(@Param("postId") Integer postId);
 }

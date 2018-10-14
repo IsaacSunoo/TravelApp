@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.travelapp.entities.Comment;
 import com.skilldistillery.travelapp.entities.NewTripPostDTO;
 import com.skilldistillery.travelapp.entities.Posts;
+import com.skilldistillery.travelapp.services.CommentService;
 import com.skilldistillery.travelapp.services.PostService;
 
 @RestController
@@ -23,6 +25,9 @@ public class PostsController {
 
 	@Autowired
 	private PostService postService;
+
+	@Autowired
+	private CommentService commentService;
 
 	// CREATE
 
@@ -50,6 +55,23 @@ public class PostsController {
 		}
 
 		return post;
+	}
+
+	// Getting late, so this ought to be in a comment controller, but its here
+	// now, this creates a comment for a given post
+	@RequestMapping(path = "/profile/{pid}/posts/{postId}/comment",
+			method = RequestMethod.POST)
+	public Comment createCommentForPost(@RequestBody Comment comment,
+			@PathVariable(name = "pid") Integer pid,
+			@PathVariable(name = "postId") Integer postId, HttpServletResponse res) {
+
+		Comment newComment = commentService.create(pid, postId, comment);
+
+		if (newComment == null) {
+			res.setStatus(500);
+		}
+
+		return newComment;
 	}
 
 	// READ
