@@ -47,6 +47,12 @@ export class ProfileComponent implements OnInit {
   // **
   loggedInProfileFollowing: User[] = [];
 
+  // **
+  followersForUserOnPage: User[] = [];
+
+  // **
+  currentUser: User = new User();
+
   // *******************************************************************************
   // METHODS
 
@@ -95,9 +101,23 @@ export class ProfileComponent implements OnInit {
   };
   // \\\\\ TEST METHOD
 
+  loadFollowers = function(uid) {
+    this.userServ.loadFollowers(uid).subscribe(
+      data => {
+        this.followersForUserOnPage = data;
+      },
+      err => {
+        this.handleError(err);
+      }
+    );
+  };
+
   loadUserInfo = function(id: string) {
     this.profServ.show(id).subscribe(data => {
       this.showProfile = data;
+      this.currentUser = this.showProfile.user;
+
+      this.loadFollowers(this.currentUser.id);
     });
   };
 
