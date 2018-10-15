@@ -70,7 +70,7 @@ import { AgmCoreModule } from '@agm/core';
     MatInputModule,
     MatTabsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAafk6IHPSK6Yx6QvCKSGKIV8jY_ZZLzLc'
+      apiKey: 'key'
     })
   ],
   providers: [DatePipe, TripService, StepperToPostsShellService],
