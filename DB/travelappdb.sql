@@ -472,7 +472,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelappdb`;
-INSERT INTO `trip` (`id`, `title`, `rating`, `total_cost`, `date_start`, `date_end`, `destination_id`, `review`, `img_link`, `profile_id`) VALUES (1, 'Fun Times in Barcelona', 5, 2000, '2018-01-05 00:00:00', '2018-01-12 00:00:00', 1, 'Stayed at Hostel Jordan in a 6 person dorm.  Used the metro to get around and walked quite a bit.  I highly recommend taking public transpo; it is affordable and easy to use.  Be careful walking La Rambla, we were warned about nefarious people looking for oblivious tourists.  Took the free bar crawl with the hostel and it was just ok due to the lack of drink specials.  Take the Red Bus tour for sure!', 'https://www.riotgames.com/darkroom/1440/f5f167c525dd1f3989bcfe9ebd3c7995:a842310bd11ee602459b324d098e0e02/barcelona-main.jpg', 1);
+INSERT INTO `trip` (`id`, `title`, `rating`, `total_cost`, `date_start`, `date_end`, `destination_id`, `review`, `img_link`, `profile_id`) VALUES (1, 'Fun Times in Barcelona', 5, 2000, '2018-01-05 00:00:00', '2018-01-12 00:00:00', 1, 'Stayed at Hostel Jordan in a 6 person dorm.  Used the metro to get around and walked quite a bit.  I highly recommend taking public transpo; it is affordable and easy to use.  Be careful walking La Rambla, we were warned about nefarious people looking for oblivious tourists.  Took the free bar crawl with the hostel and it was just ok due to the lack of drink specials.  Take the Red Bus tour for sure!', 'https://www.riotgames.com/darkroom/1440/f5f167c525dd1f3989bcfe9ebd3c7995:a842310bd11ee602459b324d098e0e02/barcelona-main.jpg', 10);
 INSERT INTO `trip` (`id`, `title`, `rating`, `total_cost`, `date_start`, `date_end`, `destination_id`, `review`, `img_link`, `profile_id`) VALUES (2, 'THE Oktoberfest', 5, 1750, '2018-09-20 00:00:00', '2018-09-30 00:00:00', 2, 'I drank 3 liters of beer and I don’t remember much so I’m sure that means it was a great time!  Highly recommend.', 'https://cdn.theatlantic.com/assets/media/img/photo/2014/09/opening-weekend-of-oktoberfest-2014/o01_14560857/main_900.jpg?1420490179', 2);
 INSERT INTO `trip` (`id`, `title`, `rating`, `total_cost`, `date_start`, `date_end`, `destination_id`, `review`, `img_link`, `profile_id`) VALUES (3, 'Beautiful Prague', 5, 1500, '2018-03-07 00:00:00', '2018-03-15 00:00:00', 3, 'My beloved Prague!  Stayed at Hostel Fish and mostly walked everywhere in the city.  There is plenty to see by foot; I’m positive you won’t cover it all.  I had few plans and just found things to do.  I must have walked the St. Charles Bridge a few times because it is so beautiful.  The beer is cheap and tasty, you can’t go wrong.  Don’t forget to visit the Astrological Clock while trying all of the street food.', 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/06/20/09/prague-overview.jpg?w968h681', 3);
 INSERT INTO `trip` (`id`, `title`, `rating`, `total_cost`, `date_start`, `date_end`, `destination_id`, `review`, `img_link`, `profile_id`) VALUES (4, 'My Great Wall Adventure', 4, 1250, '2018-01-01 00:00:00', '2018-01-10 00:00:00', 4, 'I am convinced that the best time to visit the Great Wall is in January.  There were NO CROWDS!  It was also freezing so bring a jacket and enjoy epic pictures that look like you have the whole wall to yourself.  Go to the night market and try everything.  I would also recommend taking the high-speed rail to Shanghai.', 'https://cdn.tourradar.com/s3/tour/original/882_b36204ce.jpg', 4);
@@ -522,7 +522,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `travelappdb`;
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (1, 'Barcelona was amazing!  I want to go back, hit me up if you\'d like to get a group together for next summer!', 1, DEFAULT, 1);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (1, 'Barcelona was amazing!  I want to go back, hit me up if you\'d like to get a group together for next summer!', 1, DEFAULT, 10);
 INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (2, 'Oktoberfest partay.  Planning for Oktoberfest?  I got the rundown.  Let\'s link up.', 2, DEFAULT, 2);
 INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (3, 'Fewer places are more beautiful than Prague.  Anyone ever been?  Do you agree?', 3, DEFAULT, 3);
 INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (4, 'I visited the Great Wall of China!  Check out my trip page.', 4, DEFAULT, 4);
@@ -544,25 +544,25 @@ INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUE
 INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (20, 'I’m on my way to China after a fantastic trip in Tokyo, give me some recommendations for places to see!', 20, DEFAULT, 10);
 INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (21, 'Should I get travel insurance?  How much is it?  Does anyone have experience with this?', 21, DEFAULT, 1);
 INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (22, 'Is it safe to travel solo in Portugal?  Just spent an amazing week traveling solo in Croatia.', 22, DEFAULT, 2);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (23, 'Anyone familiar with how to get a visa to travel to China?  Just left Budapest.  ', 23, DEFAULT, 3);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (24, 'Portugal was awesome!  Check out my trip post.', 24, DEFAULT, 4);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (25, 'Anyone fly RyanAir?  How did you like it?  What should I be aware of?  Check out my holiday in Amsterdam.', 25, DEFAULT, 5);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (26, 'Leaving Mallorca.  How much money should I save to travel to Iceland?  ', 26, DEFAULT, 6);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (27, 'I lost my passport in Mexico City!  Among other fascinating tales.  Follow my adventures…', 27, DEFAULT, 7);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (28, 'Anyone every stay in a treehouse?  I did!  In Costa Rica!', 28, DEFAULT, 8);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (29, 'Does anyone take emergency cash when you travel?  How much do you take?', 29, DEFAULT, 9);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (30, 'Hey guys, new to the site, follow my adventures.', 30, DEFAULT, 10);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (31, 'Don’t wonder, WANDER!  Love following all your adventures.', 31, DEFAULT, 1);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (32, 'Did anyone have issues using the passport card?  Is it worth it to get the card?', 32, DEFAULT, 2);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (33, 'Black Sand beach in Iceland was surreal…', 33, DEFAULT, 3);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (34, 'Hey guys, new to the site, follow my adventures.', 34, DEFAULT, 4);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (35, 'Hey guys, check out beautiful Lima!', 35, DEFAULT, 5);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (36, 'Put Egypt on your wishlist for sure!', 36, DEFAULT, 6);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (37, 'Throw any of your questions about Greece at me, just got back, and it was awesome.', 37, DEFAULT, 7);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (38, 'Has anyone used Contiki? Might use it for next trip after I decompress from Mt Everest', 38, DEFAULT, 8);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (39, 'Fun times in Madagascar.', 39, DEFAULT, 9);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (40, 'Went to Ecuador and it was awesome!', 40, DEFAULT, 10);
-INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (41, 'I have all the details on travel to Cuba, comment your questions.', 41, DEFAULT, 1);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (23, 'Anyone familiar with how to get a visa to travel to China?  Just left Budapest.  ', 23, DEFAULT, 1);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (24, 'Portugal was awesome!  Check out my trip post.', 24, DEFAULT, 2);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (25, 'Anyone fly RyanAir?  How did you like it?  What should I be aware of?  Check out my holiday in Amsterdam.', 25, DEFAULT, 1);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (26, 'Leaving Mallorca.  How much money should I save to travel to Iceland?  ', 26, DEFAULT, 2);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (27, 'I lost my passport in Mexico City!  Among other fascinating tales.  Follow my adventures…', 27, DEFAULT, 3);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (28, 'Anyone every stay in a treehouse?  I did!  In Costa Rica!', 28, DEFAULT, 4);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (29, 'Does anyone take emergency cash when you travel?  How much do you take?', 29, DEFAULT, 5);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (30, 'Hey guys, new to the site, follow my adventures.', 30, DEFAULT, 6);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (31, 'Don’t wonder, WANDER!  Love following all your adventures.', 31, DEFAULT, 7);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (32, 'Did anyone have issues using the passport card?  Is it worth it to get the card?', 32, DEFAULT, 8);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (33, 'Black Sand beach in Iceland was surreal…', 33, DEFAULT, 9);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (34, 'Hey guys, new to the site, follow my adventures.', 34, DEFAULT, 10);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (35, 'Hey guys, check out beautiful Lima!', 35, DEFAULT, 1);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (36, 'Put Egypt on your wishlist for sure!', 36, DEFAULT, 1);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (37, 'Throw any of your questions about Greece at me, just got back, and it was awesome.', 37, DEFAULT, 1);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (38, 'Has anyone used Contiki? Might use it for next trip after I decompress from Mt Everest', 38, DEFAULT, 2);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (39, 'Fun times in Madagascar.', 39, DEFAULT, 3);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (40, 'Went to Ecuador and it was awesome!', 40, DEFAULT, 4);
+INSERT INTO `posts` (`id`, `message`, `trip_id`, `create_date`, `prof_id`) VALUES (41, 'I have all the details on travel to Cuba, comment your questions.', 41, DEFAULT, 5);
 
 COMMIT;
 
@@ -712,3 +712,4 @@ INSERT INTO `trip_tag` (`trip_id`, `tag_id`) VALUES (9, 10);
 INSERT INTO `trip_tag` (`trip_id`, `tag_id`) VALUES (10, 1);
 
 COMMIT;
+
