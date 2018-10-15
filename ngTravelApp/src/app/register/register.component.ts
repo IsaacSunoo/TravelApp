@@ -10,6 +10,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  title = 'My first AGM project';
+  lat = 39.6088;
+  lng = -104.9027;
   register: Registration = new Registration();
 
   registerUser = function(form: NgForm) {
