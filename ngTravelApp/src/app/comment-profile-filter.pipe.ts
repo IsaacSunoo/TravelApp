@@ -16,6 +16,7 @@ export class CommentProfileFilterPipe implements PipeTransform {
           .indexOf(commentId);
       }
     });
+
     return pos;
   }
 }
