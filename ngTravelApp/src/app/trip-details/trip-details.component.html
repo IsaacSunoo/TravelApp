@@ -175,7 +175,7 @@
                   <h4 class="subheading">Useful Links For Your Trip</h4>
                   <div class="row">
                     <ul>
-                      <li *ngFor="let recommendation of trip.recommendations">
+                      <li *ngFor="let recommendation of recResourceArray">
                         <h4 class="subheading" *ngIf="recommendation.recType.name === 'resource'">
                           <a [href]="recommendation.content">{{recommendation.content}}</a>
                         </h4>
@@ -189,7 +189,7 @@
                   <h4 class="subheading">Information Which May Be Helpful</h4>
                   <div class="row">
                     <ul>
-                      <li *ngFor="let recommendation of trip.recommendations">
+                      <li *ngFor="let recommendation of recTipArray">
                         <h4 class="subheading" *ngIf="recommendation.recType.name === 'tip'">
                           <p class="text-muted">{{recommendation.content}}</p>
                         </h4>
@@ -217,7 +217,7 @@
                   <h4 class="subheading">Things to Look Out For</h4>
                   <div class="row">
                     <ul>
-                      <li *ngFor="let recommendation of trip.recommendations">
+                      <li *ngFor="let recommendation of recWarningArray">
                         <h4 class="subheading" *ngIf="recommendation.recType.name === 'warning'">
                           <p class="text-muted">{{recommendation.content}}</p>
                         </h4>

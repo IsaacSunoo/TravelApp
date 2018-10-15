@@ -33,6 +33,15 @@ export class TripDetailsComponent implements OnInit {
   // **
   favoriteTripsForProfileInStorage: Trip[] = [];
 
+  // **
+  recResourceArray = [];
+
+  // **
+  recTipArray = [];
+
+  // **
+  recWarningArray = [];
+
   // This is false initially,
   // but when we load the trip from subscribe, set it to true,
   // this is to avoid errors in console complaining about not being able
@@ -76,14 +85,17 @@ export class TripDetailsComponent implements OnInit {
         this.trip.recommendations.forEach(recommendation => {
           if (recommendation.recType.name.includes('resource')) {
             this.haveResource = true;
+            this.recResourceArray.push(recommendation);
           }
 
           if (recommendation.recType.name.includes('tip')) {
             this.haveTip = true;
+            this.recTipArray.push(recommendation);
           }
 
           if (recommendation.recType.name.includes('warning')) {
             this.haveWarning = true;
+            this.recWarningArray.push(recommendation);
           }
         });
 
