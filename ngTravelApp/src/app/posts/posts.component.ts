@@ -25,7 +25,10 @@ export class PostsComponent implements OnInit {
   haveReturnedPost: Boolean = false;
   testPost = null;
   profileFromStorage = new Profile();
-  discovers: Trip [] = [];
+  discovers: Trip[] = [];
+
+  // **
+  profileArrayForComments: Profile[] = [];
 
   // //////////// TEST METHOD
   getProfileFromStorage = function() {
@@ -103,6 +106,22 @@ export class PostsComponent implements OnInit {
         this.allPosts.forEach(post => {
           post.createDate = new Date(post.createDate);
         });
+
+        this.allPosts.forEach(post => {
+          if (post.comments) {
+            post.comments.forEach(comment => {
+              this.profileService.show(comment.profId).subscribe(
+                dataProfileReturn => {
+                  this.profileArrayForComments.push(dataProfileReturn);
+                },
+                err => {
+                  this.handleError(err);
+                }
+              );
+            });
+          }
+        });
+
         // The service posts field and the local allPosts field
         // get bound to one another, so changes to one affects the
         // other (point to the same object in memory)
@@ -149,14 +168,12 @@ export class PostsComponent implements OnInit {
   }
 
   discoverTrips = function(id: string) {
-  console.log(id);
+    console.log(id);
 
-    this.postServ.discover(id).subscribe(
-      data => {
-        this.discovers = data;
-        console.log(this.discovers);
-      }
-    );
+    this.postServ.discover(id).subscribe(data => {
+      this.discovers = data;
+      console.log(this.discovers);
+    });
   };
 
   constructor(
