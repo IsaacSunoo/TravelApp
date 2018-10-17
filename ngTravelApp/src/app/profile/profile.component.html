@@ -107,7 +107,7 @@
             <li *ngFor="let user of users">
               <div class="media">
                 <div class="media-left">
-                  <img class="rounded-circle" [src]="showProfile.imgLink">
+                  <img class="rounded-circle" [src]="showProfile.imgLink" alt="pic">
                 </div>
                 <div class="media-body">
                   <h5><a class="card-link" [routerLink]="['/profile/' + user.id]">@{{user.name}} </a></h5>

@@ -6,10 +6,10 @@
       <div class="card">
         <div class="card-body">
           <div>
-            <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><img width="100%" [src]="profileFromStorage.imgLink"
+            <a class="card-link" [routerLink]="['/profile']"><img width="100%" [src]="profileFromStorage.imgLink"
                 alt="profile image in left side card"></a>
           </div>
-          <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]">
+          <a class="card-link" [routerLink]="['/profile']">
             <div class="h5">@{{profileFromStorage.user.name}}</div>
           </a>
           <div class="h7 text-muted">Fullname : {{profileFromStorage.firstName}} {{profileFromStorage.lastName}}</div>
@@ -42,11 +42,11 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
               <div class="mr-2">
-                <a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]"><img class="rounded-circle"
+                <a class="card-link" [routerLink]="['/profile']"><img class="rounded-circle"
                     width="45" [src]="post.profile.imgLink" alt="profile image"></a>
               </div>
               <div class="ml-2">
-                <div class="h5 m-0"><a class="card-link" [routerLink]="['/profile/' + profileFromStorage.id]">@{{post.profile.user.name}}</a></div>
+                <div class="h5 m-0"><a class="card-link" [routerLink]="['/profile']">@{{post.profile.user.name}}</a></div>
                 <div class="h7 text-muted">{{post.profile.firstName}} {{post.profile.lastName}}</div>
               </div>
             </div>

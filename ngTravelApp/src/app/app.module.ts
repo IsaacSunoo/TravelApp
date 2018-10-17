@@ -30,6 +30,7 @@ import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 import { StepperToPostsShellService } from './stepper-to-posts-shell.service';
 import { SearchComponent } from './search/search.component';
 import { CommentProfileFilterPipe } from './comment-profile-filter.pipe';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -67,7 +68,10 @@ import { CommentProfileFilterPipe } from './comment-profile-filter.pipe';
     MatCheckboxModule,
     MatNativeDateModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'key'
+    })
   ],
   providers: [DatePipe, TripService, StepperToPostsShellService],
   bootstrap: [AppComponent]
