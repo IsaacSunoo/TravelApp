@@ -3,6 +3,11 @@
 ## Authors
 Richard Paleczny, Isaac Sunoo, Amber Moreno
 
+### Application Link
+Use this link to interact with our application: http://54.189.235.87:8080/TravelAppREST/#/home
+* Demo User: JamesG
+* Demo Password: password
+
 ### Description
 This project was designed and created as a full-stack dynamic web application in fulfillment of Skill Distillery's final project requirements. It is an application which uses REST architecture to create RESTful web services. The main idea is for users to find inspiration and new ideas for travel which might have otherwise not occurred to them.
 
@@ -25,7 +30,7 @@ Due to time constraints, many of the ideas we had wanted to incorporate we were 
 #### Technologies & Design Aspects
 * Java
 * JavaScript
-* AngularJS
+* Angular
 * Spring MVC
 * REST Architecture
 * JPA/JPQL/Hibernate/Spring Data JPA/Query DSL
